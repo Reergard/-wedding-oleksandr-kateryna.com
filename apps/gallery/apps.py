@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class InvitationsConfig(AppConfig):
+class GalleryConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'invitations'
+    name = 'apps.gallery'
