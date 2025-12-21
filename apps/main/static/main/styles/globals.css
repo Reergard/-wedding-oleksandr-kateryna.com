@@ -1,0 +1,158 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+/* The following line is used to measure usage of this code. You can remove it if you want. */
+@import url("https://px.animaapp.com/673f6a9b1fedf1c6d1915fec.673f6a9c1fedf1c6d1915fef.OivLAlY.hcp.png");
+
+/* CSS Variables */
+:root { 
+  --black: #000000;
+  --green-pea: #1d6235;
+  --old-gold: #d4af37;
+ 
+  --font-size-l: 40px;
+  --font-size-m: 25px;
+  --font-size-xl: 64px;
+  --font-size-xxl: 70px;
+  --font-size-xxxl: 100px;
+  --font-size-xxxxl: 150px;
+ 
+  --font-family-calligraphia_one-regular: "Calligraphia One-Regular", Helvetica;
+  --font-family-decor-regular: "Decor-Regular", Helvetica;
+  --font-family-isadora_cyr_-regular: "Isadora Cyr -Regular", Helvetica;
+  --font-family-liberty_tl-regular: "Liberty TL-Regular", Helvetica;
+  --font-family-literature_decor-regular: "Literature Decor-Regular", Helvetica;
+  --font-family-markiz_de_sad_script-regular: "Markiz de Sad script-Regular", Helvetica;
+  --font-family-times_new_roman-regular: "Times New Roman-Regular", Helvetica;
+}
+
+@font-face {
+  font-family: "Times New Roman-Regular";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/timesnewromanpsmt.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Markiz de Sad Script-Regular";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/markizdesadscript.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Decor-Regular";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Decor"), local("Decor-Regular"), local("Decor Regular"), local("DecorRegular"), url("../fonts/decor.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Decor";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Decor"), local("Decor-Regular"), local("Decor Regular"), local("DecorRegular"), url("../fonts/decor.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Liberty TL-Regular";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/ofont.ru_Liberty TL.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Literature Decor-Regular";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/Literature-Decor.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Calligraphia One-Regular";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/calligraphiaone.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Isadora Cyr-Regular";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/ofont.ru_Isadora Cyr .ttf") format("truetype");
+}
+
+
+.screen a {
+  display: contents;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
+.date,
+.date-text {
+  font-family: "Decor-Regular", "Decor", sans-serif !important;
+  font-size: 100px !important;
+  font-weight: 500 !important;
+}
+
+/* Тестовый стиль для проверки decor.ttf */
+.test-decor {
+  font-family: "Decor-Regular", "Decor", sans-serif !important;
+}
+
+/* Utility classes from styleguide */
+.literaturedecor-regular-normal-green-pea-25px {
+  color: var(--green-pea);
+  font-family: var(--font-family-literature_decor-regular);
+  font-size: var(--font-size-m);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.libertytl-regular-normal-green-pea-25px {
+  color: var(--green-pea);
+  font-family: var(--font-family-liberty_tl-regular);
+  font-size: var(--font-size-m);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.libertytl-regular-normal-old-gold-25px {
+  color: var(--old-gold);
+  font-family: var(--font-family-liberty_tl-regular);
+  font-size: var(--font-size-m);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.calligraphiaone-regular-normal-old-gold-64px {
+  color: var(--old-gold);
+  font-family: var(--font-family-calligraphia_one-regular);
+  font-size: var(--font-size-xl);
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* Мобильная версия - увеличение шрифта в 2 раза для utility классов */
+/* Используем более широкий порог, так как viewport установлен на 1390px */
+@media (max-width: 1390px) and (orientation: portrait), 
+       (max-width: 768px),
+       (max-device-width: 768px) {
+  .calligraphiaone-regular-normal-old-gold-64px {
+    font-size: calc(var(--font-size-xl) * 2) !important;
+  }
+  
+  .literaturedecor-regular-normal-green-pea-25px,
+  .libertytl-regular-normal-old-gold-25px,
+  .libertytl-regular-normal-green-pea-25px {
+    font-size: calc(var(--font-size-m) * 2) !important;
+  }
+}
