@@ -1,0 +1,492 @@
+/* Модальное окно */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100%; /* Гарантируем минимальную высоту */
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10000;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch; /* Плавный скролл на iOS */
+}
+
+.modal-overlay.active {
+  display: flex;
+  align-items: flex-start; /* Изменено с center на flex-start для правильного скролла */
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto !important; /* Разрешаем скролл overlay */
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch; /* Плавный скролл на iOS */
+}
+
+.modal-container {
+  width: 796px;
+  height: 1183px; /* Фиксированная высота контейнера */
+  position: relative;
+  max-width: 90vw;
+  margin: 20px auto; /* Отступ сверху и снизу для скролла */
+  flex-shrink: 0; /* Предотвращаем сжатие при flex */
+}
+
+.modal-content {
+  width: 100%;
+  height: 1183px; /* Фиксированная высота контента */
+  position: relative;
+  overflow: hidden; /* Обрезаем содержимое по скругленным углам */
+  border-radius: 49px;
+}
+
+/* Rectangle 4130 - белый фон, самый нижний слой */
+.Rectangle4130 {
+  width: 792px;
+  height: 1183px;
+  left: 5px;
+  top: -3px;
+  position: absolute;
+  background: white;
+  border-radius: 49px;
+  z-index: 1;
+}
+
+/* Golden fabric background */
+.GoldenFabricClothIsolatedOnTransparentBackgroundFreePng2 {
+  width: 1183px;
+  height: 792px;
+  left: 0px;
+  top: 1183px;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: top left;
+  z-index: 2;
+  opacity: 0.20;
+}
+
+/* Rectangle 4129 - полупрозрачный слой */
+.Rectangle4129 {
+  width: 792px;
+  height: 1183px;
+  left: 4px;
+  top: -4px;
+  position: absolute;
+  background: rgba(212, 175, 55, 0.20);
+  border-radius: 49px;
+  z-index: 3;
+}
+
+/* Декоративные векторы - рамка */
+.modal-content .Vector {
+  position: absolute;
+  z-index: 4;
+}
+
+.modal-content .Vector1,
+.modal-content .Vector2,
+.modal-content .Vector3,
+.modal-content .Vector4 {
+  position: absolute;
+  z-index: 4;
+}
+
+.modal-content .Vector1 {
+  left: 37px;
+  top: 141.10px;
+  position: absolute;
+}
+
+.modal-content .Vector2 {
+  left: 762px;
+  top: 141.93px;
+  position: absolute;
+}
+
+.modal-content .Vector3 {
+  left: 153px;
+  top: 46.16px;
+  position: absolute;
+}
+
+.modal-content .Vector4 {
+  left: 152px;
+  top: 1143.84px;
+  position: absolute;
+}
+
+/* Текстовые элементы - поверх всех слоев */
+.modal-content [data-layer] {
+  z-index: 5;
+  position: absolute;
+}
+
+.modal-content [data-layer="Дорога Хрещена!"] {
+  width: 587px;
+  left: 103px;
+  top: 74px;
+  position: absolute;
+  text-align: center;
+  color: #D4AF37;
+  font-size: 40px;
+  font-family: Gabriola, serif;
+  font-weight: 400;
+  line-height: 90px;
+  word-wrap: break-word;
+}
+
+.modal-content [data-layer="Чи зможете ви бути присутніми на весіллі?"] {
+  width: 434px;
+  height: 38px;
+  left: 84px;
+  top: 147px;
+  position: absolute;
+  color: #D4AF37;
+  font-size: 30px;
+  font-family: Gabriola, serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.modal-content [data-layer="Так, з радістю буду! На жаль, не зможу бути присутня."] {
+  width: 301px;
+  height: auto;
+  left: 120px;
+  top: 189px;
+  position: absolute;
+  color: #D4AF37;
+  font-size: 20px;
+  font-family: Gabriola, serif;
+  font-weight: 400;
+  line-height: 20px;
+  word-wrap: break-word;
+}
+
+.modal-content [data-layer="Відмітьте, будь ласка, ваші вподобання:"] {
+  width: 564px;
+  height: 39px;
+  left: 84px;
+  top: 233px;
+  position: absolute;
+  color: #D4AF37;
+  font-size: 30px;
+  font-family: Gabriola, serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.modal-content [data-layer="Лосось Курятина Свинина  Яловичина Овочі"] {
+  width: 301px;
+  height: auto;
+  left: 120px;
+  top: 276px;
+  position: absolute;
+  color: #D4AF37;
+  font-size: 20px;
+  font-family: Gabriola, serif;
+  font-weight: 400;
+  line-height: 20px;
+  word-wrap: break-word;
+}
+
+.modal-content [data-layer="Чи є у вас є харчові алергії або продукти, які вам не можна:"] {
+  width: 641px;
+  height: 44px;
+  left: 84px;
+  top: 389px;
+  position: absolute;
+  color: #D4AF37;
+  font-size: 30px;
+  font-family: Gabriola, serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.modal-content [data-layer="Так Ні"] {
+  width: 301px;
+  height: auto;
+  left: 120px;
+  top: 434px;
+  position: absolute;
+  color: #D4AF37;
+  font-size: 20px;
+  font-family: Gabriola, serif;
+  font-weight: 400;
+  line-height: 20px;
+  word-wrap: break-word;
+}
+
+.modal-content [data-layer="Відмітьте, будь ласка, ваші уподобання щодо напоїв:"] {
+  width: 564px;
+  height: 40px;
+  left: 84px;
+  top: 485px;
+  position: absolute;
+  color: #D4AF37;
+  font-size: 30px;
+  font-family: Gabriola, serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.modal-content [data-layer="Шампанське Біле вино Червоне вино Міцний алкголь Безалкогольні напої"] {
+  width: 301px;
+  height: auto;
+  left: 120px;
+  top: 532px;
+  position: absolute;
+  color: #D4AF37;
+  font-size: 20px;
+  font-family: Gabriola, serif;
+  font-weight: 400;
+  line-height: 20px;
+  word-wrap: break-word;
+}
+
+.modal-content [data-layer="Чи потрібна вам трансфер до місця проведення або назад:"] {
+  width: 646px;
+  height: 41px;
+  left: 84px;
+  top: 644px;
+  position: absolute;
+  color: #D4AF37;
+  font-size: 30px;
+  font-family: Gabriola, serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.modal-content [data-layer="Так Ні трансфер"] {
+  width: 301px;
+  height: auto;
+  left: 120px;
+  top: 685px;
+  position: absolute;
+  color: #D4AF37;
+  font-size: 20px;
+  font-family: Gabriola, serif;
+  font-weight: 400;
+  line-height: 20px;
+  word-wrap: break-word;
+}
+
+.modal-content [data-layer="Тут ви можете залишити будь-які уточнення або побажання:"] {
+  width: 655px;
+  height: 40px;
+  left: 84px;
+  top: 743px;
+  position: absolute;
+  color: #D4AF37;
+  font-size: 30px;
+  font-family: Gabriola, serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+/* Поле для ввода текста с пунктирными линиями */
+.text-input-wrapper {
+  position: absolute;
+  left: 84px;
+  top: 783px;
+  width: 651px;
+  height: 150px;
+  z-index: 5;
+}
+
+.text-input-wrapper .Vector5 {
+  position: absolute;
+  left: 0;
+  width: 651px;
+  height: 1px;
+  z-index: 1;
+}
+
+.text-input-wrapper .Vector5 svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.comments-textarea {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 651px;
+  height: 150px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #D4AF37;
+  font-size: 20px;
+  font-family: Gabriola, serif;
+  font-weight: 400;
+  line-height: 30px;
+  padding: 0;
+  margin: 0;
+  resize: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.comments-textarea::placeholder {
+  color: transparent;
+}
+
+/* Кнопка закрытия */
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background: rgba(212, 175, 55, 0.8);
+  border: 2px solid #D4AF37;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #D4AF37;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+  background: rgba(212, 175, 55, 1);
+  transform: scale(1.1);
+}
+
+/* Кнопка подтверждения */
+.Frame16 {
+  width: 245px;
+  height: 79.94px;
+  left: 276px;
+  top: 1031px;
+  position: absolute;
+  cursor: pointer;
+}
+
+.Frame16 [data-layer="підтвердити"] {
+  width: 151.98px;
+  left: 46.88px;
+  top: 35.03px;
+  position: absolute;
+  text-align: center;
+  color: #D4AF37;
+  font-size: 18px;
+  font-family: "Literature Decor-Regular", Helvetica;
+  font-weight: 400;
+  text-transform: capitalize;
+  word-wrap: break-word;
+  pointer-events: none;
+}
+
+/* Стили для списков опций с кружками */
+.modal-content .option-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.modal-content .option-item {
+  position: relative;
+  padding-left: 20px;
+  line-height: 20px;
+  margin-bottom: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.modal-content .option-item input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  width: 0;
+  height: 0;
+}
+
+.modal-content .option-item span {
+  display: inline-block;
+  position: relative;
+}
+
+/* Кружок для чекбокса */
+.modal-content .option-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  border: 1px solid #D4AF37;
+  border-radius: 50%;
+  background: transparent;
+  transition: opacity 0.2s ease;
+  z-index: 1;
+}
+
+/* Звездочка при выборе чекбокса */
+.modal-content .option-item::after {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 10 10'%3E%3Cpath d='M5 0L6.18 3.82L10 3.82L7.09 6.18L8.27 10L5 7.64L1.73 10L2.91 6.18L0 3.82L3.82 3.82L5 0Z' fill='%23D4AF37'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 2;
+}
+
+/* Показываем звездочку и скрываем кружок при выборе через :has() */
+@supports selector(:has(*)) {
+  .modal-content .option-item:has(input[type="checkbox"]:checked)::before {
+    opacity: 0;
+  }
+  
+  .modal-content .option-item:has(input[type="checkbox"]:checked)::after {
+    opacity: 1;
+  }
+}
+
+/* Fallback для браузеров без поддержки :has() - используем класс через JavaScript */
+.modal-content .option-item.checked::before {
+  opacity: 0;
+}
+
+.modal-content .option-item.checked::after {
+  opacity: 1;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+  .modal-container {
+    width: 95vw;
+    height: auto;
+    max-height: 95vh;
+  }
+
+  .Rectangle4130,
+  .Rectangle4129 {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+  }
+
+  .modal-content [data-layer] {
+    font-size: calc(1vw + 1vh);
+  }
+}
+

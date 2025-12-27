@@ -23,6 +23,8 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'main/styles/main.css' %}" />
 
+    <link rel="stylesheet" type="text/css" href="{% static 'invitations/styles/modal.css' %}" />
+
 </head>
 
   <body style="margin: 0; background: #ffffff">
@@ -259,7 +261,7 @@
 
       </div>
 
-      <div class="group-32">
+      <div class="group-32" id="openModalBtn" style="cursor: pointer;">
 
         <div class="group-27">
 
@@ -304,6 +306,8 @@
       />
 
     </div>
+
+    {% include 'invitations/modal.html' %}
 
 </body>
 
