@@ -16,7 +16,7 @@
   --font-size-xxxxl: 150px;
  
   --font-family-calligraphia_one-regular: "Calligraphia One-Regular", Helvetica;
-  --font-family-decor-regular: "Decor-Regular", Helvetica;
+  --font-family-decor-regular: "Decor", Helvetica;
   --font-family-isadora_cyr_-regular: "Isadora Cyr -Regular", Helvetica;
   --font-family-liberty_tl-regular: "Liberty TL-Regular", Helvetica;
   --font-family-literature_decor-regular: "Literature Decor-Regular", Helvetica;
@@ -39,23 +39,18 @@
 }
 
 @font-face {
-  font-family: "Decor-Regular";
-  font-style: normal;
-  font-weight: 400;
-  src: local("Decor"), local("Decor-Regular"), local("Decor Regular"), local("DecorRegular"), url("../fonts/decor.ttf") format("truetype");
-}
-
-@font-face {
   font-family: "Decor";
   font-style: normal;
   font-weight: 400;
-  src: local("Decor"), local("Decor-Regular"), local("Decor Regular"), local("DecorRegular"), url("../fonts/decor.ttf") format("truetype");
+  font-display: swap;
+  src: url("../fonts/decor.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Liberty TL-Regular";
   font-style: normal;
   font-weight: 400;
+  font-display: swap;
   src: url("../fonts/ofont.ru_Liberty TL.ttf") format("truetype");
 }
 
@@ -98,14 +93,17 @@ html, body {
 
 .date,
 .date-text {
-  font-family: "Decor-Regular", "Decor", sans-serif !important;
-  font-size: 100px !important;
+  font-family: "Calligraphia One-Regular", Helvetica !important;
+  font-size: 180px !important;
   font-weight: 500 !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /* Тестовый стиль для проверки decor.ttf */
 .test-decor {
-  font-family: "Decor-Regular", "Decor", sans-serif !important;
+  font-family: "Decor", sans-serif !important;
 }
 
 /* Utility classes from styleguide */

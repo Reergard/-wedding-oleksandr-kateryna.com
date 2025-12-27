@@ -3,11 +3,24 @@
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 {
   background-color: #ffffff;
   height: 3322px;
+  min-height: 3322px;
   min-width: 100%;
   max-width: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   position: relative;
   width: 100%;
+  padding-bottom: 50px;
+  box-sizing: border-box;
+}
+
+/* Увеличение высоты для мобильных устройств, чтобы контент не обрезался */
+@media (max-width: 768px) {
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 {
+    min-height: calc(3322px + 200px) !important;
+    height: calc(3322px + 200px) !important;
+    padding-bottom: 200px !important;
+  }
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .golden-fabric-cloth {
@@ -19,6 +32,7 @@
   top: 1706px;
   width: 100%;
   max-width: 1413px;
+  z-index: 1;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle-4128 {
@@ -26,6 +40,7 @@
   left: 0;
   top: 1632px;
   width: 100%;
+  z-index: 2;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-1-1 {
@@ -43,6 +58,7 @@
   top: 2571px;
   width: 90%;
   max-width: 937px;
+  z-index: 3;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-2 {
@@ -59,6 +75,7 @@
   top: 2473px;
   width: 90%;
   max-width: 586px;
+  z-index: 3;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .golden-fabric-cloth-1 {
@@ -70,6 +87,7 @@
   top: 122px;
   width: 100%;
   max-width: 1413px;
+  z-index: 1;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle-4126 {
@@ -77,6 +95,7 @@
   left: 0;
   top: -69px;
   width: 100%;
+  z-index: 2;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .ellipse-9 {
@@ -110,6 +129,7 @@
   width: 100%;
   max-width: 1390px;
   object-fit: cover;
+  z-index: 3;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-3 {
@@ -123,6 +143,7 @@
   position: absolute;
   top: 395px;
   white-space: nowrap;
+  z-index: 3;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-4 {
@@ -136,6 +157,7 @@
   position: absolute;
   top: 515px;
   white-space: nowrap;
+  z-index: 3;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-5 {
@@ -148,34 +170,42 @@
   line-height: normal;
   position: absolute;
   top: 478px;
+  z-index: 3;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .date,
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .date-text {
   color: var(--old-gold);
-  font-family: "Decor-Regular", "Decor", sans-serif !important;
-  font-size: 100px !important;
-  font-weight: 500;
+  font-family: "Calligraphia One-Regular", Helvetica !important;
+  font-size: 180px !important;
+  font-weight: 500 !important;
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
-  right: 135px;
+  right: 100px;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: optimizeLegibility !important;
   top: 1396px;
   white-space: nowrap;
+  z-index: 3;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-6 {
   color: var(--old-gold);
   font-family: "Liberty TL-Regular", Helvetica;
-  font-size: 70px;
+  font-size: calc(70px * 0.95);
   font-weight: 400;
   letter-spacing: 0;
-  line-height: 90px;
+  line-height: 1.1;
   position: absolute;
-  right: 65px;
+  right: 35px; /* было 65px, сдвигаем вправо на 30px = 35px */
   text-align: center;
   top: 1111px;
   width: 587px;
+  z-index: 3;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-13 {
@@ -203,6 +233,16 @@
   line-height: normal;
   white-space: nowrap;
   width: 473px;
+}
+
+/* Цвет для указанных элементов */
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-8.libertytl-regular-normal-old-gold-25px,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-11.libertytl-regular-normal-old-gold-25px,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-13.libertytl-regular-normal-old-gold-25px,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-15.libertytl-regular-normal-old-gold-25px,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-11 .text-1.libertytl-regular-normal-old-gold-25px,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 .text-1.libertytl-regular-normal-old-gold-25px {
+  color: #C09B20 !important;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-11 {
@@ -445,11 +485,11 @@
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .frame-11 {
-  height: 80px;
-  left: 508px;
+  height: 100px;
+  left: 358px;
   position: absolute;
-  top: 1662px;
-  width: 242px;
+  top: 1652px;
+  width: 542px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -458,7 +498,7 @@
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-18 {
   color: var(--old-gold);
   font-family: "Literature Decor-Regular", Helvetica;
-  font-size: var(--font-size-m);
+  font-size: 50px;
   font-weight: 400;
   letter-spacing: 0;
   line-height: normal;
@@ -472,7 +512,14 @@
   left: 0;
   position: absolute;
   top: 0;
-  width: 100.00%;
+  width: 100%;
+  z-index: 3;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-3 svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-4 {
@@ -519,6 +566,7 @@
   position: absolute;
   top: 1763px;
   white-space: nowrap;
+  color: #C09B20 !important;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-20 {
@@ -529,6 +577,7 @@
   position: absolute;
   top: 1870px;
   white-space: nowrap;
+  color: #C09B20 !important;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-21 {
@@ -539,6 +588,7 @@
   position: absolute;
   top: 2070px;
   white-space: nowrap;
+  color: #C09B20 !important;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-22 {
@@ -549,6 +599,7 @@
   position: absolute;
   top: 1970px;
   white-space: nowrap;
+  color: #C09B20 !important;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-23 {
@@ -559,6 +610,7 @@
   position: absolute;
   top: 2174px;
   white-space: nowrap;
+  color: #C09B20 !important;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-24 {
@@ -569,6 +621,7 @@
   position: absolute;
   top: 2277px;
   white-space: nowrap;
+  color: #C09B20 !important;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-16 {
@@ -766,10 +819,70 @@
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle {
   background: linear-gradient(180deg, rgba(255, 243, 209, 0.8) 0%, rgba(255, 255, 255, 1) 100%);
-  filter: blur(100px);;
+  -webkit-background: linear-gradient(180deg, rgba(255, 243, 209, 0.8) 0%, rgba(255, 255, 255, 1) 100%);
+  filter: blur(100px);
+  -webkit-filter: blur(100px);
   position: absolute;
   width: 100%;
   max-width: 2234px;
+  z-index: 2;
+}
+
+/* Общее правило для всех элементов контента - они должны быть выше градиента */
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-8,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-9,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-10,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-11,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-13,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-16,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-19,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-27,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-32,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .ellipse-9,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .ellipse-8,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .ellipse-3,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .ellipse-2,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .ellipse-4,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .ellipse-7,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .ellipse-5,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .ellipse-6,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .line-1,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .line-2,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .frame-11,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-19,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-20,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-21,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-22,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-23,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-24,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-25,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-1,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-2,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-3,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-4,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-5,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-6,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-7,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-8,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-9,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-10,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-11,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-1-1,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-2-1,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-3-1,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-4-1,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-12,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-13,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-14,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-15,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-16,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .c-h-jpdm-f0-zs9sci9p,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .c-h-jpdm-f0-zs9sci9p-1,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .mask-group,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .mask-group-1 {
+  z-index: 3;
 }
 
 /* Media queries для предотвращения горизонтального скролла */
@@ -785,54 +898,105 @@
   }
 }
 
+/* Исправление проблемы со скроллом на iPhone - увеличенная высота и padding */
+@supports (-webkit-touch-callout: none) {
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 {
+    min-height: calc(3322px + 400px) !important;
+    height: calc(3322px + 400px) !important;
+    padding-bottom: 400px !important;
+  }
+}
+
+/* Дополнительное исправление для Safari iOS */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  @supports (-webkit-touch-callout: none) {
+    .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 {
+      min-height: calc(3322px + 450px) !important;
+      height: calc(3322px + 450px) !important;
+      padding-bottom: 450px !important;
+    }
+  }
+}
+
 /* Мобильная версия - увеличение шрифта в 2 раза */
 /* Используем более широкий порог, так как viewport установлен на 1390px */
 @media (max-width: 1390px) and (orientation: portrait), 
        (max-width: 768px),
        (max-device-width: 768px) {
-  /* Програма Дня */
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-18 {
-    font-size: calc(var(--font-size-m) * 2) !important;
+  /* Центрирование градиента в мобильной версии */
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    /* Горизонтальный градиент: слабый на 5% от левого края, усиливается к центру */
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 5%, rgba(255, 243, 209, 0.8) 50%, rgba(255, 255, 255, 1) 100%) !important;
+    -webkit-background: linear-gradient(90deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 5%, rgba(255, 243, 209, 0.8) 50%, rgba(255, 255, 255, 1) 100%) !important;
   }
   
-  /* Времена (11:00, 11:30, 12:30, 15:00, 15:30, 18:00) - немного уменьшены */
+  /* Уменьшение размера шрифта для текстов локаций до 60px в мобильной версии */
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-8 .libertytl-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-9 .libertytl-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-10 .libertytl-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-11 .libertytl-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 .libertytl-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-13 .libertytl-regular-normal-green-pea-25px {
+    font-size: 60px !important;
+  }
+  
+  /* Програма Дня */
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-18 {
+    font-size: calc(var(--font-size-m) * 2 * 1.5 * 0.83) !important; /* 25px * 2 * 1.5 * 0.83 = 62.25px (уменьшение на 17%) */
+  }
+  
+  /* Времена (11:00, 11:30, 12:30, 15:00, 15:30, 18:00) - увеличены в 1.5 раза, затем уменьшены на 17% */
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-19,
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-20,
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-21,
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-22,
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-23,
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-24 {
-    font-size: calc(var(--font-size-xl) * 1.5) !important; /* было * 2, стало * 1.5 (96px вместо 128px) */
+    font-size: calc(var(--font-size-xl) * 1.5 * 1.5 * 0.83) !important; /* 64px * 1.5 * 1.5 * 0.83 = 119.52px (уменьшение на 17%) */
   }
   
-  /* Позиционирование: самый левый элемент (text-21) на 30px от края, остальные относительно него */
+  /* Текст приглашения */
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-6 {
+    font-size: calc(70px * 1.5 * 0.95 * 0.85) !important; /* 70px * 1.5 * 0.95 * 0.85 = 84.7875px (уменьшение на 15%) */
+    line-height: 1.0 !important; /* 1.0 от высоты шрифта */
+    width: calc(587px + 15px) !important; /* увеличение ширины на 15px = 602px */
+  }
+  
+  /* Дата - опускаем немного ниже на мобильных */
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .date-text {
+    top: calc(1396px + 30px) !important; /* опускаем на 30px ниже */
+  }
+  
+  /* Позиционирование: самый левый элемент (text-21) на 20px от края (30px - 10px), остальные относительно него */
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-19 {
-    left: 38px !important; /* text-21 на 30px, text-19 на 8px правее (410-402=8) */
+    left: 28px !important; /* было 38px, сдвигаем влево на 10px */
     top: 1733px !important; /* было 1763px, стало 1733px (1763 - 30) */
   }
   
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-20 {
-    left: 33px !important; /* text-21 на 30px, text-20 на 3px правее (410-407=3) */
+    left: 23px !important; /* было 33px, сдвигаем влево на 10px */
     top: 1840px !important; /* было 1870px, стало 1840px (1870 - 30) */
   }
   
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-21 {
-    left: 30px !important; /* самый левый элемент на 30px от края */
+    left: 20px !important; /* было 30px, сдвигаем влево на 10px */
     top: 2040px !important; /* было 2070px, стало 2040px (2070 - 30) */
   }
   
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-22 {
-    left: 31px !important; /* text-21 на 30px, text-22 на 1px правее (410-409=1) */
+    left: 21px !important; /* было 31px, сдвигаем влево на 10px */
     top: 1940px !important; /* было 1970px, стало 1940px (1970 - 30) */
   }
   
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-23 {
-    left: 31px !important; /* text-21 на 30px, text-23 на 1px правее (410-409=1) */
+    left: 21px !important; /* было 31px, сдвигаем влево на 10px */
     top: 2144px !important; /* было 2174px, стало 2144px (2174 - 30) */
   }
   
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-24 {
-    left: 38px !important; /* text-21 на 30px, text-24 на 8px правее (410-402=8) */
+    left: 28px !important; /* было 38px, сдвигаем влево на 10px */
     top: 2247px !important; /* было 2277px, стало 2247px (2277 - 30) */
   }
   
@@ -850,35 +1014,44 @@
   
   /* frame-11 и векторы: сдвигаем на такое же расстояние (320px влево) */
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .frame-11 {
-    left: 188px !important; /* было 508px, сдвиг 320px влево (508 - 320 = 188) */
+    left: 38px !important; /* Центр line-2: 196 + 226/2 = 309px, центр frame-11 должен быть 309px: 309 - 542/2 = 38px */
   }
   
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-4 {
-    left: 180px !important; /* было 36.02% ≈ 500px при 1390px, стало 180px (500 - 320 = 180) */
+    left: calc(180px + 25px) !important; /* сдвигаем вправо на 25px = 205px */
   }
   
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-5 {
-    left: 177px !important; /* было 35.74% ≈ 497px при 1390px, стало 177px (497 - 320 = 177) */
+    left: calc(177px + 25px) !important; /* сдвигаем вправо на 25px = 202px */
   }
   
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-6 {
-    left: 188px !important; /* было 36.56% ≈ 508px при 1390px, стало 188px (508 - 320 = 188) */
+    left: 215px !important; /* выравниваем с vector-7 (215px) или правее остальных */
+    width: 4.40% !important; /* сохраняем ширину */
   }
   
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-7 {
-    left: 190px !important; /* было 36.71% ≈ 510px при 1390px, стало 190px (510 - 320 = 190) */
+    left: calc(190px + 25px) !important; /* сдвигаем вправо на 25px = 215px */
   }
   
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector {
-    left: 176px !important; /* было 35.67% ≈ 496px при 1390px, стало 176px (496 - 320 = 176) */
+    left: calc(176px + 25px) !important; /* сдвигаем вправо на 25px = 201px */
   }
   
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-1 {
-    left: 185px !important; /* было 36.30% ≈ 505px при 1390px, стало 185px (505 - 320 = 185) */
+    left: calc(185px + 25px) !important; /* сдвигаем вправо на 25px = 210px */
+  }
+  
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-3 {
+    /* Центр line-1: 308px + 1px = 309px */
+    /* Центр frame-11: 38px + 542px/2 = 309px */
+    /* Центр vector-3 должен быть на 309px: left = 309px - 38px (frame-11) - 542px/2 (половина ширины vector-3) = 309 - 38 - 271 = 0px */
+    left: 0px !important; /* центрируем рамку так, чтобы ее центр совпадал с центром line-1 */
   }
   
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-2 {
-    left: 234px !important; /* было calc(50.00% - 141px) ≈ 554px при 1390px, стало 234px (554 - 320 = 234) */
+    left: 50% !important; /* центрируем по горизонтали */
+    transform: translateX(-50%) !important; /* сдвигаем влево на половину ширины для точного центрирования */
   }
   
   /* Линии и эллипсы: сдвигаем на такое же расстояние */
@@ -928,25 +1101,66 @@
   
   /* Уменьшение шрифта в 0.79 раза для конкретных текстовых элементов */
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-8.libertytl-regular-normal-old-gold-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-8.libertytl-regular-normal-old-gold-25px,
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-1.libertytl-regular-normal-old-gold-25px,
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-11.libertytl-regular-normal-old-gold-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-15.libertytl-regular-normal-old-gold-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-13.libertytl-regular-normal-old-gold-25px {
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-15.libertytl-regular-normal-old-gold-25px {
     font-size: calc(var(--font-size-m) * 2 * 0.79) !important; /* уменьшение в 0.79 раза (было 50px, стало 39.5px) */
+    font-weight: 425 !important; /* было 400, увеличиваем на 0.25 (400 + 25 = 425) */
+    position: relative !important;
+    top: 0px !important; /* было 5px, поднимаем еще на 5px вверх = 0px */
+    color: #C09B20 !important;
   }
   
-  /* Сдвиг вверх на 7px для span элементов с текстом "Готель Прага", "Замок Пругоніце", "Ресторан"green Garden"" */
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-13.libertytl-regular-normal-old-gold-25px {
+    font-size: calc(var(--font-size-m) * 2 * 0.79) !important; /* уменьшение в 0.79 раза (было 50px, стало 39.5px) */
+    font-weight: 425 !important; /* было 400, увеличиваем на 0.25 (400 + 25 = 425) */
+    position: relative !important;
+    top: -5px !important; /* было 0px, поднимаем еще на 5px вверх = -5px */
+    color: #C09B20 !important;
+  }
+  
+  /* Дополнительный сдвиг для text-1 в group-12 (строки 182-184) */
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 .text-1.libertytl-regular-normal-old-gold-25px {
+    top: 5px !important; /* было 10px, поднимаем еще на 5px вверх = 5px */
+    color: #C09B20 !important;
+  }
+  
+  /* Поднимаем параграф .x внутри group-12 (строки 171-180) - поднимаем сам параграф, span внутри уже подняты общим правилом */
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 .x {
+    position: relative !important;
+    top: -35px !important; /* было -30px, поднимаем еще на 5px вверх = -35px */
+  }
+  
+  /* Отменяем двойной сдвиг для span внутри .x, так как сам параграф уже поднят */
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 .x .literaturedecor-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 .x .libertytl-regular-normal-green-pea-25px {
+    top: 0px !important; /* отменяем сдвиг span, так как параграф уже поднят */
+  }
+  
+  /* Сдвиг вверх на 20px для span элементов и параграфов внутри групп */
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-8 .libertytl-regular-normal-green-pea-25px,
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-9 .libertytl-regular-normal-green-pea-25px,
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-10 .libertytl-regular-normal-green-pea-25px,
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-11 .libertytl-regular-normal-green-pea-25px,
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 .libertytl-regular-normal-green-pea-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-13 .libertytl-regular-normal-green-pea-25px {
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-13 .libertytl-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-8 .literaturedecor-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-9 .literaturedecor-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-10 .literaturedecor-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-11 .literaturedecor-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 .literaturedecor-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-13 .literaturedecor-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-13 .text-7.literaturedecor-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-11 .text-9.literaturedecor-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-10 .text-12.literaturedecor-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-8 .text-14.literaturedecor-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-9 .text-16.literaturedecor-regular-normal-green-pea-25px {
     position: relative !important;
-    top: -7px !important; /* сдвиг вверх на 7px */
+    top: -20px !important; /* было -15px, поднимаем еще на 5px вверх = -20px */
   }
   
-  /* Все текстовые элементы внутри групп */
+  /* Все текстовые элементы внутри групп - увеличены в 1.5 раза */
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-13 p,
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-13 div,
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-13 span,
@@ -966,6 +1180,6 @@
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 div,
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 span,
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 .x {
-    font-size: calc(var(--font-size-m) * 2) !important;
+    font-size: calc(var(--font-size-m) * 2 * 1.5) !important; /* 25px * 2 * 1.5 = 75px */
   }
 }
