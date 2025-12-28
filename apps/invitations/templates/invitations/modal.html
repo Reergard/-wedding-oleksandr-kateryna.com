@@ -169,12 +169,12 @@
       <div data-layer="Чи зможете ви бути присутніми на весіллі?">Чи зможете ви бути присутніми на весіллі?<br/></div>
       <div data-layer="Так, з радістю буду! На жаль, не зможу бути присутня." class="option-list">
         <label class="option-item">
-          <input type="checkbox" name="attendance" value="yes">
+          <input type="radio" name="attendance" value="yes">
           <span>Так, з радістю буду!</span>
         </label>
         <label class="option-item">
-          <input type="checkbox" name="attendance" value="no">
-          <span>На жаль, не зможу бути присутня.</span>
+          <input type="radio" name="attendance" value="no">
+          <span>На жаль, не зможу бути.</span>
         </label>
       </div>
       <div data-layer="Відмітьте, будь ласка, ваші вподобання:">Відмітьте, будь ласка, ваші вподобання: <br/></div>
@@ -199,49 +199,53 @@
           <input type="checkbox" name="food" value="vegetables">
           <span>Овочі</span>
         </label>
+        <label class="option-item">
+          <input type="checkbox" name="food" value="vegetables">
+          <span>Неважливо</span>
+        </label>
       </div>
       <div data-layer="Чи є у вас є харчові алергії або продукти, які вам не можна:">Чи є у вас є харчові алергії або продукти, які вам не можна:<br/></div>
       <div data-layer="Так Ні" class="option-list">
         <label class="option-item">
-          <input type="checkbox" name="allergies" value="yes">
+          <input type="radio" name="allergies" value="yes">
           <span>Так</span>
         </label>
         <label class="option-item">
-          <input type="checkbox" name="allergies" value="no">
+          <input type="radio" name="allergies" value="no">
           <span>Ні</span>
         </label>
       </div>
       <div data-layer="Відмітьте, будь ласка, ваші уподобання щодо напоїв:">Відмітьте, будь ласка, ваші уподобання щодо напоїв: <br/></div>
       <div data-layer="Шампанське Біле вино Червоне вино Міцний алкголь Безалкогольні напої" class="option-list">
         <label class="option-item">
-          <input type="checkbox" name="drinks" value="champagne">
+          <input type="radio" name="drinks" value="champagne">
           <span>Шампанське</span>
         </label>
         <label class="option-item">
-          <input type="checkbox" name="drinks" value="white-wine">
+          <input type="radio" name="drinks" value="white-wine">
           <span>Біле вино</span>
         </label>
         <label class="option-item">
-          <input type="checkbox" name="drinks" value="red-wine">
+          <input type="radio" name="drinks" value="red-wine">
           <span>Червоне вино</span>
         </label>
         <label class="option-item">
-          <input type="checkbox" name="drinks" value="strong-alcohol">
+          <input type="radio" name="drinks" value="strong-alcohol">
           <span>Міцний алкголь</span>
         </label>
         <label class="option-item">
-          <input type="checkbox" name="drinks" value="non-alcoholic">
+          <input type="radio" name="drinks" value="non-alcoholic">
           <span>Безалкогольні напої</span>
         </label>
       </div>
-      <div data-layer="Чи потрібна вам трансфер до місця проведення або назад:">Чи потрібна вам трансфер до місця проведення або назад:<br/></div>
+      <div data-layer="Чи потрібна вам трансфер до місця проведення або назад:">Чи потрібен вам трансфер до місця проведення або назад:<br/></div>
       <div data-layer="Так Ні трансфер" class="option-list">
         <label class="option-item">
-          <input type="checkbox" name="transfer" value="yes">
+          <input type="radio" name="transfer" value="yes">
           <span>Так</span>
         </label>
         <label class="option-item">
-          <input type="checkbox" name="transfer" value="no">
+          <input type="radio" name="transfer" value="no">
           <span>Ні</span>
         </label>
       </div>
@@ -279,7 +283,27 @@
 
       <!-- Кнопка подтверждения -->
       <div data-layer="Frame 16" class="Frame16">
-        <div data-layer="підтвердити">підтвердити</div>
+        <div data-layer="Group 41" class="Group41">
+          <div data-svg-wrapper data-layer="Rectangle 4149" class="Rectangle4149" style="left: 0px; top: 0px; position: absolute">
+            <svg viewBox="0 0 106 33" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              <g filter="url(#filter0_g_440_3)">
+                <path d="M4 16.5C4 9.59644 9.59644 4 16.5 4H89.5C96.4036 4 102 9.59644 102 16.5C102 23.4036 96.4036 29 89.5 29H16.5C9.59644 29 4 23.4036 4 16.5Z" fill="#D4AF37" fill-opacity="0.5"/>
+              </g>
+              <defs>
+                <filter id="filter0_g_440_3" x="0" y="0" width="106" height="33" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                  <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                  <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                  <feTurbulence type="fractalNoise" baseFrequency="2 2" numOctaves="3" seed="874" />
+                  <feDisplacementMap in="shape" scale="8" xChannelSelector="R" yChannelSelector="G" result="displacedImage" width="100%" height="100%" />
+                  <feMerge result="effect1_texture_440_3">
+                    <feMergeNode in="displacedImage"/>
+                  </feMerge>
+                </filter>
+              </defs>
+            </svg>
+          </div>
+          <div data-layer="підтвердити">підтвердити</div>
+        </div>
       </div>
     </div>
   </div>
@@ -291,7 +315,190 @@
     const openModalBtn = document.getElementById('openModalBtn');
     const modalOverlay = document.getElementById('modalOverlay');
     const modalClose = document.getElementById('modalClose');
+    const modalContainer = document.querySelector('.modal-container');
     let scrollPosition = 0;
+    
+    // Определяем мобильное устройство по реальному размеру экрана и применяем стили
+    function checkMobileDevice() {
+      const viewportWidth = document.documentElement.clientWidth || document.body.clientWidth;
+      const screenWidth = window.screen.width;
+      const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      const isMobileMedia = window.matchMedia('(max-width: 768px)').matches;
+      const isMobile = isMobileMedia || (hasTouch && (viewportWidth <= 768 || screenWidth <= 768));
+      
+      if (modalContainer) {
+        if (isMobile) {
+          modalContainer.classList.add('mobile-device');
+          // Применяем стили напрямую через JavaScript для гарантии
+          modalContainer.style.width = '90vw';
+          modalContainer.style.maxWidth = '500px';
+          modalContainer.style.height = 'auto';
+          modalContainer.style.minHeight = '90vh';
+          
+          const modalContent = modalContainer.querySelector('.modal-content');
+          if (modalContent) {
+            modalContent.style.width = '100%';
+            modalContent.style.height = 'auto';
+            modalContent.style.minHeight = '90vh';
+            modalContent.style.borderRadius = '35px';
+          }
+          
+          // Масштабируем все элементы внутри
+          const allDataLayers = modalContainer.querySelectorAll('[data-layer]');
+          allDataLayers.forEach(function(el) {
+            if (el.classList.contains('Rectangle4130') || el.classList.contains('Rectangle4129')) {
+              el.style.width = '100%';
+              el.style.height = '100%';
+              el.style.left = '0';
+              el.style.top = '0';
+              el.style.borderRadius = '35px';
+            }
+          });
+        } else {
+          modalContainer.classList.remove('mobile-device');
+          // Сбрасываем стили для десктопа
+          modalContainer.style.width = '';
+          modalContainer.style.maxWidth = '';
+          modalContainer.style.height = '';
+          modalContainer.style.minHeight = '';
+          
+          const modalContent = modalContainer.querySelector('.modal-content');
+          if (modalContent) {
+            modalContent.style.width = '';
+            modalContent.style.height = '';
+            modalContent.style.minHeight = '';
+            modalContent.style.borderRadius = '';
+          }
+        }
+      }
+    }
+    
+    // Функция для установки размеров Group41
+    function setGroup41Sizes() {
+      const frame16 = document.querySelector('.Frame16');
+      if (!frame16) {
+        console.log('Frame16 not found');
+        return;
+      }
+      
+      const group41 = frame16.querySelector('.Group41');
+      if (!group41) {
+        console.log('Group41 not found');
+        return;
+      }
+      
+      // Определяем, мобильная версия или десктопная
+      const viewportWidth = document.documentElement.clientWidth || document.body.clientWidth;
+      const hasMobileClass = modalContainer && (modalContainer.classList.contains('mobile-device') || modalContainer.classList.contains('force-mobile'));
+      const isMobile = viewportWidth <= 768 || hasMobileClass;
+      
+      console.log('setGroup41Sizes - viewportWidth:', viewportWidth, 'isMobile:', isMobile, 'hasMobileClass:', hasMobileClass);
+      
+      if (isMobile) {
+        // Мобильная версия
+        console.log('Setting mobile sizes: 350x80px');
+        group41.style.setProperty('width', '350px', 'important');
+        group41.style.setProperty('height', '80px', 'important');
+      } else {
+        // Десктопная версия
+        console.log('Setting desktop sizes: 350x90px');
+        group41.style.setProperty('width', '350px', 'important');
+        group41.style.setProperty('height', '90px', 'important');
+      }
+      
+      // Убеждаемся, что SVG растягивается правильно
+      const rectangle4149 = group41.querySelector('.Rectangle4149');
+      if (rectangle4149) {
+        rectangle4149.style.setProperty('width', '100%', 'important');
+        rectangle4149.style.setProperty('height', '100%', 'important');
+        const svg = rectangle4149.querySelector('svg');
+        if (svg) {
+          svg.style.setProperty('width', '100%', 'important');
+          svg.style.setProperty('height', '100%', 'important');
+          svg.setAttribute('preserveAspectRatio', 'none');
+        }
+      }
+      
+      // Проверяем примененные размеры
+      setTimeout(function() {
+        const computedWidth = window.getComputedStyle(group41).width;
+        const computedHeight = window.getComputedStyle(group41).height;
+        console.log('Group41 computed sizes - width:', computedWidth, 'height:', computedHeight);
+      }, 100);
+    }
+    
+    // Проверяем при загрузке и при изменении размера
+    checkMobileDevice();
+    setGroup41Sizes(); // Устанавливаем размеры Group41
+    window.addEventListener('resize', function() {
+      checkMobileDevice();
+      setGroup41Sizes(); // Обновляем размеры при изменении размера окна
+    });
+    window.addEventListener('orientationchange', function() {
+      setTimeout(function() {
+        checkMobileDevice();
+        setGroup41Sizes(); // Обновляем размеры при изменении ориентации
+      }, 100);
+    });
+    
+    function updateMobileBottomLayout() {
+      if (!modalContainer) return;
+      const modalContent = modalContainer.querySelector('.modal-content');
+      if (!modalContent) return;
+
+      const label = modalContent.querySelector('[data-layer="Тут ви можете залишити будь-які уточнення або побажання:"]');
+      const wrapper = modalContent.querySelector('.text-input-wrapper');
+      const textarea = modalContent.querySelector('.comments-textarea');
+      const confirmBtn = modalContent.querySelector('.Frame16');
+
+      if (!label || !wrapper || !confirmBtn) return;
+
+      const contentRect = modalContent.getBoundingClientRect();
+      const labelRect = label.getBoundingClientRect();
+
+      const gapAfterLabel = 14;    // отступ от вопроса до поля
+      const gapAfterTextarea = 34; // отступ от поля до кнопки
+
+      const wrapperTop = Math.round((labelRect.bottom - contentRect.top) + gapAfterLabel);
+      const wrapperHeight = 200; // соответствует высоте в CSS и других местах
+
+      wrapper.style.setProperty('top', `${wrapperTop}px`, 'important');
+      wrapper.style.setProperty('height', `${wrapperHeight}px`, 'important');
+
+      if (textarea) {
+        textarea.style.setProperty('height', `${wrapperHeight}px`, 'important');
+      }
+
+      // Увеличиваем размер точек (диаметр) для мобильной версии
+      const vector5Elements = wrapper.querySelectorAll('.Vector5 svg path');
+      vector5Elements.forEach(function(path) {
+        path.setAttribute('stroke-width', '3'); // Увеличиваем диаметр точек
+        path.setAttribute('stroke-dasharray', '0.5 10'); // Маленькая точка (0.5px), но большой диаметр за счет stroke-width, пробелы 10px (увеличено для меньшей частоты точек)
+        path.setAttribute('stroke-linecap', 'round'); // Круглые точки
+      });
+      
+      // Также увеличиваем высоту SVG для точек большего диаметра
+      const vector5Svgs = wrapper.querySelectorAll('.Vector5 svg');
+      vector5Svgs.forEach(function(svg) {
+        svg.setAttribute('height', '4');
+        svg.style.setProperty('height', '4px', 'important');
+      });
+
+      // Кнопка сразу под textarea (а не "прилипшая" к нижней линии рамки)
+      const btnHeight = confirmBtn.getBoundingClientRect().height || 65;
+      const btnTop = Math.round(wrapperTop + wrapperHeight + gapAfterTextarea);
+
+      confirmBtn.style.setProperty('top', `${btnTop}px`, 'important');
+      confirmBtn.style.setProperty('bottom', 'auto', 'important');
+      confirmBtn.style.setProperty('position', 'absolute', 'important');
+
+      // Резерв под нижнюю линию рамки + отступ, чтобы "підтвердити" не прижималось
+      const bottomSafe = 90;
+
+      const neededContentHeight = btnTop + btnHeight + bottomSafe;
+      modalContent.style.setProperty('min-height', `${neededContentHeight}px`, 'important');
+      modalContent.style.setProperty('padding-bottom', `${bottomSafe}px`, 'important');
+    }
 
     // Функция блокировки скролла страницы
     function lockBodyScroll() {
@@ -328,12 +535,1113 @@
       }
     }
 
+    // Функция для применения мобильных стилей напрямую
+    function applyMobileStyles() {
+      // Используем несколько способов определения мобильного устройства
+      const viewportWidth = document.documentElement.clientWidth || document.body.clientWidth;
+      const screenWidth = window.screen.width;
+      const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      const isMobileMedia = window.matchMedia('(max-width: 768px)').matches;
+      
+      // Определяем мобильное устройство: либо по медиа-запросу, либо по touch и маленькому экрану
+      const isMobile = isMobileMedia || (hasTouch && (viewportWidth <= 768 || screenWidth <= 768));
+      
+      console.log('=== applyMobileStyles START ===');
+      console.log('viewportWidth:', viewportWidth);
+      console.log('screenWidth:', screenWidth);
+      console.log('hasTouch:', hasTouch);
+      console.log('isMobileMedia:', isMobileMedia);
+      console.log('isMobile:', isMobile);
+      console.log('modalContainer exists:', !!modalContainer);
+      
+      if (!modalContainer) {
+        console.error('modalContainer not found!');
+        return;
+      }
+      
+      // ПРИНУДИТЕЛЬНО применяем стили - используем несколько методов определения
+      // 1. Проверяем через getBoundingClientRect() - реальный размер body
+      let actualWidth = viewportWidth;
+      try {
+        const bodyRect = document.body.getBoundingClientRect();
+        actualWidth = bodyRect.width;
+        console.log('bodyRect.width:', actualWidth);
+      } catch(e) {
+        console.log('getBoundingClientRect failed');
+      }
+      
+      // 2. Проверяем через visualViewport если доступно
+      if (window.visualViewport && window.visualViewport.width) {
+        const vvpWidth = window.visualViewport.width;
+        console.log('visualViewport.width:', vvpWidth);
+        if (vvpWidth < actualWidth) {
+          actualWidth = vvpWidth;
+        }
+      }
+      
+      // 3. Проверяем через matchMedia
+      const mediaQuery = window.matchMedia('(max-width: 900px)');
+      const isSmallViewport = mediaQuery.matches;
+      console.log('matchMedia(max-width: 900px):', isSmallViewport);
+      
+      // 4. ПРИНУДИТЕЛЬНО применяем стили если:
+      // - actualWidth <= 900px ИЛИ
+      // - matchMedia говорит что маленький viewport ИЛИ  
+      // - это touch-устройство с маленьким экраном ИЛИ
+      // - viewportWidth <= 1000 (для DevTools с маленьким размером)
+      // - ИЛИ ПРИНУДИТЕЛЬНО если это не явно большой экран (обход проблем с viewport meta)
+      let shouldApply = actualWidth <= 900 || isSmallViewport || (hasTouch && screenWidth <= 1024) || viewportWidth <= 1000;
+      
+      // ДОПОЛНИТЕЛЬНАЯ ПРОВЕРКА: если screenWidth большой, но это touch-устройство - применяем
+      // Это для случаев когда viewport meta блокирует определение
+      if (!shouldApply && hasTouch && (screenWidth <= 1920 || viewportWidth < screenWidth)) {
+        console.log('⚠️ Forcing mobile styles for touch device');
+        shouldApply = true;
+      }
+      
+      console.log('Final check - actualWidth:', actualWidth, 'viewportWidth:', viewportWidth, 'screenWidth:', screenWidth, 'isSmallViewport:', isSmallViewport, 'hasTouch:', hasTouch, 'shouldApply:', shouldApply);
+      
+      if (!shouldApply) {
+        console.log('❌ Viewport too large, skipping');
+        // НО все равно применяем если это явно мобильное устройство по user agent
+        const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        if (isMobileUA) {
+          console.log('⚠️ Mobile UA detected, forcing styles anyway');
+          shouldApply = true;
+        } else {
+          // ПОСЛЕДНЯЯ ПОПЫТКА: применяем стили если modalContainer уже существует и маленький
+          // Это для случаев когда viewport meta блокирует все определения
+          const containerRect = modalContainer.getBoundingClientRect();
+          if (containerRect.width && containerRect.width <= 600) {
+            console.log('⚠️ Container width is small (' + containerRect.width + 'px), forcing mobile styles');
+            shouldApply = true;
+          } else {
+            console.log('Container width:', containerRect.width, '- too large, skipping');
+            return;
+          }
+        }
+      }
+      
+      console.log('✅ Applying mobile styles! actualWidth:', actualWidth);
+      
+      console.log('Applying mobile styles...');
+      
+      // Проверяем, не был ли уже применен класс force-mobile
+      // Если да, не пересчитываем ширину - используем текущую
+      let targetWidth;
+      if (modalContainer.classList.contains('force-mobile')) {
+        // Класс уже применен — ширину не пересчитываем,
+        // но обязательно пересчитываем px-раскладку низа (textarea + кнопка).
+        const containerRect = modalContainer.getBoundingClientRect();
+        targetWidth = containerRect.width;
+        console.log('force-mobile already applied, keeping current width:', targetWidth);
+        try { updateMobileBottomLayout(); } catch(e) {}
+        return;
+      }
+      
+      // Класс еще не применен, вычисляем реальную ширину экрана
+      // В DevTools используем реальную ширину viewport
+      let realScreenWidth = 360; // Значение по умолчанию для мобильных
+      
+      // Метод 1: visualViewport (работает в DevTools и показывает реальную ширину viewport)
+      if (window.visualViewport && window.visualViewport.width) {
+        // В DevTools visualViewport.width показывает реальную ширину выбранного устройства
+        // Но из-за viewport meta может показывать большое значение
+        // Проверяем, если значение разумное для мобильного
+        if (window.visualViewport.width < 1000) {
+          realScreenWidth = window.visualViewport.width;
+          console.log('Using visualViewport.width:', realScreenWidth);
+        } else {
+          // visualViewport.width большой из-за viewport meta, пробуем другие методы
+          console.log('visualViewport.width too large:', window.visualViewport.width, '- trying other methods');
+        }
+      }
+      
+      // Метод 2: Если visualViewport не помог, пробуем получить реальную ширину через document.documentElement
+      if (realScreenWidth >= 1000 || !window.visualViewport) {
+        // Пробуем получить реальную ширину через window.innerWidth (может не работать из-за viewport meta)
+        if (window.innerWidth && window.innerWidth < 1000) {
+          realScreenWidth = window.innerWidth;
+          console.log('Using window.innerWidth:', realScreenWidth);
+        }
+        // Метод 3: screen.width если маленький
+        else if (window.screen && window.screen.width <= 768) {
+          realScreenWidth = window.screen.width;
+          console.log('Using screen.width:', realScreenWidth);
+        }
+        // Метод 4: getBoundingClientRect на body
+        else {
+          const bodyRect = document.body.getBoundingClientRect();
+          if (bodyRect.width < 1000) {
+            realScreenWidth = bodyRect.width;
+            console.log('Using body.getBoundingClientRect().width:', realScreenWidth);
+          } else {
+            // Если все методы показывают большое значение, используем стандартное для мобильных
+            // Но это должно быть редко, так как visualViewport обычно работает
+            realScreenWidth = 360;
+            console.log('All methods failed, using default mobile width:', realScreenWidth);
+          }
+        }
+      }
+      
+      // Используем почти 100% от реальной ширины экрана (99.5%) для максимальной ширины модального окна
+      // с минимальными отступами по бокам
+      // (НЕ применяем процент дважды!)
+      targetWidth = Math.floor(realScreenWidth * 0.995);
+      console.log('Computed target width from screen:', targetWidth, '(from screen width:', realScreenWidth + ', 99.5% of screen)');
+      
+      // Добавляем класс для применения стилей
+      modalContainer.classList.add('force-mobile');
+      console.log('Added force-mobile class');
+      
+      // Создаем и добавляем style тег с правилами для мобильных устройств
+      let mobileStyle = document.getElementById('mobile-modal-styles');
+      if (!mobileStyle) {
+        mobileStyle = document.createElement('style');
+        mobileStyle.id = 'mobile-modal-styles';
+        document.head.appendChild(mobileStyle);
+      }
+      
+      mobileStyle.textContent = `
+        /* Принудительные стили для мобильных - максимальная специфичность */
+        /* Убираем padding у overlay для мобильных */
+        .modal-overlay.active:has(.force-mobile),
+        .modal-overlay.active .force-mobile {
+          padding: 0 !important;
+        }
+        .force-mobile.modal-container {
+          width: 90vw !important;
+          max-width: 90vw !important;
+          min-width: 90vw !important;
+          height: auto !important;
+          min-height: 90vh !important;
+          margin: 0 auto !important;
+          padding: 0 !important;
+        }
+        .force-mobile.modal-container .modal-content {
+          width: 100% !important;
+          height: auto !important;
+          min-height: 90vh !important;
+          border-radius: 25px !important;
+          position: relative !important;
+          padding-bottom: 180px !important; /* Увеличено для кнопки (120px высота + 30px bottom + 30px отступ) */
+        }
+        /* Фоновые элементы - максимальная специфичность */
+        .force-mobile.modal-container .modal-content .Rectangle4130,
+        .force-mobile.modal-container .modal-content .Rectangle4129,
+        .force-mobile .Rectangle4130,
+        .force-mobile .Rectangle4129 {
+          width: 100% !important;
+          height: 100% !important;
+          min-height: 100% !important;
+          left: 0 !important;
+          top: 0 !important;
+          border-radius: 25px !important;
+          max-width: none !important;
+          max-height: none !important;
+          position: absolute !important;
+        }
+        .force-mobile.modal-container .modal-content .GoldenFabricClothIsolatedOnTransparentBackgroundFreePng2,
+        .force-mobile .GoldenFabricClothIsolatedOnTransparentBackgroundFreePng2 {
+          width: 100% !important;
+          height: 100% !important;
+          left: 0 !important;
+          top: 0 !important;
+          transform: none !important;
+          max-width: none !important;
+          max-height: none !important;
+        }
+        /* Текстовые элементы - заголовок оставляем большим (опущен на 30px) */
+        .force-mobile.modal-container .modal-content [data-layer="Дорога Хрещена!"],
+        .force-mobile [data-layer="Дорога Хрещена!"] {
+          width: 92% !important;
+          left: 4% !important;
+          top: 85px !important; /* опущено ниже */
+          font-size: 104px !important;
+          line-height: 120px !important;
+          max-width: none !important;
+          text-align: center !important;
+          position: absolute !important;
+        }
+        /* Вопросы - уменьшенные для лучшего расположения */
+        .force-mobile.modal-container .modal-content [data-layer*="Чи зможете"],
+        .force-mobile.modal-container .modal-content [data-layer*="Відмітьте"],
+        .force-mobile.modal-container .modal-content [data-layer*="Чи є у вас"],
+        .force-mobile.modal-container .modal-content [data-layer*="Чи потрібна"],
+        .force-mobile.modal-container .modal-content [data-layer*="Тут ви можете"],
+        .force-mobile [data-layer*="Чи зможете"],
+        .force-mobile [data-layer*="Відмітьте"],
+        .force-mobile [data-layer*="Чи є у вас"],
+        .force-mobile [data-layer*="Чи потрібна"],
+        .force-mobile [data-layer*="Тут ви можете"] {
+          width: 88% !important;
+          left: 6% !important;
+          font-size: 50px !important;
+          line-height: 60px !important;
+          height: auto !important;
+          max-width: none !important;
+          position: absolute !important;
+        }
+        /* Опции - уменьшенные для лучшего расположения */
+        .force-mobile.modal-container .modal-content .option-list,
+        .force-mobile .option-list {
+          width: 88% !important;
+          left: 6% !important;
+          max-width: none !important;
+          position: absolute !important;
+        }
+        .force-mobile.modal-container .modal-content .option-item,
+        .force-mobile .option-item {
+          padding-left: 70px !important;
+          font-size: 40px !important;
+          line-height: 50px !important;
+          margin-bottom: 25px !important;
+        }
+        .force-mobile.modal-container .modal-content .option-item::before,
+        .force-mobile .option-item::before {
+          width: 32px !important;
+          height: 32px !important;
+          left: 8px !important;
+        }
+        .force-mobile.modal-container .modal-content .option-item::after,
+        .force-mobile .option-item::after {
+          width: 36px !important;
+          height: 36px !important;
+          left: 6px !important;
+        }
+        /* Textarea - уменьшенный для лучшего расположения */
+        .force-mobile.modal-container .text-input-wrapper,
+        .force-mobile .text-input-wrapper {
+          width: 88% !important;
+          left: 6% !important;
+          height: 200px !important;
+          max-width: none !important;
+          position: absolute !important;
+        }
+        .force-mobile.modal-container .text-input-wrapper .Vector5,
+        .force-mobile .text-input-wrapper .Vector5 {
+          width: 100% !important;
+          left: 0 !important;
+        }
+        .force-mobile.modal-container .text-input-wrapper .Vector5 svg,
+        .force-mobile .text-input-wrapper .Vector5 svg {
+          width: 100% !important;
+          height: 4px !important; /* Увеличиваем высоту для точек большего диаметра */
+        }
+        .force-mobile.modal-container .text-input-wrapper .Vector5 svg path,
+        .force-mobile .text-input-wrapper .Vector5 svg path {
+          stroke-width: 3px !important; /* Увеличиваем диаметр точек */
+          stroke-dasharray: 0.5 10 !important; /* Маленькая точка (0.5px), но большой диаметр за счет stroke-width, пробелы 10px (увеличено для меньшей частоты точек) */
+          stroke-linecap: round !important; /* Круглые точки */
+        }
+        .force-mobile.modal-container .comments-textarea,
+        .force-mobile .comments-textarea {
+          font-size: 40px !important;
+          line-height: 50px !important;
+        }
+        /* Кнопка подтверждения - позиционируется через updateMobileBottomLayout() */
+        .force-mobile.modal-container .Frame16,
+        .force-mobile .Frame16 {
+          width: 80% !important;
+          left: 10% !important;
+          height: 120px !important;
+          position: absolute !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+        }
+        .force-mobile.modal-container .Frame16 .Group41,
+        .force-mobile .Frame16 .Group41 {
+          width: 350px !important; /* 350px для телефона */
+          height: 80px !important; /* 80px для телефона */
+          position: relative !important;
+        }
+        .force-mobile.modal-container .Frame16 .Rectangle4149,
+        .force-mobile .Frame16 .Rectangle4149 {
+          width: 100% !important;
+          height: 100% !important;
+          z-index: 1 !important; /* Фигура под текстом */
+        }
+        .force-mobile.modal-container .Frame16 .Rectangle4149 svg,
+        .force-mobile .Frame16 .Rectangle4149 svg {
+          width: 100% !important;
+          height: 100% !important;
+        }
+        .force-mobile.modal-container .Frame16 [data-layer="підтвердити"],
+        .force-mobile .Frame16 [data-layer="підтвердити"] {
+          width: auto !important; /* Автоматическая ширина для центрирования */
+          left: 50% !important; /* Центрируем по горизонтали */
+          top: 50% !important; /* Центрируем по вертикали */
+          transform: translate(-50%, -50%) !important; /* Точное центрирование */
+          position: absolute !important;
+          text-align: center !important;
+          color: white !important;
+          font-size: 50px !important; /* 50px для телефона */
+          font-family: Gabriola, Helvetica !important;
+          font-weight: 400 !important;
+          text-transform: uppercase !important;
+          letter-spacing: 0.70px !important;
+          word-wrap: break-word !important;
+          z-index: 2 !important; /* Текст поверх овальной фигуры */
+        }
+        .force-mobile.modal-container .modal-close,
+        .force-mobile .modal-close {
+          width: 90px !important;
+          height: 90px !important;
+          background: none !important;
+          border: none !important;
+          border-radius: 0 !important;
+          font-size: 56px !important;
+          top: 20px !important;
+          right: 20px !important;
+        }
+        .force-mobile.modal-container .Vector1,
+        .force-mobile.modal-container .Vector2,
+        .force-mobile .Vector1,
+        .force-mobile .Vector2 {
+          width: 2% !important;
+          height: 100% !important;
+          top: 0 !important;
+        }
+        .force-mobile.modal-container .Vector1,
+        .force-mobile .Vector1 {
+          left: 2% !important;
+        }
+        .force-mobile.modal-container .Vector2,
+        .force-mobile .Vector2 {
+          right: 2% !important;
+          left: auto !important;
+        }
+        .force-mobile.modal-container .Vector3,
+        .force-mobile.modal-container .Vector4,
+        .force-mobile .Vector3,
+        .force-mobile .Vector4 {
+          width: 70% !important;
+          left: 15% !important;
+          height: auto !important;
+        }
+        .force-mobile.modal-container .Vector3,
+        .force-mobile .Vector3 {
+          top: 3% !important;
+        }
+        .force-mobile.modal-container .Vector4,
+        .force-mobile .Vector4 {
+          bottom: 2% !important;
+          top: auto !important;
+        }
+        .force-mobile.modal-container .Vector[data-layer="Vector"],
+        .force-mobile .Vector[data-layer="Vector"] {
+          width: 15% !important;
+          height: auto !important;
+        }
+      `;
+      
+      console.log('Created/updated mobile styles in <style> tag');
+      
+      // Применяем стили напрямую - используем 90% ширины экрана
+      // с отступами по 5% с каждой стороны
+      modalContainer.style.setProperty('width', '90vw', 'important');
+      modalContainer.style.setProperty('max-width', '90vw', 'important');
+      modalContainer.style.setProperty('min-width', '90vw', 'important');
+      modalContainer.style.setProperty('height', 'auto', 'important');
+      modalContainer.style.setProperty('min-height', '90vh', 'important');
+      modalContainer.style.setProperty('margin', '0 auto', 'important');
+      modalContainer.style.setProperty('padding', '0', 'important');
+      
+      // Также убираем padding у overlay
+      const modalOverlay = modalContainer.closest('.modal-overlay');
+      if (modalOverlay) {
+        modalOverlay.style.setProperty('padding', '0', 'important');
+      }
+      
+      console.log('Set container width to: 90vw (90% of screen width with 5% margins on each side)');
+      
+      const modalContent = modalContainer.querySelector('.modal-content');
+      if (modalContent) {
+        modalContent.style.setProperty('width', '100%', 'important');
+        modalContent.style.setProperty('height', 'auto', 'important');
+        modalContent.style.setProperty('min-height', '90vh', 'important');
+        modalContent.style.setProperty('border-radius', '25px', 'important');
+        modalContent.style.setProperty('position', 'relative', 'important');
+        modalContent.style.setProperty('padding-bottom', '180px', 'important'); // Увеличено для кнопки (120px высота + 30px bottom + 30px отступ)
+        console.log('Applied inline styles to modalContent');
+      } else {
+        console.error('modalContent not found!');
+      }
+      
+      // Применяем стили к фоновым элементам - используем setProperty с important
+      const rect4130 = modalContainer.querySelector('.Rectangle4130');
+      const rect4129 = modalContainer.querySelector('.Rectangle4129');
+      const goldenFabric = modalContainer.querySelector('.GoldenFabricClothIsolatedOnTransparentBackgroundFreePng2');
+
+      // Helper: корректно позиционируем и поворачиваем фоновую ленту на мобилке (вертикально)
+      function updateGoldenFabric() {
+        if (!goldenFabric || !modalContent) return;
+        const contentRect = modalContent.getBoundingClientRect();
+        const contentWidth = contentRect.width || 0;
+        const contentHeight = Math.max(modalContent.scrollHeight || 0, contentRect.height || 0);
+
+        // Для rotate(-90deg) вокруг top-left нужно сдвинуть элемент вниз на величину его "width"
+        goldenFabric.style.setProperty('width', contentHeight + 'px', 'important');
+        goldenFabric.style.setProperty('height', contentWidth + 'px', 'important');
+        goldenFabric.style.setProperty('left', '0', 'important');
+        goldenFabric.style.setProperty('top', contentHeight + 'px', 'important');
+        goldenFabric.style.setProperty('transform-origin', 'top left', 'important');
+        goldenFabric.style.setProperty('transform', 'rotate(-90deg)', 'important');
+        goldenFabric.style.setProperty('object-fit', 'cover', 'important');
+      }
+      
+      console.log('Found elements:', {
+        rect4130: !!rect4130, 
+        rect4129: !!rect4129, 
+        goldenFabric: !!goldenFabric
+      });
+      
+      if (rect4130) {
+        // Полностью перезаписываем все стили через cssText для гарантии
+        rect4130.style.cssText = 'width: 100% !important; height: 100% !important; left: 0 !important; top: 0 !important; border-radius: 25px !important; position: absolute !important;';
+        console.log('Applied inline styles to rect4130, computed width:', window.getComputedStyle(rect4130).width);
+      } else {
+        console.error('rect4130 not found!');
+      }
+      
+      // Ждем, пока контейнер получит правильные размеры, затем применяем стили
+      setTimeout(function() {
+        // Получаем актуальную ширину контейнера после применения стилей
+        const updatedContainerRect = modalContainer.getBoundingClientRect();
+        const actualContainerWidth = updatedContainerRect.width;
+        console.log('Updated container width:', actualContainerWidth);
+        
+        // Получаем актуальную высоту контента
+        const modalContentHeight = modalContent ? modalContent.scrollHeight : 0;
+        const containerHeight = Math.max(modalContentHeight, updatedContainerRect.height);
+        
+        if (rect4129) {
+          // Используем 100% от контейнера, который теперь имеет правильную ширину
+          rect4129.style.setProperty('width', '100%', 'important');
+          rect4129.style.setProperty('height', '100%', 'important');
+          rect4129.style.setProperty('min-height', containerHeight + 'px', 'important');
+          rect4129.style.setProperty('left', '0', 'important');
+          rect4129.style.setProperty('top', '0', 'important');
+          rect4129.style.setProperty('border-radius', '25px', 'important');
+          rect4129.style.setProperty('position', 'absolute', 'important');
+          
+          // Проверяем computed стили
+          setTimeout(function() {
+            const computedWidth = window.getComputedStyle(rect4129).width;
+            const computedHeight = window.getComputedStyle(rect4129).height;
+            console.log('rect4129 computed styles - width:', computedWidth, 'height:', computedHeight);
+            console.log('Expected width should be around:', actualContainerWidth + 'px');
+          }, 50);
+        } else {
+          console.error('rect4129 not found!');
+        }
+        
+        if (rect4130) {
+          rect4130.style.setProperty('width', '100%', 'important');
+          rect4130.style.setProperty('height', '100%', 'important');
+          rect4130.style.setProperty('min-height', containerHeight + 'px', 'important');
+          rect4130.style.setProperty('left', '0', 'important');
+          rect4130.style.setProperty('top', '0', 'important');
+          rect4130.style.setProperty('border-radius', '25px', 'important');
+          rect4130.style.setProperty('position', 'absolute', 'important');
+        }
+        
+        if (goldenFabric) {
+          updateGoldenFabric();
+        }
+        
+        // Сначала позиционируем угловые элементы
+        const cornerVectors = modalContainer.querySelectorAll('.Vector:not(.Vector1):not(.Vector2):not(.Vector3):not(.Vector4)');
+        let topLeftCorner, topRightCorner, bottomLeftCorner, bottomRightCorner;
+        
+        cornerVectors.forEach(function(cornerVector) {
+          cornerVector.style.setProperty('width', '15%', 'important');
+          cornerVector.style.setProperty('height', 'auto', 'important');
+          cornerVector.style.setProperty('position', 'absolute', 'important');
+          
+          // Определяем позицию угла на основе текущих координат
+          const rect = cornerVector.getBoundingClientRect();
+          const containerRect = modalContainer.getBoundingClientRect();
+          const relativeLeft = rect.left - containerRect.left;
+          const relativeTop = rect.top - containerRect.top;
+          const containerWidth = actualContainerWidth;
+          
+          // Если элемент в верхней части (top < 100px) - это верхние углы
+          if (relativeTop < 100) {
+            if (relativeLeft > containerWidth / 2) {
+              // Правый верхний угол
+              cornerVector.style.setProperty('right', '1%', 'important');
+              cornerVector.style.setProperty('left', 'auto', 'important');
+              cornerVector.style.setProperty('top', '3%', 'important');
+              topRightCorner = cornerVector;
+            } else {
+              // Левый верхний угол
+              cornerVector.style.setProperty('left', '2%', 'important');
+              cornerVector.style.setProperty('right', 'auto', 'important');
+              cornerVector.style.setProperty('top', '3%', 'important');
+              topLeftCorner = cornerVector;
+            }
+          } else {
+            // Нижние углы
+            if (relativeLeft > containerWidth / 2) {
+              // Правый нижний угол
+              cornerVector.style.setProperty('right', '1%', 'important');
+              cornerVector.style.setProperty('left', 'auto', 'important');
+              cornerVector.style.setProperty('bottom', '2%', 'important');
+              cornerVector.style.setProperty('top', 'auto', 'important');
+              bottomRightCorner = cornerVector;
+            } else {
+              // Левый нижний угол
+              cornerVector.style.setProperty('left', '2%', 'important');
+              cornerVector.style.setProperty('right', 'auto', 'important');
+              cornerVector.style.setProperty('bottom', '2%', 'important');
+              cornerVector.style.setProperty('top', 'auto', 'important');
+              bottomLeftCorner = cornerVector;
+            }
+          }
+        });
+        
+        // Ждем, пока углы отрендерятся, затем позиционируем линии
+        setTimeout(function() {
+          // Функция для обновления всех линий рамки при изменении высоты контента (пиксель-в-пиксель)
+          const updateFrameLines = function() {
+            const vector1 = modalContainer.querySelector('.Vector1');
+            const vector2 = modalContainer.querySelector('.Vector2');
+            const vector3 = modalContainer.querySelector('.Vector3');
+            const vector4 = modalContainer.querySelector('.Vector4');
+
+            const allCornerVectors = modalContainer.querySelectorAll('[data-svg-wrapper][data-layer^="Vector"]:not(.Vector1):not(.Vector2):not(.Vector3):not(.Vector4)');
+            const containerRect = modalContainer.getBoundingClientRect();
+
+            const corners = Array.from(allCornerVectors);
+            const topLeftCorner = corners.find(corner => {
+              const r = corner.getBoundingClientRect();
+              return (r.top - containerRect.top) < 150 && (r.left - containerRect.left) < (containerRect.width / 2);
+            });
+            const topRightCorner = corners.find(corner => {
+              const r = corner.getBoundingClientRect();
+              return (r.top - containerRect.top) < 150 && (r.left - containerRect.left) > (containerRect.width / 2);
+            });
+            const bottomLeftCorner = corners.find(corner => {
+              const r = corner.getBoundingClientRect();
+              return (containerRect.bottom - r.bottom) < 180 && (r.left - containerRect.left) < (containerRect.width / 2);
+            });
+            const bottomRightCorner = corners.find(corner => {
+              const r = corner.getBoundingClientRect();
+              return (containerRect.bottom - r.bottom) < 180 && (r.left - containerRect.left) > (containerRect.width / 2);
+            });
+
+            if (!topLeftCorner || !topRightCorner || !bottomLeftCorner || !bottomRightCorner) return;
+
+            const tl = topLeftCorner.getBoundingClientRect();
+            const tr = topRightCorner.getBoundingClientRect();
+            const bl = bottomLeftCorner.getBoundingClientRect();
+            const br = bottomRightCorner.getBoundingClientRect();
+
+            // helper: ensure inner SVG fills wrapper so wrapper sizing actually stretches the line
+            [vector1, vector2, vector3, vector4].forEach(v => {
+              if (!v) return;
+              const svg = v.querySelector('svg');
+              if (svg) {
+                svg.style.width = '100%';
+                svg.style.height = '100%';
+                svg.style.display = 'block';
+              }
+            });
+
+            // --- Vertical lines (Vector1 left, Vector2 right) ---
+            const leftX = Math.round(tl.left - containerRect.left);
+            // Для правой линии используем внутреннюю сторону уголка: отступаем от right на 18% ширины уголка
+            // Это соответствует пропорции desktop и обеспечивает правильное соединение с Г-образными уголками
+            const cornerWidth = tr.width || br.width; // используем ширину уголка (верхнего или нижнего)
+            const innerOffset = cornerWidth * 0.18; // 18% от ширины уголка
+            const rightX = Math.round(containerRect.right - tr.right + innerOffset);
+
+            const topYLeft = Math.round(tl.bottom - containerRect.top);
+            const bottomYLeft = Math.round(containerRect.bottom - bl.top);
+
+            const topYRight = Math.round(tr.bottom - containerRect.top);
+            const bottomYRight = Math.round(containerRect.bottom - br.top);
+
+            const lineW = 9; // px, equals original SVG width; стабильнее чем проценты на разных DPR/zoom
+
+            if (vector1) {
+              vector1.style.setProperty('left', leftX + 'px', 'important');
+              vector1.style.setProperty('right', 'auto', 'important');
+              vector1.style.setProperty('top', topYLeft + 'px', 'important');
+              vector1.style.setProperty('bottom', bottomYLeft + 'px', 'important');
+              vector1.style.setProperty('width', lineW + 'px', 'important');
+              vector1.style.setProperty('height', 'auto', 'important');
+              vector1.style.setProperty('position', 'absolute', 'important');
+            }
+
+            if (vector2) {
+              vector2.style.setProperty('right', rightX + 'px', 'important');
+              vector2.style.setProperty('left', 'auto', 'important');
+              vector2.style.setProperty('top', topYRight + 'px', 'important');
+              vector2.style.setProperty('bottom', bottomYRight + 'px', 'important');
+              vector2.style.setProperty('width', lineW + 'px', 'important');
+              vector2.style.setProperty('height', 'auto', 'important');
+              vector2.style.setProperty('position', 'absolute', 'important');
+            }
+
+            // --- Horizontal lines (Vector3 top, Vector4 bottom) ---
+            // Keep current Y (it is visually aligned with ornaments), only stretch X pixel-perfect between corner bounds.
+            if (vector3) {
+              const v3Rect = vector3.getBoundingClientRect();
+              const v3Top = Math.round(v3Rect.top - containerRect.top);
+
+              const left = Math.round(tl.right - containerRect.left);
+              const rightEdge = Math.round(tr.left - containerRect.left);
+              const w = Math.max(0, rightEdge - left);
+
+              vector3.style.setProperty('left', left + 'px', 'important');
+              vector3.style.setProperty('right', 'auto', 'important');
+              vector3.style.setProperty('top', v3Top + 'px', 'important');
+              vector3.style.setProperty('width', w + 'px', 'important');
+              vector3.style.setProperty('height', '10px', 'important');
+              vector3.style.setProperty('position', 'absolute', 'important');
+            }
+
+            if (vector4) {
+              const v4Rect = vector4.getBoundingClientRect();
+              const v4Top = Math.round(v4Rect.top - containerRect.top);
+
+              const left = Math.round(bl.right - containerRect.left);
+              const rightEdge = Math.round(br.left - containerRect.left);
+              const w = Math.max(0, rightEdge - left);
+
+              vector4.style.setProperty('left', left + 'px', 'important');
+              vector4.style.setProperty('right', 'auto', 'important');
+              vector4.style.setProperty('top', v4Top + 'px', 'important');
+              vector4.style.setProperty('width', w + 'px', 'important');
+              vector4.style.setProperty('height', '10px', 'important');
+              vector4.style.setProperty('position', 'absolute', 'important');
+            }
+          };
+          
+          // Обновляем линии сразу после первого рендеринга
+          updateFrameLines();
+          
+          // Наблюдаем за изменениями высоты контента и обновляем линии
+          if (modalContent && typeof MutationObserver !== 'undefined') {
+            const observer = new MutationObserver(function() {
+              updateFrameLines();
+            });
+            
+            observer.observe(modalContent, {
+              childList: true,
+              subtree: true,
+              attributes: true,
+              attributeFilter: ['style', 'class']
+            });
+            
+            // Также обновляем при изменении размера окна
+            let resizeTimeout;
+            window.addEventListener('resize', function() {
+              clearTimeout(resizeTimeout);
+              resizeTimeout = setTimeout(updateFrameLines, 100);
+            });
+          }
+        }, 50);
+        
+        // Применяем стили к текстовым элементам с динамическим позиционированием (опускаем на 30px)
+        let questionTop = 255; // Начальная позиция после заголовка (сдвинули заголовок ниже)
+        const allDataLayers = modalContainer.querySelectorAll('[data-layer]');
+        console.log('Found data-layer elements in setTimeout:', allDataLayers.length);
+        
+        // Сначала применяем стили к заголовку (опускаем на 30px)
+        const titleEl = Array.from(allDataLayers).find(el => el.getAttribute('data-layer') === 'Дорога Хрещена!');
+        if (titleEl) {
+          titleEl.style.setProperty('width', '92%', 'important');
+          titleEl.style.setProperty('left', '4%', 'important');
+          titleEl.style.setProperty('top', '85px', 'important'); // опущено ниже
+          titleEl.style.setProperty('font-size', '104px', 'important');
+          titleEl.style.setProperty('line-height', '120px', 'important');
+          titleEl.style.setProperty('text-align', 'center', 'important');
+          titleEl.style.setProperty('position', 'absolute', 'important');
+        }
+        
+        // Затем применяем стили к контенту в ПРАВИЛЬНОМ порядке (вопрос -> опции -> вопрос -> опции ...)
+        const modalContentEl = modalContainer.querySelector('.modal-content');
+        const children = modalContentEl ? Array.from(modalContentEl.children) : [];
+        
+        const isQuestionEl = (el) => {
+          if (!el || !el.hasAttribute('data-layer')) return false;
+          const dl = el.getAttribute('data-layer') || '';
+          if (dl === 'Дорога Хрещена!') return false; // заголовок уже обработан
+          return (
+            dl.includes('Чи зможете') ||
+            dl.includes('Відмітьте') ||
+            dl.includes('Чи є у вас') ||
+            dl.includes('Чи потрібна') ||
+            dl.includes('Тут ви можете')
+          );
+        };
+        
+        children.forEach((el) => {
+          // 1) Вопрос
+          if (isQuestionEl(el)) {
+            el.style.setProperty('width', '88%', 'important');
+            el.style.setProperty('left', '6%', 'important');
+            el.style.setProperty('top', questionTop + 'px', 'important');
+            el.style.setProperty('font-size', '50px', 'important');
+            el.style.setProperty('line-height', '60px', 'important');
+            el.style.setProperty('height', 'auto', 'important');
+            el.style.setProperty('position', 'absolute', 'important');
+            
+            const h = el.getBoundingClientRect().height || 80;
+            questionTop += h + 30; // небольшой отступ после вопроса
+            return;
+          }
+          
+          // 2) Список опций (чекбоксы/радио) — ставим СРАЗУ после соответствующего вопроса
+          if (el.classList && el.classList.contains('option-list')) {
+            el.style.setProperty('width', '88%', 'important');
+            el.style.setProperty('left', '6%', 'important');
+            el.style.setProperty('position', 'absolute', 'important');
+            el.style.setProperty('top', questionTop + 'px', 'important');
+            
+            const h = el.getBoundingClientRect().height || 200;
+            questionTop += h + 40; // отступ после списка
+            return;
+          }
+          
+          // 3) Поле текста
+          if (el.classList && el.classList.contains('text-input-wrapper')) {
+            el.style.setProperty('width', '88%', 'important');
+            el.style.setProperty('left', '6%', 'important');
+            el.style.setProperty('height', '200px', 'important');
+            el.style.setProperty('position', 'absolute', 'important');
+            el.style.setProperty('top', questionTop + 'px', 'important');
+            
+            questionTop += 250; // 200px + отступ
+            return;
+          }
+          
+          // 4) Кнопка подтверждения (если она внутри modal-content — на всякий случай)
+          if (el.classList && el.classList.contains('Frame16')) {
+            el.style.setProperty('width', '80%', 'important');
+            el.style.setProperty('left', '10%', 'important');
+            el.style.setProperty('height', '120px', 'important');
+            el.style.setProperty('position', 'absolute', 'important');
+            // Позиционирование через updateMobileBottomLayout()
+            
+            const confirmText = el.querySelector('[data-layer="підтвердити"]');
+            if (confirmText) {
+              confirmText.style.setProperty('width', 'auto', 'important'); /* Автоматическая ширина для центрирования */
+              confirmText.style.setProperty('left', '50%', 'important'); /* Центрируем по горизонтали */
+              confirmText.style.setProperty('top', '50%', 'important'); /* Центрируем по вертикали */
+              confirmText.style.setProperty('transform', 'translate(-50%, -50%)', 'important'); /* Точное центрирование */
+              confirmText.style.setProperty('position', 'absolute', 'important');
+              confirmText.style.setProperty('text-align', 'center', 'important');
+              confirmText.style.setProperty('color', 'white', 'important');
+              confirmText.style.setProperty('font-size', '50px', 'important'); /* 50px для телефона */
+              confirmText.style.setProperty('font-family', 'Gabriola, Helvetica', 'important');
+              confirmText.style.setProperty('font-weight', '400', 'important');
+              confirmText.style.setProperty('text-transform', 'uppercase', 'important');
+              confirmText.style.setProperty('letter-spacing', '0.70px', 'important');
+              confirmText.style.setProperty('word-wrap', 'break-word', 'important');
+              confirmText.style.setProperty('z-index', '2', 'important'); /* Текст поверх овальной фигуры */
+            }
+            
+            // Позиционирование будет установлено через updateMobileBottomLayout()
+            return;
+          }
+        });
+        
+        // ВАЖНО: удаляем старое позиционирование option-list через общий querySelectorAll,
+        // иначе оно снова "соберет" все списки внизу.
+        
+        // Применяем стили к option-item
+        const optionItems = modalContainer.querySelectorAll('.option-item');
+        optionItems.forEach(function(item) {
+          item.style.setProperty('padding-left', '70px', 'important');
+          item.style.setProperty('font-size', '40px', 'important');
+          item.style.setProperty('line-height', '50px', 'important');
+          item.style.setProperty('margin-bottom', '25px', 'important');
+        });
+        
+        // Обновляем высоту контента и рамки после обработки всех элементов
+        setTimeout(function() {
+          const finalContentHeight = modalContent ? modalContent.scrollHeight : 0;
+          if (rect4129) {
+            rect4129.style.setProperty('min-height', finalContentHeight + 'px', 'important');
+            rect4129.style.setProperty('height', '100%', 'important');
+          }
+          if (rect4130) {
+            rect4130.style.setProperty('min-height', finalContentHeight + 'px', 'important');
+            rect4130.style.setProperty('height', '100%', 'important');
+          }
+          if (goldenFabric) {
+            updateGoldenFabric();
+          }
+          
+          // Получаем ссылки на вертикальные линии
+          const vector1 = modalContainer.querySelector('.Vector1');
+          const vector2 = modalContainer.querySelector('.Vector2');
+          
+          if (vector1) {
+            vector1.style.setProperty('height', finalContentHeight + 'px', 'important');
+          }
+          if (vector2) {
+            vector2.style.setProperty('height', finalContentHeight + 'px', 'important');
+          }
+
+          // После изменения высоты: пересчитываем вертикальные линии (Vector1/Vector2),
+          // чтобы они доходили до нижних углов (иначе линия может обрываться на середине модалки).
+          try {
+            const containerRect = modalContainer.getBoundingClientRect();
+            const allCornerVectors = modalContainer.querySelectorAll('.Vector:not(.Vector1):not(.Vector2):not(.Vector3):not(.Vector4)');
+            const topLeftCorner = Array.from(allCornerVectors).find(corner => {
+              const r = corner.getBoundingClientRect();
+              return r.top - containerRect.top < 100 && r.left - containerRect.left < containerRect.width / 2;
+            });
+            const topRightCorner = Array.from(allCornerVectors).find(corner => {
+              const r = corner.getBoundingClientRect();
+              return r.top - containerRect.top < 100 && r.left - containerRect.left > containerRect.width / 2;
+            });
+            const bottomLeftCorner = Array.from(allCornerVectors).find(corner => {
+              const r = corner.getBoundingClientRect();
+              return r.top - containerRect.top >= 100 && r.left - containerRect.left < containerRect.width / 2;
+            });
+            const bottomRightCorner = Array.from(allCornerVectors).find(corner => {
+              const r = corner.getBoundingClientRect();
+              return r.top - containerRect.top >= 100 && r.left - containerRect.left > containerRect.width / 2;
+            });
+
+            if (vector1 && topLeftCorner && bottomLeftCorner) {
+              const tl = topLeftCorner.getBoundingClientRect();
+              const bl = bottomLeftCorner.getBoundingClientRect();
+              const relativeLeft = tl.left - containerRect.left;
+              const topCornerBottom = tl.bottom - containerRect.top;
+              const bottomCornerTop = bl.top - containerRect.top;
+              vector1.style.setProperty('left', relativeLeft + 'px', 'important');
+              vector1.style.setProperty('top', topCornerBottom + 'px', 'important');
+              vector1.style.setProperty('bottom', (containerRect.height - bottomCornerTop) + 'px', 'important');
+              vector1.style.setProperty('height', 'auto', 'important');
+            }
+
+            if (vector2 && topRightCorner && bottomRightCorner) {
+              const tr = topRightCorner.getBoundingClientRect();
+              const br = bottomRightCorner.getBoundingClientRect();
+              // Для правой линии используем внутреннюю сторону уголка: отступаем от right на 18% ширины уголка
+              const cornerWidth = tr.width || br.width;
+              const innerOffset = cornerWidth * 0.18;
+              const relativeRight = Math.round(containerRect.right - tr.right + innerOffset);
+              const topCornerBottom = tr.bottom - containerRect.top;
+              const bottomCornerTop = br.top - containerRect.top;
+              vector2.style.setProperty('right', relativeRight + 'px', 'important');
+              vector2.style.setProperty('left', 'auto', 'important');
+              vector2.style.setProperty('top', topCornerBottom + 'px', 'important');
+              vector2.style.setProperty('bottom', (containerRect.height - bottomCornerTop) + 'px', 'important');
+              vector2.style.setProperty('height', 'auto', 'important');
+            }
+          } catch (e) {
+            // тихо игнорируем - это только для мобилки
+          }
+          
+          // Обновляем позиционирование textarea и кнопки после обновления высоты контента
+          try { updateMobileBottomLayout(); } catch(e) {}
+        }, 100);
+      }, 100);
+      
+      if (goldenFabric) {
+        updateGoldenFabric();
+        console.log('Applied inline styles to goldenFabric');
+      } else {
+        console.error('goldenFabric not found!');
+      }
+      
+      // Стили к текстовым элементам будут применены в setTimeout выше
+      // чтобы использовать правильную ширину контейнера
+      
+      // Масштабируем опции - используем cssText для полной перезаписи
+      const optionItems = modalContainer.querySelectorAll('.option-item');
+      console.log('Found option-items:', optionItems.length);
+      optionItems.forEach(function(item) {
+        // Сохраняем существующие стили, которые не нужно менять
+        const existingDisplay = item.style.display || '';
+        const existingPosition = item.style.position || '';
+        item.style.cssText = 'padding-left: 70px !important; font-size: 40px !important; line-height: 50px !important; margin-bottom: 25px !important; ' + existingDisplay + ' ' + existingPosition;
+      });
+      
+      // Масштабируем textarea - используем setProperty
+        const textarea = modalContainer.querySelector('.comments-textarea');
+        if (textarea) {
+          textarea.style.setProperty('font-size', '40px', 'important');
+          textarea.style.setProperty('line-height', '50px', 'important');
+        }
+      
+      // Масштабируем text-input-wrapper
+      const textInputWrapper = modalContainer.querySelector('.text-input-wrapper');
+      if (textInputWrapper) {
+        textInputWrapper.style.setProperty('width', '90%', 'important');
+        textInputWrapper.style.setProperty('left', '5%', 'important');
+        textInputWrapper.style.setProperty('height', '200px', 'important');
+        
+        // Увеличиваем размер точек (диаметр) для мобильной версии
+        const vector5Elements = textInputWrapper.querySelectorAll('.Vector5 svg path');
+        vector5Elements.forEach(function(path) {
+          path.setAttribute('stroke-width', '3'); // Увеличиваем диаметр точек
+          path.setAttribute('stroke-dasharray', '0.5 10'); // Маленькая точка (0.5px), но большой диаметр за счет stroke-width, пробелы 10px (увеличено для меньшей частоты точек)
+          path.setAttribute('stroke-linecap', 'round'); // Круглые точки
+        });
+        
+        // Также увеличиваем высоту SVG для точек большего диаметра
+        const vector5Svgs = textInputWrapper.querySelectorAll('.Vector5 svg');
+        vector5Svgs.forEach(function(svg) {
+          svg.setAttribute('height', '4');
+          svg.style.setProperty('height', '4px', 'important');
+        });
+      }
+      
+      // Масштабируем кнопку подтверждения (как на макете мобилки)
+      const confirmBtn = modalContainer.querySelector('.Frame16');
+      if (confirmBtn) {
+        confirmBtn.style.setProperty('width', '80%', 'important');
+        confirmBtn.style.setProperty('left', '10%', 'important');
+        confirmBtn.style.setProperty('height', '120px', 'important');
+        confirmBtn.style.setProperty('position', 'absolute', 'important');
+        confirmBtn.style.setProperty('display', 'flex', 'important');
+        confirmBtn.style.setProperty('align-items', 'center', 'important');
+        confirmBtn.style.setProperty('justify-content', 'center', 'important');
+        // Позиционирование через updateMobileBottomLayout()
+
+        // Устанавливаем размеры Group41 для мобильной версии
+        const group41 = confirmBtn.querySelector('.Group41');
+        if (group41) {
+          group41.style.setProperty('width', '350px', 'important');
+          group41.style.setProperty('height', '80px', 'important');
+          group41.style.setProperty('position', 'relative', 'important');
+        }
+        
+        // Убеждаемся, что SVG растягивается правильно
+        const rectangle4149 = confirmBtn.querySelector('.Rectangle4149');
+        if (rectangle4149) {
+          rectangle4149.style.setProperty('width', '100%', 'important');
+          rectangle4149.style.setProperty('height', '100%', 'important');
+          const svg = rectangle4149.querySelector('svg');
+          if (svg) {
+            svg.style.setProperty('width', '100%', 'important');
+            svg.style.setProperty('height', '100%', 'important');
+            svg.setAttribute('preserveAspectRatio', 'none');
+          }
+        }
+
+        const confirmText = confirmBtn.querySelector('[data-layer="підтвердити"]');
+        if (confirmText) {
+          confirmText.style.setProperty('width', 'auto', 'important'); /* Автоматическая ширина для центрирования */
+          confirmText.style.setProperty('left', '50%', 'important'); /* Центрируем по горизонтали */
+          confirmText.style.setProperty('top', '50%', 'important'); /* Центрируем по вертикали */
+          confirmText.style.setProperty('transform', 'translate(-50%, -50%)', 'important'); /* Точное центрирование */
+          confirmText.style.setProperty('position', 'absolute', 'important');
+          confirmText.style.setProperty('text-align', 'center', 'important');
+          confirmText.style.setProperty('color', 'white', 'important');
+          confirmText.style.setProperty('font-size', '50px', 'important'); /* 50px для телефона */
+          confirmText.style.setProperty('font-family', 'Gabriola, Helvetica', 'important');
+          confirmText.style.setProperty('font-weight', '400', 'important');
+          confirmText.style.setProperty('text-transform', 'uppercase', 'important');
+          confirmText.style.setProperty('letter-spacing', '0.70px', 'important');
+          confirmText.style.setProperty('word-wrap', 'break-word', 'important');
+          confirmText.style.setProperty('z-index', '2', 'important'); /* Текст поверх овальной фигуры */
+        }
+      }
+      
+      // Масштабируем кнопку закрытия (мобилка: увеличиваем в 2 раза и сдвигаем на 10px вниз и 10px влево)
+      const closeBtn = modalContainer.querySelector('.modal-close');
+      if (closeBtn) {
+        /* Мобилка: увеличиваем крестик в 2 раза и сдвигаем на 10px вниз и 10px влево */
+        closeBtn.style.setProperty('width', '90px', 'important');
+        closeBtn.style.setProperty('height', '90px', 'important');
+        closeBtn.style.setProperty('background', 'none', 'important');
+        closeBtn.style.setProperty('border', 'none', 'important');
+        closeBtn.style.setProperty('border-radius', '0', 'important');
+        closeBtn.style.setProperty('font-size', '56px', 'important');
+        closeBtn.style.setProperty('top', '20px', 'important');
+        closeBtn.style.setProperty('right', '20px', 'important');
+      }
+      
+        // Угловые элементы Vector уже обработаны в setTimeout выше
+      
+      console.log('Mobile styles applied successfully');
+    }
+    
     if (openModalBtn && modalOverlay) {
       openModalBtn.addEventListener('click', function() {
         modalOverlay.classList.add('active');
         lockBodyScroll();
         // Предотвращаем скролл фона на мобильных устройствах (только touchmove)
         document.addEventListener('touchmove', preventBackgroundScroll, { passive: false });
+        // Устанавливаем размеры Group41 сразу после открытия (для обеих версий)
+        setTimeout(function() {
+          setGroup41Sizes();
+          // Дополнительно принудительно для десктопной версии
+          const viewportWidth = document.documentElement.clientWidth || document.body.clientWidth;
+          const isMobile = viewportWidth <= 768 || (modalContainer && (modalContainer.classList.contains('mobile-device') || modalContainer.classList.contains('force-mobile')));
+          if (!isMobile) {
+            const frame16 = document.querySelector('.Frame16');
+            if (frame16) {
+              const group41 = frame16.querySelector('.Group41');
+              if (group41) {
+                group41.style.cssText = 'width: 350px !important; height: 90px !important; position: relative !important; max-width: 350px !important; min-width: 350px !important;';
+                console.log('Force applied desktop sizes (350x90px) via cssText on modal open');
+              }
+            }
+          }
+        }, 50);
+        // Применяем мобильные стили при открытии с задержкой для гарантии рендеринга
+        console.log('Modal opened, applying mobile styles in 200ms...');
+        setTimeout(function() {
+          console.log('Timeout fired, calling applyMobileStyles');
+          checkMobileDevice();
+          // ПРИНУДИТЕЛЬНО применяем стили (обход проблем с viewport)
+          applyMobileStyles();
+          // Устанавливаем размеры Group41 для обеих версий
+          setGroup41Sizes();
+          try { updateMobileBottomLayout(); } catch(e) {}
+          // Повторяем через еще 100ms на случай если элементы еще не готовы
+          setTimeout(function(){ 
+            applyMobileStyles(); 
+            setGroup41Sizes(); // Устанавливаем размеры Group41
+            try { updateMobileBottomLayout(); } catch(e) {} 
+          }, 100);
+          // Еще раз через 300ms для гарантии
+          setTimeout(function(){ 
+            applyMobileStyles(); 
+            setGroup41Sizes(); // Устанавливаем размеры Group41
+            try { updateMobileBottomLayout(); } catch(e) {} 
+          }, 300);
+          
+          // Также устанавливаем размеры для десктопной версии (если мобильные стили не применяются)
+          setTimeout(function() {
+            const viewportWidth = document.documentElement.clientWidth || document.body.clientWidth;
+            const isMobile = viewportWidth <= 768 || (modalContainer && (modalContainer.classList.contains('mobile-device') || modalContainer.classList.contains('force-mobile')));
+            if (!isMobile) {
+              console.log('Desktop version detected, setting Group41 sizes to 350x90px');
+              setGroup41Sizes();
+              // Дополнительно принудительно устанавливаем размеры через прямой доступ
+              const frame16 = document.querySelector('.Frame16');
+              if (frame16) {
+                const group41 = frame16.querySelector('.Group41');
+                if (group41) {
+                  group41.style.cssText = 'width: 350px !important; height: 90px !important; position: relative !important; max-width: 350px !important; min-width: 350px !important;';
+                  console.log('Force applied desktop sizes (350x90px) via cssText');
+                }
+              }
+            }
+          }, 400);
+          
+          // Еще один вызов для десктопной версии через 500ms
+          setTimeout(function() {
+            const viewportWidth = document.documentElement.clientWidth || document.body.clientWidth;
+            const isMobile = viewportWidth <= 768 || (modalContainer && (modalContainer.classList.contains('mobile-device') || modalContainer.classList.contains('force-mobile')));
+            if (!isMobile) {
+              setGroup41Sizes();
+            }
+          }, 500);
+        }, 200);
       });
     }
 
@@ -364,22 +1672,42 @@
       }
     });
 
-    // Управление классом checked для чекбоксов (fallback для браузеров без :has())
-    const checkboxes = document.querySelectorAll('.option-item input[type="checkbox"]');
-    checkboxes.forEach(function(checkbox) {
+    // Управление классом checked для чекбоксов и radio buttons (fallback для браузеров без :has())
+    const inputs = document.querySelectorAll('.option-item input[type="checkbox"], .option-item input[type="radio"]');
+    
+    inputs.forEach(function(input) {
       // Устанавливаем начальное состояние
-      const label = checkbox.closest('.option-item');
-      if (checkbox.checked && label) {
+      const label = input.closest('.option-item');
+      if (input.checked && label) {
         label.classList.add('checked');
       }
 
       // Обработчик изменения состояния
-      checkbox.addEventListener('change', function() {
-        if (label) {
-          if (this.checked) {
+      input.addEventListener('change', function() {
+        const label = this.closest('.option-item');
+        
+        if (this.type === 'radio') {
+          // Для radio buttons: снимаем класс checked со всех в группе
+          const groupName = this.name;
+          const allRadiosInGroup = document.querySelectorAll(`input[type="radio"][name="${groupName}"]`);
+          allRadiosInGroup.forEach(function(radio) {
+            const radioLabel = radio.closest('.option-item');
+            if (radioLabel) {
+              radioLabel.classList.remove('checked');
+            }
+          });
+          // Добавляем класс checked к выбранному
+          if (this.checked && label) {
             label.classList.add('checked');
-          } else {
-            label.classList.remove('checked');
+          }
+        } else {
+          // Для checkboxes: просто переключаем класс
+          if (label) {
+            if (this.checked) {
+              label.classList.add('checked');
+            } else {
+              label.classList.remove('checked');
+            }
           }
         }
       });

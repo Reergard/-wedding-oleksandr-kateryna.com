@@ -18,7 +18,7 @@
   display: flex;
   align-items: flex-start; /* Изменено с center на flex-start для правильного скролла */
   justify-content: center;
-  padding: 20px;
+  padding: 0;
   box-sizing: border-box;
   overflow-y: auto !important; /* Разрешаем скролл overlay */
   overflow-x: hidden !important;
@@ -309,6 +309,11 @@
   display: block;
 }
 
+.text-input-wrapper .Vector5 svg path {
+  stroke-width: 1.5px; /* Немного увеличиваем диаметр точек для десктопной версии */
+  stroke-linecap: round; /* Круглые точки */
+}
+
 .comments-textarea {
   position: absolute;
   left: 0;
@@ -339,11 +344,11 @@
   position: absolute;
   top: 20px;
   right: 20px;
-  width: 40px;
-  height: 40px;
-  background: rgba(212, 175, 55, 0.8);
-  border: 2px solid #D4AF37;
-  border-radius: 50%;
+  width: auto;
+  height: auto;
+  background: none;
+  border: none;
+  border-radius: 0;
   cursor: pointer;
   z-index: 10001;
   display: flex;
@@ -356,7 +361,6 @@
 }
 
 .modal-close:hover {
-  background: rgba(212, 175, 55, 1);
   transform: scale(1.1);
 }
 
@@ -368,21 +372,73 @@
   top: 1031px;
   position: absolute;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Группа с овальной фигурой и текстом - десктопная версия */
+.modal-container:not(.force-mobile):not(.mobile-device) .Frame16 .Group41,
+.modal-container:not(.force-mobile):not(.mobile-device) .Group41 {
+  width: 350px !important; /* 350px для компа */
+  height: 90px !important; /* 90px для компа */
+  position: relative !important;
+}
+
+/* Базовые стили для Group41 (на случай, если классы не применены) - десктопная версия по умолчанию */
+.Frame16 .Group41 {
+  width: 350px !important; /* 350px для компа */
+  height: 90px !important; /* 90px для компа */
+  position: relative !important;
+  max-width: 350px !important;
+  min-width: 350px !important;
+}
+
+/* Явное правило для десктопной версии - применяется всегда, если нет мобильных классов */
+body:not(.mobile-device) .modal-container:not(.mobile-device):not(.force-mobile) .Frame16 .Group41,
+html:not(.mobile-device) .modal-container:not(.mobile-device):not(.force-mobile) .Frame16 .Group41,
+.modal-container:not(.mobile-device):not(.force-mobile) .Frame16 .Group41 {
+  width: 350px !important;
+  height: 90px !important;
+  max-width: 350px !important;
+  min-width: 350px !important;
+  max-height: 90px !important;
+  min-height: 90px !important;
+}
+
+/* Овальная векторная фигура */
+.Frame16 .Rectangle4149 {
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Фигура под текстом */
+}
+
+.Frame16 .Rectangle4149 svg {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+}
+
+/* Текст "підтвердити" для десктопной версии */
 .Frame16 [data-layer="підтвердити"] {
-  width: 151.98px;
-  left: 46.88px;
-  top: 35.03px;
+  width: auto; /* Автоматическая ширина для центрирования */
+  left: 50% !important; /* Центрируем по горизонтали */
+  top: 50% !important; /* Центрируем по вертикали */
+  transform: translate(-50%, -50%) !important; /* Точное центрирование */
   position: absolute;
   text-align: center;
-  color: #D4AF37;
-  font-size: 18px;
-  font-family: "Literature Decor-Regular", Helvetica;
+  color: white;
+  font-size: 45px; /* 45px для компа */
+  font-family: Gabriola, Helvetica;
   font-weight: 400;
-  text-transform: capitalize;
+  text-transform: uppercase;
+  letter-spacing: 0.70px;
   word-wrap: break-word;
   pointer-events: none;
+  z-index: 2; /* Текст поверх овальной фигуры */
 }
 
 /* Стили для списков опций с кружками */
@@ -402,7 +458,8 @@
   align-items: center;
 }
 
-.modal-content .option-item input[type="checkbox"] {
+.modal-content .option-item input[type="checkbox"],
+.modal-content .option-item input[type="radio"] {
   position: absolute;
   opacity: 0;
   cursor: pointer;
@@ -451,11 +508,13 @@
 
 /* Показываем звездочку и скрываем кружок при выборе через :has() */
 @supports selector(:has(*)) {
-  .modal-content .option-item:has(input[type="checkbox"]:checked)::before {
+  .modal-content .option-item:has(input[type="checkbox"]:checked)::before,
+  .modal-content .option-item:has(input[type="radio"]:checked)::before {
     opacity: 0;
   }
   
-  .modal-content .option-item:has(input[type="checkbox"]:checked)::after {
+  .modal-content .option-item:has(input[type="checkbox"]:checked)::after,
+  .modal-content .option-item:has(input[type="radio"]:checked)::after {
     opacity: 1;
   }
 }
@@ -469,24 +528,696 @@
   opacity: 1;
 }
 
-/* Адаптивность для мобильных устройств */
-@media (max-width: 768px) {
+/* Адаптивность для мобильных устройств - через медиа-запрос и класс */
+@media (max-width: 768px), (max-device-width: 768px), (orientation: portrait) and (max-width: 900px) {
+  .modal-overlay.active {
+    padding: 10px !important;
+  }
+
   .modal-container {
-    width: 95vw;
-    height: auto;
-    max-height: 95vh;
+    width: 90vw !important;
+    max-width: 500px !important;
+    height: auto !important;
+    min-height: 90vh !important;
+    margin: 10px auto !important;
+    transform: scale(1) !important;
   }
 
-  .Rectangle4130,
+  .modal-content {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 90vh !important;
+    border-radius: 35px !important;
+  }
+
+  .Rectangle4130 {
+    width: 100% !important;
+    height: 100% !important;
+    left: 0 !important;
+    top: 0 !important;
+    border-radius: 35px !important;
+  }
+
   .Rectangle4129 {
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
+    width: 100% !important;
+    height: 100% !important;
+    left: 0 !important;
+    top: 0 !important;
+    border-radius: 35px !important;
   }
 
-  .modal-content [data-layer] {
-    font-size: calc(1vw + 1vh);
+  .GoldenFabricClothIsolatedOnTransparentBackgroundFreePng2 {
+    width: 100% !important;
+    height: 100% !important;
+    left: 0 !important;
+    top: 0 !important;
+    transform: none !important;
   }
+
+  /* Заголовок */
+  .modal-content [data-layer="Дорога Хрещена!"] {
+    width: 85% !important;
+    left: 7.5% !important;
+    top: 4% !important;
+    font-size: 36px !important;
+    line-height: 44px !important;
+  }
+
+  /* Вопросы */
+  .modal-content [data-layer="Чи зможете ви бути присутніми на весіллі?"] {
+    width: 88% !important;
+    left: 6% !important;
+    top: 10% !important;
+    font-size: 28px !important;
+    height: auto !important;
+  }
+
+  .modal-content [data-layer="Так, з радістю буду! На жаль, не зможу бути присутня."] {
+    width: 80% !important;
+    left: 10% !important;
+    top: 14% !important;
+    font-size: 22px !important;
+    line-height: 28px !important;
+  }
+
+  .modal-content [data-layer="Відмітьте, будь ласка, ваші вподобання:"] {
+    width: 88% !important;
+    left: 6% !important;
+    top: 20% !important;
+    font-size: 28px !important;
+    height: auto !important;
+  }
+
+  .modal-content [data-layer="Лосось Курятина Свинина  Яловичина Овочі"] {
+    width: 80% !important;
+    left: 10% !important;
+    top: 24% !important;
+    font-size: 22px !important;
+    line-height: 28px !important;
+  }
+
+  .modal-content [data-layer="Чи є у вас є харчові алергії або продукти, які вам не можна:"] {
+    width: 88% !important;
+    left: 6% !important;
+    top: 32% !important;
+    font-size: 28px !important;
+    height: auto !important;
+  }
+
+  .modal-content [data-layer="Так Ні"] {
+    width: 80% !important;
+    left: 10% !important;
+    top: 36% !important;
+    font-size: 22px !important;
+    line-height: 28px !important;
+  }
+
+  .modal-content [data-layer="Відмітьте, будь ласка, ваші уподобання щодо напоїв:"] {
+    width: 88% !important;
+    left: 6% !important;
+    top: 42% !important;
+    font-size: 28px !important;
+    height: auto !important;
+  }
+
+  .modal-content [data-layer="Шампанське Біле вино Червоне вино Міцний алкголь Безалкогольні напої"] {
+    width: 80% !important;
+    left: 10% !important;
+    top: 46% !important;
+    font-size: 22px !important;
+    line-height: 28px !important;
+  }
+
+  .modal-content [data-layer="Чи потрібна вам трансфер до місця проведення або назад:"] {
+    width: 88% !important;
+    left: 6% !important;
+    top: 55% !important;
+    font-size: 28px !important;
+    height: auto !important;
+  }
+
+  .modal-content [data-layer="Так Ні трансфер"] {
+    width: 80% !important;
+    left: 10% !important;
+    top: 59% !important;
+    font-size: 22px !important;
+    line-height: 28px !important;
+  }
+
+  .modal-content [data-layer="Тут ви можете залишити будь-які уточнення або побажання:"] {
+    width: 88% !important;
+    left: 6% !important;
+    top: 65% !important;
+    font-size: 28px !important;
+    height: auto !important;
+  }
+
+  /* Поле для ввода текста */
+  .text-input-wrapper {
+    left: 6% !important;
+    top: 69% !important;
+    width: 88% !important;
+    height: 120px !important;
+  }
+
+  .text-input-wrapper .Vector5 {
+    width: 100% !important;
+  }
+
+  .comments-textarea {
+    width: 100% !important;
+    height: 120px !important;
+    font-size: 22px !important;
+    line-height: 28px !important;
+  }
+
+  /* Кнопка подтверждения */
+  .Frame16 {
+    width: 70% !important;
+    left: 15% !important;
+    top: auto !important;
+    bottom: 30px !important;
+    height: 65px !important;
+    position: absolute !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .Frame16 .Group41 {
+    width: 350px !important; /* 350px для телефона */
+    height: 80px !important; /* 80px для телефона */
+    position: relative !important;
+  }
+
+  .Frame16 .Rectangle4149 {
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 1 !important; /* Фигура под текстом */
+  }
+
+  .Frame16 .Rectangle4149 svg {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .Frame16 [data-layer="підтвердити"] {
+    width: auto !important; /* Автоматическая ширина для центрирования */
+    left: 50% !important; /* Центрируем по горизонтали */
+    top: 50% !important; /* Центрируем по вертикали */
+    transform: translate(-50%, -50%) !important; /* Точное центрирование */
+    position: absolute !important;
+    text-align: center !important;
+    color: white !important;
+    font-size: 50px !important; /* 50px для телефона */
+    font-family: Gabriola, Helvetica !important;
+    font-weight: 400 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.70px !important;
+    word-wrap: break-word !important;
+    z-index: 2 !important; /* Текст поверх овальной фигуры */
+  }
+
+  /* Кнопка закрытия */
+  .modal-close {
+    top: 20px !important;
+    right: 20px !important;
+    width: 90px !important;
+    height: 90px !important;
+    font-size: 56px !important;
+  }
+
+  /* Опции - увеличиваем размер кружков и звездочек */
+  .modal-content .option-item {
+    padding-left: 32px !important;
+    line-height: 28px !important;
+    margin-bottom: 10px !important;
+    font-size: 22px !important;
+  }
+
+  .modal-content .option-item::before {
+    width: 16px !important;
+    height: 16px !important;
+    left: 2px !important;
+  }
+
+  .modal-content .option-item::after {
+    width: 32px !important;
+    height: 32px !important;
+    left: -8px !important;
+  }
+
+  /* Декоративные векторы - масштабируем пропорционально */
+  .modal-content .Vector1 {
+    left: 4% !important;
+    top: 11% !important;
+    width: 1.5% !important;
+    height: auto !important;
+  }
+
+  .modal-content .Vector2 {
+    right: 4% !important;
+    left: auto !important;
+    top: 11% !important;
+    width: 1.5% !important;
+    height: auto !important;
+  }
+
+  .modal-content .Vector3 {
+    left: 18% !important;
+    top: 3.5% !important;
+    width: 64% !important;
+    height: 1% !important;
+  }
+
+  .modal-content .Vector4 {
+    left: 18% !important;
+    bottom: 2.5% !important;
+    top: auto !important;
+    width: 64% !important;
+    height: 1% !important;
+  }
+
+  /* Угловые декоративные элементы */
+  .modal-content .Vector[data-layer="Vector"] {
+    width: 18% !important;
+    height: auto !important;
+  }
+
+  .modal-content .Vector[data-layer="Vector"] svg {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .modal-content .Vector1 svg,
+  .modal-content .Vector2 svg {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+  }
+
+  .modal-content .Vector3 svg,
+  .modal-content .Vector4 svg {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  /* Угловые декоративные элементы - позиционирование */
+  .modal-content .Vector[data-layer="Vector"]:nth-of-type(1) {
+    right: 3% !important;
+    left: auto !important;
+    top: 3% !important;
+  }
+
+  .modal-content .Vector[data-layer="Vector"]:nth-of-type(2) {
+    right: 3% !important;
+    left: auto !important;
+    bottom: 3% !important;
+    top: auto !important;
+  }
+
+  .modal-content .Vector[data-layer="Vector"]:nth-of-type(3) {
+    left: 3% !important;
+    top: 3% !important;
+  }
+
+  .modal-content .Vector[data-layer="Vector"]:nth-of-type(4) {
+    left: 3% !important;
+    bottom: 3% !important;
+    top: auto !important;
+  }
+}
+
+/* Альтернативный способ через класс для обхода проблем с viewport */
+.mobile-device.modal-container {
+  width: 90vw !important;
+  max-width: 500px !important;
+  height: auto !important;
+  min-height: 90vh !important;
+  margin: 10px auto !important;
+  transform: scale(1) !important;
+}
+
+.mobile-device.modal-container .modal-content {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 90vh !important;
+  border-radius: 35px !important;
+}
+
+.mobile-device.modal-container .Rectangle4130,
+.mobile-device.modal-container .Rectangle4129 {
+  width: 100% !important;
+  height: 100% !important;
+  left: 0 !important;
+  top: 0 !important;
+  border-radius: 35px !important;
+}
+
+.mobile-device.modal-container .GoldenFabricClothIsolatedOnTransparentBackgroundFreePng2 {
+  width: 100% !important;
+  height: 100% !important;
+  left: 0 !important;
+  top: 0 !important;
+  transform: none !important;
+}
+
+/*
+  Мобильная рамка: линии (Vector1-4) должны тянуться между угловыми элементами.
+  JS уже выставляет top/bottom/left/right, но SVG по умолчанию остаётся фиксированного размера.
+  Эти правила заставляют SVG растягиваться по габаритам wrapper'а.
+*/
+.mobile-device.modal-container .modal-content .Vector1,
+.mobile-device.modal-container .modal-content .Vector2 {
+  display: flex !important;
+  align-items: stretch !important;
+}
+
+.mobile-device.modal-container .modal-content .Vector1 svg,
+.mobile-device.modal-container .modal-content .Vector2 svg {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+}
+
+.mobile-device.modal-container .modal-content .Vector3 svg,
+.mobile-device.modal-container .modal-content .Vector4 svg {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+}
+
+.mobile-device.modal-container .modal-content [data-layer="Дорога Хрещена!"] {
+  width: 85% !important;
+  left: 7.5% !important;
+  top: 4% !important;
+  font-size: 36px !important;
+  line-height: 44px !important;
+}
+
+.mobile-device.modal-container .modal-content [data-layer="Чи зможете ви бути присутніми на весіллі?"] {
+  width: 88% !important;
+  left: 6% !important;
+  top: 10% !important;
+  font-size: 28px !important;
+  height: auto !important;
+}
+
+.mobile-device.modal-container .modal-content [data-layer="Так, з радістю буду! На жаль, не зможу бути присутня."] {
+  width: 80% !important;
+  left: 10% !important;
+  top: 14% !important;
+  font-size: 22px !important;
+  line-height: 28px !important;
+}
+
+.mobile-device.modal-container .modal-content [data-layer="Відмітьте, будь ласка, ваші вподобання:"] {
+  width: 88% !important;
+  left: 6% !important;
+  top: 20% !important;
+  font-size: 28px !important;
+  height: auto !important;
+}
+
+.mobile-device.modal-container .modal-content [data-layer="Лосось Курятина Свинина  Яловичина Овочі"] {
+  width: 80% !important;
+  left: 10% !important;
+  top: 24% !important;
+  font-size: 22px !important;
+  line-height: 28px !important;
+}
+
+.mobile-device.modal-container .modal-content [data-layer="Чи є у вас є харчові алергії або продукти, які вам не можна:"] {
+  width: 88% !important;
+  left: 6% !important;
+  top: 32% !important;
+  font-size: 28px !important;
+  height: auto !important;
+}
+
+.mobile-device.modal-container .modal-content [data-layer="Так Ні"] {
+  width: 80% !important;
+  left: 10% !important;
+  top: 36% !important;
+  font-size: 22px !important;
+  line-height: 28px !important;
+}
+
+.mobile-device.modal-container .modal-content [data-layer="Відмітьте, будь ласка, ваші уподобання щодо напоїв:"] {
+  width: 88% !important;
+  left: 6% !important;
+  top: 42% !important;
+  font-size: 28px !important;
+  height: auto !important;
+}
+
+.mobile-device.modal-container .modal-content [data-layer="Шампанське Біле вино Червоне вино Міцний алкголь Безалкогольні напої"] {
+  width: 80% !important;
+  left: 10% !important;
+  top: 46% !important;
+  font-size: 22px !important;
+  line-height: 28px !important;
+}
+
+.mobile-device.modal-container .modal-content [data-layer="Чи потрібна вам трансфер до місця проведення або назад:"] {
+  width: 88% !important;
+  left: 6% !important;
+  top: 55% !important;
+  font-size: 28px !important;
+  height: auto !important;
+}
+
+.mobile-device.modal-container .modal-content [data-layer="Так Ні трансфер"] {
+  width: 80% !important;
+  left: 10% !important;
+  top: 59% !important;
+  font-size: 22px !important;
+  line-height: 28px !important;
+}
+
+.mobile-device.modal-container .modal-content [data-layer="Тут ви можете залишити будь-які уточнення або побажання:"] {
+  width: 88% !important;
+  left: 6% !important;
+  top: 65% !important;
+  font-size: 28px !important;
+  height: auto !important;
+}
+
+.mobile-device.modal-container .text-input-wrapper {
+  left: 6% !important;
+  top: 69% !important;
+  width: 88% !important;
+  height: 120px !important;
+}
+
+.mobile-device.modal-container .text-input-wrapper .Vector5 {
+  width: 100% !important;
+  left: 0 !important;
+}
+.mobile-device.modal-container .text-input-wrapper .Vector5 svg {
+  width: 100% !important;
+  height: 4px !important; /* Увеличиваем высоту для точек большего диаметра */
+}
+.mobile-device.modal-container .text-input-wrapper .Vector5 svg path {
+  stroke-width: 3px !important; /* Увеличиваем диаметр точек */
+  stroke-dasharray: 0.5 10 !important; /* Маленькая точка (0.5px), но большой диаметр за счет stroke-width, пробелы 10px (увеличено для меньшей частоты точек) */
+  stroke-linecap: round !important; /* Круглые точки */
+}
+
+.mobile-device.modal-container .comments-textarea {
+  width: 100% !important;
+  height: 120px !important;
+  font-size: 22px !important;
+  line-height: 28px !important;
+}
+
+.mobile-device.modal-container .Frame16 {
+  width: 70% !important;
+  left: 15% !important;
+  top: auto !important;
+  bottom: 30px !important;
+  height: 65px !important;
+  position: absolute !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.mobile-device.modal-container .Frame16 .Group41 {
+  width: 350px !important; /* 350px для телефона */
+  height: 80px !important; /* 80px для телефона */
+  position: relative !important;
+}
+
+.mobile-device.modal-container .Frame16 .Rectangle4149 {
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 1 !important; /* Фигура под текстом */
+}
+
+.mobile-device.modal-container .Frame16 .Rectangle4149 svg {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.mobile-device.modal-container .Frame16 [data-layer="підтвердити"] {
+  width: auto !important; /* Автоматическая ширина для центрирования */
+  left: 50% !important; /* Центрируем по горизонтали */
+  top: 50% !important; /* Центрируем по вертикали */
+  transform: translate(-50%, -50%) !important; /* Точное центрирование */
+  position: absolute !important;
+  text-align: center !important;
+  color: white !important;
+  font-size: 50px !important; /* 50px для телефона */
+  font-family: Gabriola, Helvetica !important;
+  font-weight: 400 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.70px !important;
+  word-wrap: break-word !important;
+  z-index: 2 !important; /* Текст поверх овальной фигуры */
+}
+
+.mobile-device.modal-container .modal-content .option-item {
+  padding-left: 32px !important;
+  line-height: 28px !important;
+  margin-bottom: 10px !important;
+  font-size: 22px !important;
+}
+
+.mobile-device.modal-container .modal-content .option-item::before {
+  width: 16px !important;
+  height: 16px !important;
+  left: 2px !important;
+}
+
+.mobile-device.modal-container .modal-content .option-item::after {
+  width: 32px !important;
+  height: 32px !important;
+  left: -8px !important;
+}
+
+/* Принудительные стили для мобильных через класс force-mobile */
+.force-mobile.modal-container {
+  width: 90vw !important;
+  max-width: none !important;
+  height: auto !important;
+  min-height: 90vh !important;
+}
+
+.force-mobile.modal-container .modal-content {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 90vh !important;
+  border-radius: 25px !important;
+}
+
+.force-mobile.modal-container .Rectangle4130,
+.force-mobile.modal-container .Rectangle4129 {
+  width: 100% !important;
+  height: 100% !important;
+  left: 0 !important;
+  top: 0 !important;
+  border-radius: 25px !important;
+}
+
+.force-mobile.modal-container .GoldenFabricClothIsolatedOnTransparentBackgroundFreePng2 {
+  width: 100% !important;
+  height: 100% !important;
+  left: 0 !important;
+  top: 100% !important;
+  transform: rotate(-90deg) !important;
+  transform-origin: top left !important;
+}
+
+/*
+  Мобильная рамка для .force-mobile: линии (Vector1-4) должны тянуться между угловыми элементами.
+  JS уже выставляет top/bottom/left/right, но SVG по умолчанию остаётся фиксированного размера.
+  Эти правила заставляют SVG растягиваться по габаритам wrapper'а.
+*/
+.force-mobile.modal-container .modal-content .Vector1,
+.force-mobile.modal-container .modal-content .Vector2 {
+  display: flex !important;
+  align-items: stretch !important;
+}
+
+.force-mobile.modal-container .modal-content .Vector1 svg,
+.force-mobile.modal-container .modal-content .Vector2 svg {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+}
+
+.force-mobile.modal-container .modal-content .Vector3 svg,
+.force-mobile.modal-container .modal-content .Vector4 svg {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+}
+
+/* ===============================
+   MOBILE: правильный размер звезды
+   =============================== */
+@media (max-width: 768px) {
+  /* Звездочка через псевдоэлемент ::after */
+  .force-mobile.modal-container .modal-content .option-item::after,
+  .force-mobile .option-item::after,
+  .modal-content .option-item::after {
+    width: 36px !important;
+    height: 36px !important;
+    left: 6px !important;
+  }
+}
+
+/* ===============================
+   ФИНАЛЬНЫЕ СТИЛИ: Размеры овальной фигуры (максимальная специфичность)
+   =============================== */
+/* Десктопная версия - гарантированное применение */
+.modal-container:not(.mobile-device):not(.force-mobile) .Frame16 .Group41 {
+  width: 350px !important;
+  height: 90px !important;
+  max-width: 350px !important;
+  min-width: 350px !important;
+  max-height: 90px !important;
+  min-height: 90px !important;
+}
+
+/* Мобильная версия - гарантированное применение */
+@media (max-width: 768px) {
+  .modal-container.mobile-device .Frame16 .Group41,
+  .modal-container.force-mobile .Frame16 .Group41 {
+    width: 350px !important;
+    height: 80px !important;
+  }
+  
+  /* Для десктопной версии даже в маленьком окне - перебиваем мобильные стили */
+  .modal-container:not(.mobile-device):not(.force-mobile) .Frame16 .Group41 {
+    width: 350px !important;
+    height: 90px !important;
+  }
+}
+
+/* Десктопная версия - перебивает медиа-запрос для больших экранов */
+@media (min-width: 769px) {
+  .modal-container:not(.mobile-device):not(.force-mobile) .Frame16 .Group41,
+  .modal-container .Frame16 .Group41:not(.mobile-device):not(.force-mobile),
+  .modal-container .Frame16 .Group41 {
+    width: 350px !important;
+    height: 90px !important;
+    max-width: 350px !important;
+    min-width: 350px !important;
+    max-height: 90px !important;
+    min-height: 90px !important;
+  }
+}
+
+/* ФИНАЛЬНОЕ ПРАВИЛО: Десктопная версия - максимальная специфичность */
+.modal-overlay.active .modal-container:not(.mobile-device):not(.force-mobile) .Frame16 .Group41,
+.modal-overlay .modal-container:not(.mobile-device):not(.force-mobile) .Frame16 .Group41 {
+  width: 350px !important;
+  height: 90px !important;
+  max-width: 350px !important;
+  min-width: 350px !important;
+  max-height: 90px !important;
+  min-height: 90px !important;
 }
 
