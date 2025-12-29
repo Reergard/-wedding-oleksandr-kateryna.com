@@ -164,7 +164,7 @@ svg *,
   appearance: none !important;
 }
 
-/* Дополнительные правила для iPhone Safari - убираем рамки/тени при любых изменениях DOM */
+/* Дополнительные правила для iPhone Safari и Chrome - убираем рамки/тени при любых изменениях DOM */
 @supports (-webkit-touch-callout: none) {
   img, svg, img *, svg *,
   [data-svg-wrapper], [data-svg-wrapper] *,
@@ -181,16 +181,35 @@ svg *,
     user-select: none !important;
   }
   
-  /* Предотвращаем белый экран при скролле на iPhone */
+  /* Предотвращаем белый экран при скролле на iPhone (Safari и Chrome) */
   html, body {
     overscroll-behavior-y: none !important;
     overscroll-behavior-x: none !important;
+    overscroll-behavior: none !important; /* Для Chrome на iOS */
     -webkit-overflow-scrolling: touch;
   }
   
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 {
     overscroll-behavior-y: none !important;
     overscroll-behavior-x: none !important;
+    overscroll-behavior: none !important; /* Для Chrome на iOS */
+  }
+}
+
+/* Дополнительные правила для Chrome на iOS (определяем по user-agent через CSS, но лучше через JS) */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  @supports (-webkit-touch-callout: none) {
+    html, body {
+      overscroll-behavior: none !important;
+      overscroll-behavior-y: none !important;
+      overscroll-behavior-x: none !important;
+    }
+    
+    .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 {
+      overscroll-behavior: none !important;
+      overscroll-behavior-y: none !important;
+      overscroll-behavior-x: none !important;
+    }
   }
 }
 

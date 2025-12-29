@@ -318,6 +318,53 @@
     const modalContainer = document.querySelector('.modal-container');
     // Переменная scrollY объявлена выше в функции lockBodyScroll
     
+    // Предотвращение overscroll в Chrome на iOS (когда достигнут конец страницы)
+    function preventOverscroll(e) {
+      const target = e.target;
+      const scrollTop = target.scrollTop || document.documentElement.scrollTop || document.body.scrollTop;
+      const scrollHeight = target.scrollHeight || document.documentElement.scrollHeight || document.body.scrollHeight;
+      const clientHeight = target.clientHeight || window.innerHeight;
+      const isAtTop = scrollTop <= 0;
+      const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
+      
+      // Если скроллим вверх когда уже наверху, или вниз когда уже внизу - предотвращаем
+      if ((isAtTop && e.deltaY < 0) || (isAtBottom && e.deltaY > 0)) {
+        e.preventDefault();
+      }
+    }
+    
+    // Для touch событий на iPhone
+    let lastTouchY = 0;
+    function preventTouchOverscroll(e) {
+      const touch = e.touches[0] || e.changedTouches[0];
+      const currentTouchY = touch.clientY;
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+      const clientHeight = window.innerHeight;
+      const isAtTop = scrollTop <= 0;
+      const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
+      
+      // Если скроллим вверх когда уже наверху, или вниз когда уже внизу - предотвращаем
+      if ((isAtTop && currentTouchY > lastTouchY) || (isAtBottom && currentTouchY < lastTouchY)) {
+        e.preventDefault();
+      }
+      
+      lastTouchY = currentTouchY;
+    }
+    
+    // Определяем, является ли устройство iPhone
+    const isIPhone = /iPhone|iPod/.test(navigator.userAgent);
+    const isChrome = /CriOS|Chrome/.test(navigator.userAgent);
+    
+    // Добавляем обработчики для предотвращения overscroll в Chrome на iOS
+    if (isIPhone && isChrome) {
+      document.addEventListener('wheel', preventOverscroll, { passive: false });
+      document.addEventListener('touchstart', function(e) {
+        lastTouchY = (e.touches[0] || e.changedTouches[0]).clientY;
+      }, { passive: true });
+      document.addEventListener('touchmove', preventTouchOverscroll, { passive: false });
+    }
+    
     // Определяем мобильное устройство по реальному размеру экрана и применяем стили
     function checkMobileDevice() {
       const viewportWidth = document.documentElement.clientWidth || document.body.clientWidth;
@@ -500,6 +547,29 @@
       modalContent.style.setProperty('padding-bottom', `${bottomSafe}px`, 'important');
     }
 
+    // Функция для принудительного удаления рамок/теней у всех img/svg элементов
+    function removeBordersFromImages() {
+      const allImages = document.querySelectorAll('img, svg, [data-svg-wrapper], [data-svg-wrapper] svg, [data-svg-wrapper] img, .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 img, .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 svg, .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 [data-svg-wrapper], .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 [data-svg-wrapper] *');
+      allImages.forEach(function(el) {
+        el.style.setProperty('border', '0', 'important');
+        el.style.setProperty('outline', 'none', 'important');
+        el.style.setProperty('box-shadow', 'none', 'important');
+        el.style.setProperty('-webkit-box-shadow', 'none', 'important');
+        el.style.setProperty('-moz-box-shadow', 'none', 'important');
+        el.style.setProperty('-webkit-tap-highlight-color', 'transparent', 'important');
+        el.style.setProperty('-webkit-appearance', 'none', 'important');
+        el.style.setProperty('appearance', 'none', 'important');
+        // Также убираем рамки у всех дочерних элементов
+        const children = el.querySelectorAll('*');
+        children.forEach(function(child) {
+          child.style.setProperty('border', '0', 'important');
+          child.style.setProperty('outline', 'none', 'important');
+          child.style.setProperty('box-shadow', 'none', 'important');
+          child.style.setProperty('-webkit-box-shadow', 'none', 'important');
+        });
+      });
+    }
+
     // Функция блокировки скролла страницы
     // Переменная для сохранения позиции скролла
     let scrollY = 0;
@@ -508,6 +578,14 @@
       scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
       document.body.classList.add('modal-open');
       document.body.style.top = `-${scrollY}px`;
+      // Убираем рамки/тени при открытии модалки
+      removeBordersFromImages();
+      setTimeout(function() {
+        removeBordersFromImages();
+      }, 100);
+      setTimeout(function() {
+        removeBordersFromImages();
+      }, 300);
     }
 
     // Функция разблокировки скролла страницы
@@ -515,6 +593,17 @@
       document.body.classList.remove('modal-open');
       document.body.style.top = '';
       window.scrollTo(0, scrollY);
+      // Убираем рамки/тени после закрытия модалки (несколько раз для надежности)
+      removeBordersFromImages();
+      setTimeout(function() {
+        removeBordersFromImages();
+      }, 50);
+      setTimeout(function() {
+        removeBordersFromImages();
+      }, 200);
+      setTimeout(function() {
+        removeBordersFromImages();
+      }, 500);
     }
 
     // Предотвращение скролла фона при touch событиях (только для мобильных)
@@ -1714,6 +1803,15 @@
         }
       });
     });
+    
+    // Убираем рамки/тени при загрузке страницы
+    removeBordersFromImages();
+    setTimeout(function() {
+      removeBordersFromImages();
+    }, 100);
+    setTimeout(function() {
+      removeBordersFromImages();
+    }, 500);
   });
 </script>
 
