@@ -93,10 +93,13 @@ html {
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-y: none; /* Предотвращает белый экран при скролле ниже страницы на iPhone */
   overscroll-behavior-x: none;
+  overscroll-behavior: none; /* Универсальное правило для всех браузеров */
   /* Дополнительные правила для предотвращения bounce на iPhone */
   position: relative;
   height: auto;
   min-height: 100%;
+  /* Ограничиваем максимальную высоту через CSS переменную (устанавливается через JS) */
+  max-height: var(--page-max-height, none);
 }
 
 body {
@@ -107,10 +110,13 @@ body {
   -webkit-overflow-scrolling: touch; /* Плавный скролл на iOS */
   overscroll-behavior-y: none; /* Предотвращает белый экран при скролле ниже страницы на iPhone */
   overscroll-behavior-x: none;
+  overscroll-behavior: none; /* Универсальное правило для всех браузеров */
   /* Дополнительные правила для предотвращения bounce на iPhone */
   position: relative;
   height: auto;
   min-height: 100%;
+  /* Ограничиваем максимальную высоту через CSS переменную (устанавливается через JS) */
+  max-height: var(--page-max-height, none);
 }
 
 /* Блокировка body при открытии модалки (iOS-friendly) */

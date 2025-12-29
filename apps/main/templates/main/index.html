@@ -309,49 +309,240 @@
 
     {% include 'invitations/modal.html' %}
 
-    <!-- Скрипт для предотвращения белого экрана при overscroll в Chrome на iPhone -->
+    <!-- Универсальный скрипт для предотвращения белого экрана при overscroll (работает для всех браузеров) -->
     <script>
       (function () {
+        // Универсальная функция для установки максимальной высоты страницы
+        // Работает для всех браузеров, но особенно важна для Chrome на iOS
+        function setMaxHeight() {
+          // Получаем реальную высоту контента
+          const scrollHeight = Math.max(
+            document.documentElement.scrollHeight,
+            document.body.scrollHeight,
+            document.documentElement.offsetHeight,
+            document.body.offsetHeight
+          );
+          
+          if (scrollHeight > 0) {
+            // Устанавливаем CSS переменную для использования в CSS
+            document.documentElement.style.setProperty('--page-max-height', scrollHeight + 'px');
+            
+            // Также устанавливаем напрямую через inline стили для максимальной надежности
+            document.body.style.setProperty('max-height', scrollHeight + 'px', 'important');
+            document.documentElement.style.setProperty('max-height', scrollHeight + 'px', 'important');
+          }
+        }
+        
+        // Определяем, является ли это Chrome на iOS (для дополнительных мер)
         const ua = navigator.userAgent || "";
         const isIPhone = /iPhone|iPod/.test(ua);
-        const isChromeOniOS = /CriOS/.test(ua); // важно: именно CriOS, не "Chrome"
-
-        if (!(isIPhone && isChromeOniOS)) return;
+        const isChromeOniOS = /CriOS/.test(ua) || 
+                              (isIPhone && /Chrome/.test(ua) && !/Safari/.test(ua));
+        
+        if (isIPhone && isChromeOniOS) {
+          console.log('Chrome on iPhone detected - applying enhanced overscroll prevention', ua);
+        }
+        
+        // Устанавливаем при загрузке и при изменении размера
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', setMaxHeight);
+        } else {
+          setMaxHeight();
+        }
+        window.addEventListener('load', setMaxHeight);
+        window.addEventListener('resize', function() {
+          setTimeout(setMaxHeight, 50);
+        });
+        
+        // Также устанавливаем при изменении DOM (на случай динамического контента)
+        const observer = new MutationObserver(function() {
+          setTimeout(setMaxHeight, 100);
+        });
+        if (document.body) {
+          observer.observe(document.body, { childList: true, subtree: true, attributes: true });
+        }
 
         let lastTouchY = 0;
+        let isScrolling = false;
 
+        // Обработчик touchstart - сохраняем начальную позицию
         document.addEventListener('touchstart', function (e) {
-          lastTouchY = (e.touches[0] || e.changedTouches[0]).clientY;
-        }, { passive: true });
+          const touch = e.touches[0] || e.changedTouches[0];
+          if (touch) {
+            lastTouchY = touch.clientY;
+            isScrolling = false;
+          }
+        }, { passive: true, capture: true });
 
+        // Обработчик touchmove - предотвращаем overscroll
         document.addEventListener('touchmove', function (e) {
-          // если открыта модалка — не мешаем ей скроллиться (у тебя там свой скролл/лок)
+          // если открыта модалка — не мешаем ей скроллиться
           const modalOverlay = document.getElementById('modalOverlay');
-          if (modalOverlay && modalOverlay.classList.contains('active') && modalOverlay.contains(e.target)) {
-            return;
+          if (modalOverlay && modalOverlay.classList.contains('active')) {
+            // Проверяем, происходит ли событие внутри модалки
+            if (modalOverlay.contains(e.target) || e.target.closest('#modalOverlay')) {
+              return;
+            }
           }
 
-          const currentY = (e.touches[0] || e.changedTouches[0]).clientY;
-          const scrollingUp = currentY > lastTouchY;
-          const scrollingDown = currentY < lastTouchY;
+          const touch = e.touches[0] || e.changedTouches[0];
+          if (!touch) return;
 
-          const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+          const currentY = touch.clientY;
+          const deltaY = currentY - lastTouchY;
+
+          // Определяем направление скролла
+          const scrollingUp = deltaY > 0;   // палец движется вниз = скролл вверх
+          const scrollingDown = deltaY < 0; // палец движется вверх = скролл вниз
+
+          // Получаем текущую позицию скролла
+          const scrollTop = window.pageYOffset || 
+                           document.documentElement.scrollTop || 
+                           document.body.scrollTop || 0;
+          
+          // Получаем высоту контента и видимой области
+          const scrollHeight = Math.max(
+            document.documentElement.scrollHeight,
+            document.body.scrollHeight,
+            document.documentElement.offsetHeight,
+            document.body.offsetHeight
+          );
+          const clientHeight = window.innerHeight || 
+                              document.documentElement.clientHeight || 
+                              document.body.clientHeight;
+
+          // Определяем, находимся ли мы на границах
+          // Используем более строгую проверку с небольшим допуском
+          const tolerance = 2; // пикселей допуска
+          const atTop = scrollTop <= tolerance;
+          const atBottom = (scrollTop + clientHeight) >= (scrollHeight - tolerance);
+
+          // Блокируем overscroll: если наверху и пытаемся скроллить вверх,
+          // или внизу и пытаемся скроллить вниз
+          if ((atTop && scrollingUp) || (atBottom && scrollingDown)) {
+            e.preventDefault();
+            e.stopPropagation();
+            isScrolling = false;
+            return false;
+          }
+
+          lastTouchY = currentY;
+          isScrolling = true;
+        }, { passive: false, capture: true });
+
+        // Дополнительная защита через wheel событие (для мыши/трекпада)
+        document.addEventListener('wheel', function (e) {
+          const modalOverlay = document.getElementById('modalOverlay');
+          if (modalOverlay && modalOverlay.classList.contains('active')) {
+            if (modalOverlay.contains(e.target) || e.target.closest('#modalOverlay')) {
+              return;
+            }
+          }
+
+          const scrollTop = window.pageYOffset || 
+                           document.documentElement.scrollTop || 
+                           document.body.scrollTop || 0;
           const scrollHeight = Math.max(
             document.documentElement.scrollHeight,
             document.body.scrollHeight
           );
           const clientHeight = window.innerHeight;
+          const tolerance = 2;
+          const atTop = scrollTop <= tolerance;
+          const atBottom = (scrollTop + clientHeight) >= (scrollHeight - tolerance);
 
-          const atTop = scrollTop <= 0;
-          const atBottom = scrollTop + clientHeight >= scrollHeight - 1;
-
-          // блокируем только "протягивание" за пределы
-          if ((atTop && scrollingUp) || (atBottom && scrollingDown)) {
+          if ((atTop && e.deltaY < 0) || (atBottom && e.deltaY > 0)) {
             e.preventDefault();
+            e.stopPropagation();
+            return false;
+          }
+        }, { passive: false, capture: true });
+
+        // КРИТИЧЕСКАЯ ЗАЩИТА: обработчик scroll события для принудительной блокировки
+        // Работает для всех браузеров, но особенно важно для Chrome на iOS
+        let lastScrollTop = 0;
+        let isCorrectingScroll = false;
+        
+        window.addEventListener('scroll', function() {
+          // Не мешаем модалке
+          const modalOverlay = document.getElementById('modalOverlay');
+          if (modalOverlay && modalOverlay.classList.contains('active')) {
+            return;
           }
 
-          lastTouchY = currentY;
-        }, { passive: false });
+          if (isCorrectingScroll) return; // Предотвращаем рекурсию
+
+          const scrollTop = window.pageYOffset || 
+                           document.documentElement.scrollTop || 
+                           document.body.scrollTop || 0;
+          
+          const scrollHeight = Math.max(
+            document.documentElement.scrollHeight,
+            document.body.scrollHeight,
+            document.documentElement.offsetHeight,
+            document.body.offsetHeight
+          );
+          const clientHeight = window.innerHeight || 
+                              document.documentElement.clientHeight || 
+                              document.body.clientHeight;
+          
+          const maxScroll = Math.max(0, scrollHeight - clientHeight);
+          const tolerance = 5;
+          
+          // Если скролл ушел за пределы - принудительно возвращаем
+          if (scrollTop < -tolerance) {
+            // Скролл выше верха - возвращаем на 0
+            isCorrectingScroll = true;
+            window.scrollTo(0, 0);
+            setTimeout(() => { isCorrectingScroll = false; }, 10);
+          } else if (scrollTop > maxScroll + tolerance) {
+            // Скролл ниже низа - возвращаем на максимум
+            isCorrectingScroll = true;
+            window.scrollTo(0, maxScroll);
+            setTimeout(() => { isCorrectingScroll = false; }, 10);
+          }
+          
+          lastScrollTop = scrollTop;
+        }, { passive: true });
+
+        // Для Chrome на iOS - дополнительные меры через более агрессивную блокировку
+        if (isIPhone && isChromeOniOS) {
+          // Дополнительный обработчик touchmove на window для максимального приоритета
+          window.addEventListener('touchmove', function(e) {
+            const modalOverlay = document.getElementById('modalOverlay');
+            if (modalOverlay && modalOverlay.classList.contains('active')) {
+              if (modalOverlay.contains(e.target) || e.target.closest('#modalOverlay')) {
+                return;
+              }
+            }
+
+            const touch = e.touches[0] || e.changedTouches[0];
+            if (!touch) return;
+
+            const scrollTop = window.pageYOffset || 
+                             document.documentElement.scrollTop || 
+                             document.body.scrollTop || 0;
+            const scrollHeight = Math.max(
+              document.documentElement.scrollHeight,
+              document.body.scrollHeight
+            );
+            const clientHeight = window.innerHeight;
+            const maxScroll = Math.max(0, scrollHeight - clientHeight);
+            const tolerance = 10;
+
+            // Блокируем любые попытки скролла за пределы
+            if (scrollTop <= tolerance && touch.clientY > (lastTouchY || touch.clientY)) {
+              e.preventDefault();
+              e.stopImmediatePropagation();
+              return false;
+            } else if (scrollTop >= maxScroll - tolerance && touch.clientY < (lastTouchY || touch.clientY)) {
+              e.preventDefault();
+              e.stopImmediatePropagation();
+              return false;
+            }
+          }, { passive: false, capture: true });
+        }
+
       })();
     </script>
 
