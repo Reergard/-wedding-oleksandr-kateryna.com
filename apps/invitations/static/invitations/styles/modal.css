@@ -767,85 +767,13 @@ html:not(.mobile-device) .modal-container:not(.mobile-device):not(.force-mobile)
     left: -8px !important;
   }
 
-  /* Декоративные векторы - масштабируем пропорционально */
-  .modal-content .Vector1 {
-    left: 4% !important;
-    top: 11% !important;
-    width: 1.5% !important;
-    height: auto !important;
-  }
-
-  .modal-content .Vector2 {
-    right: 4% !important;
-    left: auto !important;
-    top: 11% !important;
-    width: 1.5% !important;
-    height: auto !important;
-  }
-
-  .modal-content .Vector3 {
-    left: 18% !important;
-    top: 3.5% !important;
-    width: 64% !important;
-    height: 1% !important;
-  }
-
+  /* Скрываем рамку (угловые элементы и линии) на мобильных устройствах */
+  .modal-content .Vector[data-layer="Vector"],
+  .modal-content .Vector1,
+  .modal-content .Vector2,
+  .modal-content .Vector3,
   .modal-content .Vector4 {
-    left: 18% !important;
-    bottom: 2.5% !important;
-    top: auto !important;
-    width: 64% !important;
-    height: 1% !important;
-  }
-
-  /* Угловые декоративные элементы */
-  .modal-content .Vector[data-layer="Vector"] {
-    width: 18% !important;
-    height: auto !important;
-  }
-
-  .modal-content .Vector[data-layer="Vector"] svg {
-    width: 100% !important;
-    height: auto !important;
-  }
-
-  .modal-content .Vector1 svg,
-  .modal-content .Vector2 svg {
-    width: 100% !important;
-    height: 100% !important;
-    display: block !important;
-  }
-
-  .modal-content .Vector3 svg,
-  .modal-content .Vector4 svg {
-    width: 100% !important;
-    height: 100% !important;
-  }
-
-  /* Угловые декоративные элементы - позиционирование (СТАБИЛЬНО) */
-  .modal-content .corner-tr {
-    right: 3% !important;
-    left: auto !important;
-    top: 3% !important;
-    bottom: auto !important;
-  }
-
-  .modal-content .corner-br {
-    right: 3% !important;
-    left: auto !important;
-    bottom: 3% !important;
-    top: auto !important;
-  }
-
-  .modal-content .corner-tl {
-    left: 3% !important;
-    top: 3% !important;
-  }
-
-  .modal-content .corner-bl {
-    left: 3% !important;
-    bottom: 3% !important;
-    top: auto !important;
+    display: none !important;
   }
 }
 
@@ -866,6 +794,15 @@ html:not(.mobile-device) .modal-container:not(.mobile-device):not(.force-mobile)
   border-radius: 35px !important;
 }
 
+/* Скрываем рамку (угловые элементы и линии) на мобильных устройствах */
+.mobile-device.modal-container .modal-content .Vector[data-layer="Vector"],
+.mobile-device.modal-container .modal-content .Vector1,
+.mobile-device.modal-container .modal-content .Vector2,
+.mobile-device.modal-container .modal-content .Vector3,
+.mobile-device.modal-container .modal-content .Vector4 {
+  display: none !important;
+}
+
 .mobile-device.modal-container .Rectangle4130,
 .mobile-device.modal-container .Rectangle4129 {
   width: 100% !important;
@@ -883,29 +820,13 @@ html:not(.mobile-device) .modal-container:not(.mobile-device):not(.force-mobile)
   transform: none !important;
 }
 
-/*
-  Мобильная рамка: линии (Vector1-4) должны тянуться между угловыми элементами.
-  JS уже выставляет top/bottom/left/right, но SVG по умолчанию остаётся фиксированного размера.
-  Эти правила заставляют SVG растягиваться по габаритам wrapper'а.
-*/
+/* Скрываем рамку (угловые элементы и линии) на мобильных устройствах - дублируем для переопределения предыдущих правил */
+.mobile-device.modal-container .modal-content .Vector[data-layer="Vector"],
 .mobile-device.modal-container .modal-content .Vector1,
-.mobile-device.modal-container .modal-content .Vector2 {
-  display: flex !important;
-  align-items: stretch !important;
-}
-
-.mobile-device.modal-container .modal-content .Vector1 svg,
-.mobile-device.modal-container .modal-content .Vector2 svg {
-  width: 100% !important;
-  height: 100% !important;
-  display: block !important;
-}
-
-.mobile-device.modal-container .modal-content .Vector3 svg,
-.mobile-device.modal-container .modal-content .Vector4 svg {
-  width: 100% !important;
-  height: 100% !important;
-  display: block !important;
+.mobile-device.modal-container .modal-content .Vector2,
+.mobile-device.modal-container .modal-content .Vector3,
+.mobile-device.modal-container .modal-content .Vector4 {
+  display: none !important;
 }
 
 .mobile-device.modal-container .modal-content [data-layer="Дорога Хрещена!"] {
@@ -1130,29 +1051,13 @@ html:not(.mobile-device) .modal-container:not(.mobile-device):not(.force-mobile)
   transform-origin: top left !important;
 }
 
-/*
-  Мобильная рамка для .force-mobile: линии (Vector1-4) должны тянуться между угловыми элементами.
-  JS уже выставляет top/bottom/left/right, но SVG по умолчанию остаётся фиксированного размера.
-  Эти правила заставляют SVG растягиваться по габаритам wrapper'а.
-*/
+/* Скрываем рамку (угловые элементы и линии) на мобильных устройствах для .force-mobile */
+.force-mobile.modal-container .modal-content .Vector[data-layer="Vector"],
 .force-mobile.modal-container .modal-content .Vector1,
-.force-mobile.modal-container .modal-content .Vector2 {
-  display: flex !important;
-  align-items: stretch !important;
-}
-
-.force-mobile.modal-container .modal-content .Vector1 svg,
-.force-mobile.modal-container .modal-content .Vector2 svg {
-  width: 100% !important;
-  height: 100% !important;
-  display: block !important;
-}
-
-.force-mobile.modal-container .modal-content .Vector3 svg,
-.force-mobile.modal-container .modal-content .Vector4 svg {
-  width: 100% !important;
-  height: 100% !important;
-  display: block !important;
+.force-mobile.modal-container .modal-content .Vector2,
+.force-mobile.modal-container .modal-content .Vector3,
+.force-mobile.modal-container .modal-content .Vector4 {
+  display: none !important;
 }
 
 /* ===============================

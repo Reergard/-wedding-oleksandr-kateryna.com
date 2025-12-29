@@ -37,10 +37,6 @@
   z-index: 2;
   position: absolute; /* важно для iOS */
   pointer-events: none;
-  /* Отключаем blur и background на самом элементе, градиент только в ::before */
-  background: none !important;
-  filter: none !important;
-  -webkit-filter: none !important;
 }
 
 /* Градиент через ::before для стабильности на iPhone */
@@ -919,7 +915,24 @@
 }
 
 /* Исправление проблемы со скроллом на iPhone - увеличенная высота и padding */
-/* УДАЛЕНЫ блоки с +400px и +450px - они создавали белый экран на iPhone */
+@supports (-webkit-touch-callout: none) {
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 {
+    min-height: calc(3322px + 400px) !important;
+    height: calc(3322px + 400px) !important;
+    padding-bottom: 400px !important;
+  }
+}
+
+/* Дополнительное исправление для Safari iOS */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  @supports (-webkit-touch-callout: none) {
+    .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 {
+      min-height: calc(3322px + 450px) !important;
+      height: calc(3322px + 450px) !important;
+      padding-bottom: 450px !important;
+    }
+  }
+}
 
 /* Мобильная версия - увеличение шрифта в 2 раза */
 /* Используем более широкий порог, так как viewport установлен на 1390px */
