@@ -309,6 +309,52 @@
 
     {% include 'invitations/modal.html' %}
 
+    <!-- Скрипт для предотвращения белого экрана при overscroll в Chrome на iPhone -->
+    <script>
+      (function () {
+        const ua = navigator.userAgent || "";
+        const isIPhone = /iPhone|iPod/.test(ua);
+        const isChromeOniOS = /CriOS/.test(ua); // важно: именно CriOS, не "Chrome"
+
+        if (!(isIPhone && isChromeOniOS)) return;
+
+        let lastTouchY = 0;
+
+        document.addEventListener('touchstart', function (e) {
+          lastTouchY = (e.touches[0] || e.changedTouches[0]).clientY;
+        }, { passive: true });
+
+        document.addEventListener('touchmove', function (e) {
+          // если открыта модалка — не мешаем ей скроллиться (у тебя там свой скролл/лок)
+          const modalOverlay = document.getElementById('modalOverlay');
+          if (modalOverlay && modalOverlay.classList.contains('active') && modalOverlay.contains(e.target)) {
+            return;
+          }
+
+          const currentY = (e.touches[0] || e.changedTouches[0]).clientY;
+          const scrollingUp = currentY > lastTouchY;
+          const scrollingDown = currentY < lastTouchY;
+
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+          const scrollHeight = Math.max(
+            document.documentElement.scrollHeight,
+            document.body.scrollHeight
+          );
+          const clientHeight = window.innerHeight;
+
+          const atTop = scrollTop <= 0;
+          const atBottom = scrollTop + clientHeight >= scrollHeight - 1;
+
+          // блокируем только "протягивание" за пределы
+          if ((atTop && scrollingUp) || (atBottom && scrollingDown)) {
+            e.preventDefault();
+          }
+
+          lastTouchY = currentY;
+        }, { passive: false });
+      })();
+    </script>
+
 </body>
 
 </html>
