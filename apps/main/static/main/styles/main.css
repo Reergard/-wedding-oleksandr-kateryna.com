@@ -2,16 +2,16 @@
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 {
   background-color: #ffffff;
-  /* НЕ делаем внутренний скролл контейнеру - это создаёт проблемы на iPhone */
-  height: auto;          /* было 3322px */
-  min-height: 3322px;    /* оставляем для абсолютных блоков */
+  /* Высота определяется контентом, скролл на body */
+  height: auto;
+  min-height: 3322px;           /* Минимальная высота для абсолютных блоков */
   min-width: 100%;
   max-width: 100%;
   overflow-x: hidden;
-  overflow-y: visible;   /* было auto - убираем внутренний скролл */
+  overflow-y: visible;          /* Скролл на body, не здесь */
   position: relative;
   width: 100%;
-  padding-bottom: 0;     /* было 50px - убираем, чтобы не было белого экрана на iPhone */
+  padding-bottom: 0;
   box-sizing: border-box;
 }
 
@@ -914,25 +914,7 @@
   }
 }
 
-/* Исправление проблемы со скроллом на iPhone - увеличенная высота и padding */
-@supports (-webkit-touch-callout: none) {
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 {
-    min-height: calc(3322px + 400px) !important;
-    height: calc(3322px + 400px) !important;
-    padding-bottom: 400px !important;
-  }
-}
-
-/* Дополнительное исправление для Safari iOS */
-@media screen and (-webkit-min-device-pixel-ratio: 0) {
-  @supports (-webkit-touch-callout: none) {
-    .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 {
-      min-height: calc(3322px + 450px) !important;
-      height: calc(3322px + 450px) !important;
-      padding-bottom: 450px !important;
-    }
-  }
-}
+/* УДАЛЕНЫ блоки с +400px и +450px - они создавали белый экран на iPhone */
 
 /* Мобильная версия - увеличение шрифта в 2 раза */
 /* Используем более широкий порог, так как viewport установлен на 1390px */

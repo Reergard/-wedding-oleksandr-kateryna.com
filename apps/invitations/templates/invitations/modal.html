@@ -316,7 +316,7 @@
     const modalOverlay = document.getElementById('modalOverlay');
     const modalClose = document.getElementById('modalClose');
     const modalContainer = document.querySelector('.modal-container');
-    let scrollPosition = 0;
+    // Переменная scrollY объявлена выше в функции lockBodyScroll
     
     // Определяем мобильное устройство по реальному размеру экрана и применяем стили
     function checkMobileDevice() {
@@ -501,24 +501,20 @@
     }
 
     // Функция блокировки скролла страницы
+    // Переменная для сохранения позиции скролла
+    let scrollY = 0;
+
     function lockBodyScroll() {
-      scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollPosition}px`;
-      document.body.style.width = '100%';
-      document.body.style.overflow = 'hidden';
-      // Для iOS
-      document.body.style.touchAction = 'none';
+      scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+      document.body.classList.add('modal-open');
+      document.body.style.top = `-${scrollY}px`;
     }
 
     // Функция разблокировки скролла страницы
     function unlockBodyScroll() {
-      document.body.style.position = '';
+      document.body.classList.remove('modal-open');
       document.body.style.top = '';
-      document.body.style.width = '';
-      document.body.style.overflow = '';
-      document.body.style.touchAction = '';
-      window.scrollTo(0, scrollPosition);
+      window.scrollTo(0, scrollY);
     }
 
     // Предотвращение скролла фона при touch событиях (только для мобильных)
@@ -704,10 +700,15 @@
       
       mobileStyle.textContent = `
         /* Принудительные стили для мобильных - максимальная специфичность */
-        /* Убираем padding у overlay для мобильных */
-        .modal-overlay.active:has(.force-mobile),
+        /* Отступы для overlay на мобильных (вместо 0) */
+        .modal-overlay.active:has(.force-mobile) {
+          padding: 5vw !important;        /* одинаково сверху и по бокам */
+          box-sizing: border-box !important;
+        }
+        
+        /* НЕ трогаем padding у самой модалки — пусть управляется шириной/высотой */
         .modal-overlay.active .force-mobile {
-          padding: 0 !important;
+          margin: 0 auto !important;
         }
         .force-mobile.modal-container {
           width: 90vw !important;
@@ -948,10 +949,11 @@
       modalContainer.style.setProperty('margin', '0 auto', 'important');
       modalContainer.style.setProperty('padding', '0', 'important');
       
-      // Также убираем padding у overlay
+      // Устанавливаем padding у overlay (5vw сверху и по бокам)
       const modalOverlay = modalContainer.closest('.modal-overlay');
       if (modalOverlay) {
-        modalOverlay.style.setProperty('padding', '0', 'important');
+        modalOverlay.style.setProperty('padding', '5vw', 'important');
+        modalOverlay.style.setProperty('box-sizing', 'border-box', 'important');
       }
       
       console.log('Set container width to: 90vw (90% of screen width with 5% margins on each side)');

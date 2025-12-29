@@ -89,8 +89,26 @@ html, body {
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: auto; /* Скролл на body для мобильных устройств */
   -webkit-overflow-scrolling: touch; /* Плавный скролл на iOS */
+}
+
+/* Блокировка body при открытии модалки (iOS-friendly) */
+body.modal-open {
+  position: fixed;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Исправление для Safari iOS - убираем рамки/тени вокруг SVG и картинок */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img, svg {
+  display: block;
+  border: 0;
+  outline: none;
 }
 
 .date,

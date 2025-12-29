@@ -12,17 +12,19 @@
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch; /* Плавный скролл на iOS */
+  overscroll-behavior: contain; /* Предотвращает прокрутку страницы при скролле модалки */
 }
 
 .modal-overlay.active {
   display: flex;
-  align-items: flex-start; /* Изменено с center на flex-start для правильного скролла */
+  align-items: flex-start;
   justify-content: center;
-  padding: 0;
+  /* Отступы как требуется - одинаково сверху и по бокам */
+  padding: calc(5vh + env(safe-area-inset-top)) calc(5vw + env(safe-area-inset-right)) calc(5vh + env(safe-area-inset-bottom)) calc(5vw + env(safe-area-inset-left));
   box-sizing: border-box;
-  overflow-y: auto !important; /* Разрешаем скролл overlay */
+  overflow-y: auto !important;
   overflow-x: hidden !important;
-  -webkit-overflow-scrolling: touch; /* Плавный скролл на iOS */
+  -webkit-overflow-scrolling: touch;
 }
 
 .modal-container {
@@ -30,7 +32,7 @@
   height: 1183px; /* Фиксированная высота контейнера */
   position: relative;
   max-width: 90vw;
-  margin: 20px auto; /* Отступ сверху и снизу для скролла */
+  margin: 0 auto; /* Убран margin-top - отступы теперь через padding у overlay (стабильно на iOS Safari) */
   flex-shrink: 0; /* Предотвращаем сжатие при flex */
 }
 
@@ -531,22 +533,26 @@ html:not(.mobile-device) .modal-container:not(.mobile-device):not(.force-mobile)
 /* Адаптивность для мобильных устройств - через медиа-запрос и класс */
 @media (max-width: 768px), (max-device-width: 768px), (orientation: portrait) and (max-width: 900px) {
   .modal-overlay.active {
-    padding: 10px !important;
+    /* Отступы с учетом safe-area для iPhone с челкой */
+    padding: calc(5vh + env(safe-area-inset-top)) calc(5vw + env(safe-area-inset-right)) calc(5vh + env(safe-area-inset-bottom)) calc(5vw + env(safe-area-inset-left)) !important;
   }
 
   .modal-container {
     width: 90vw !important;
     max-width: 500px !important;
     height: auto !important;
-    min-height: 90vh !important;
-    margin: 10px auto !important;
+    min-height: unset !important; /* Убрано min-height: 90vh - чтобы не съедало верхний отступ */
+    max-height: calc(100vh - 10vh) !important; /* Ограничиваем высоту с учетом отступов (5vh сверху + 5vh снизу) */
+    margin: 0 auto !important; /* Убран margin-top - отступы теперь через padding у overlay */
     transform: scale(1) !important;
   }
 
   .modal-content {
     width: 100% !important;
     height: auto !important;
-    min-height: 90vh !important;
+    min-height: unset !important; /* Убрано min-height: 90vh - чтобы не съедало верхний отступ */
+    max-height: calc(100vh - 10vh) !important; /* Ограничиваем высоту с учетом отступов для скролла внутри модалки */
+    overflow-y: auto !important; /* Скролл внутри модалки */
     border-radius: 35px !important;
   }
 
@@ -782,15 +788,18 @@ html:not(.mobile-device) .modal-container:not(.mobile-device):not(.force-mobile)
   width: 90vw !important;
   max-width: 500px !important;
   height: auto !important;
-  min-height: 90vh !important;
-  margin: 10px auto !important;
+  min-height: unset !important; /* Убрано min-height: 90vh - чтобы не съедало верхний отступ */
+  max-height: calc(100vh - 10vh) !important; /* Ограничиваем высоту с учетом отступов (5vh сверху + 5vh снизу) */
+  margin: 0 auto !important; /* Убран margin-top - отступы теперь через padding у overlay */
   transform: scale(1) !important;
 }
 
 .mobile-device.modal-container .modal-content {
   width: 100% !important;
   height: auto !important;
-  min-height: 90vh !important;
+  min-height: unset !important; /* Убрано min-height: 90vh - чтобы не съедало верхний отступ */
+  max-height: calc(100vh - 10vh) !important; /* Ограничиваем высоту с учетом отступов для скролла внутри модалки */
+  overflow-y: auto !important; /* Скролл внутри модалки */
   border-radius: 35px !important;
 }
 
@@ -1023,13 +1032,16 @@ html:not(.mobile-device) .modal-container:not(.mobile-device):not(.force-mobile)
   width: 90vw !important;
   max-width: none !important;
   height: auto !important;
-  min-height: 90vh !important;
+  min-height: unset !important; /* Убрано min-height: 90vh - чтобы не съедало верхний отступ */
+  max-height: calc(100vh - 10vh) !important; /* Ограничиваем высоту с учетом отступов (5vh сверху + 5vh снизу) */
 }
 
 .force-mobile.modal-container .modal-content {
   width: 100% !important;
   height: auto !important;
-  min-height: 90vh !important;
+  min-height: unset !important; /* Убрано min-height: 90vh - чтобы не съедало верхний отступ */
+  max-height: calc(100vh - 10vh) !important; /* Ограничиваем высоту с учетом отступов для скролла внутри модалки */
+  overflow-y: auto !important; /* Скролл внутри модалки */
   border-radius: 25px !important;
 }
 
