@@ -85,13 +85,32 @@
   box-sizing: border-box;
 }
 
-html, body {
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: none; /* Предотвращает белый экран при скролле ниже страницы на iPhone */
+  overscroll-behavior-x: none;
+  /* Дополнительные правила для предотвращения bounce на iPhone */
+  position: relative;
+  height: auto;
+  min-height: 100%;
+}
+
+body {
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
   overflow-y: auto; /* Скролл на body для мобильных устройств */
   -webkit-overflow-scrolling: touch; /* Плавный скролл на iOS */
-  overscroll-behavior: none; /* Предотвращает белый экран при скролле ниже страницы на iPhone */
+  overscroll-behavior-y: none; /* Предотвращает белый экран при скролле ниже страницы на iPhone */
+  overscroll-behavior-x: none;
+  /* Дополнительные правила для предотвращения bounce на iPhone */
+  position: relative;
+  height: auto;
+  min-height: 100%;
 }
 
 /* Блокировка body при открытии модалки (iOS-friendly) */
@@ -99,6 +118,23 @@ body.modal-open {
   position: fixed;
   width: 100%;
   overflow: hidden;
+  overscroll-behavior-y: none; /* Предотвращает белый экран при скролле */
+}
+
+/* Убираем рамки/тени у всех элементов при открытии/закрытии модалки */
+body.modal-open img,
+body.modal-open svg,
+body.modal-open img *,
+body.modal-open svg *,
+body:not(.modal-open) img,
+body:not(.modal-open) svg,
+body:not(.modal-open) img *,
+body:not(.modal-open) svg * {
+  border: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
 }
 
 /* Исправление для Safari iOS - убираем рамки/тени вокруг SVG и картинок */
@@ -106,10 +142,56 @@ body.modal-open {
   -webkit-tap-highlight-color: transparent;
 }
 
-img, svg {
-  display: block;
-  border: 0;
-  outline: none;
+/* Убираем все возможные рамки, тени и обводки у изображений и SVG на всех элементах */
+img, 
+svg, 
+img *, 
+svg *,
+[data-svg-wrapper],
+[data-svg-wrapper] *,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 img,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 svg,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 img *,
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 svg * {
+  display: block !important;
+  border: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+/* Дополнительные правила для iPhone Safari - убираем рамки/тени при любых изменениях DOM */
+@supports (-webkit-touch-callout: none) {
+  img, svg, img *, svg *,
+  [data-svg-wrapper], [data-svg-wrapper] *,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 img,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 svg,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 img *,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 svg * {
+    border: 0 !important;
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+  }
+  
+  /* Предотвращаем белый экран при скролле на iPhone */
+  html, body {
+    overscroll-behavior-y: none !important;
+    overscroll-behavior-x: none !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 {
+    overscroll-behavior-y: none !important;
+    overscroll-behavior-x: none !important;
+  }
 }
 
 .date,
