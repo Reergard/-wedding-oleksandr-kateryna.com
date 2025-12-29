@@ -91,6 +91,7 @@ html, body {
   overflow-x: hidden;
   overflow-y: auto; /* Скролл на body для мобильных устройств */
   -webkit-overflow-scrolling: touch; /* Плавный скролл на iOS */
+  overscroll-behavior: none; /* Предотвращает белый экран при скролле ниже страницы на iPhone */
 }
 
 /* Блокировка body при открытии модалки (iOS-friendly) */
