@@ -309,216 +309,99 @@
 
     {% include 'invitations/modal.html' %}
 
-    <!-- Универсальный скрипт для предотвращения белого экрана при overscroll (работает для всех браузеров) -->
+    <!-- Скрипт для предотвращения белого экрана при overscroll в Chrome на iPhone -->
     <script>
       (function () {
-        // ПРОСТАЯ и ТОЧНАЯ функция: высота страницы = нижняя граница кнопки + небольшой отступ
-        // Элементы остаются видимыми, но скролл ограничен до кнопки
-        function setMaxHeight() {
-          // Находим последний видимый элемент - кнопку "Заповнити Анкету"
-          const lastVisibleElement = document.getElementById('openModalBtn');
-          
-          if (!lastVisibleElement) {
-            console.error('Button "Заповнити Анкету" not found!');
-            return;
+        const ua = navigator.userAgent || "";
+        const isIPhone = /iPhone|iPod/.test(ua);
+        const isChromeOniOS = /CriOS/.test(ua); // важно: именно CriOS, не "Chrome"
+
+        if (!(isIPhone && isChromeOniOS)) return;
+
+        // Функция для определения максимальной высоты скролла (нижняя граница кнопки)
+        function getMaxScrollHeight() {
+          const button = document.getElementById('openModalBtn');
+          if (!button) {
+            // Если кнопка не найдена, используем текущую высоту документа
+            return Math.max(
+              document.documentElement.scrollHeight,
+              document.body.scrollHeight
+            );
           }
-          
-          // Получаем ТОЧНУЮ нижнюю границу кнопки
-          const rect = lastVisibleElement.getBoundingClientRect();
+
+          const rect = button.getBoundingClientRect();
           const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
           const buttonBottom = rect.bottom + scrollTop;
           
-          // Высота страницы = нижняя граница кнопки + отступ (100px для безопасности, чтобы кнопка точно была видна)
-          // Элементы после кнопки остаются видимыми, но скролл будет ограничен
-          const scrollHeight = buttonBottom + 100;
-          
-          console.log('Button bottom:', buttonBottom, 'Button rect:', rect, 'Button top:', rect.top, 'Final scroll height:', scrollHeight);
-          
-          // Убеждаемся, что кнопка видна - проверяем её позицию и принудительно делаем видимой
-          if (rect.height === 0 || rect.width === 0) {
-            console.warn('Button has zero dimensions!', rect);
-          }
-          
-          // Принудительно делаем кнопку видимой и убеждаемся, что она не скрыта
-          lastVisibleElement.style.setProperty('visibility', 'visible', 'important');
-          lastVisibleElement.style.setProperty('display', 'block', 'important');
-          lastVisibleElement.style.setProperty('opacity', '1', 'important');
-          lastVisibleElement.style.setProperty('z-index', '9999', 'important');
-          lastVisibleElement.style.setProperty('position', 'absolute', 'important'); // Сохраняем absolute позиционирование
-          
-          // Также проверяем и делаем видимыми дочерние элементы кнопки
-          const buttonChildren = lastVisibleElement.querySelectorAll('*');
-          buttonChildren.forEach(function(child) {
-            child.style.setProperty('visibility', 'visible', 'important');
-            child.style.setProperty('display', '', 'important');
-            child.style.setProperty('opacity', '1', 'important');
-          });
-          
-          if (scrollHeight > 0) {
-            // Устанавливаем CSS переменную
-            document.documentElement.style.setProperty('--page-max-height', scrollHeight + 'px');
-            
-            // Устанавливаем max-height для ограничения скролла
-            // Используем max-height (не height!), чтобы контент не обрезался, но скролл был ограничен
-            document.body.style.setProperty('max-height', scrollHeight + 'px', 'important');
-            document.documentElement.style.setProperty('max-height', scrollHeight + 'px', 'important');
-            
-            console.log('Scroll height set to:', scrollHeight, 'Button should be visible at bottom:', buttonBottom, 'Button top:', rect.top + scrollTop);
-          }
+          // Добавляем небольшой отступ (10px) для безопасности
+          return buttonBottom + 10;
         }
-        
-        // Определяем, является ли это Chrome на iOS (для дополнительных мер)
-        const ua = navigator.userAgent || "";
-        const isIPhone = /iPhone|iPod/.test(ua);
-        const isChromeOniOS = /CriOS/.test(ua) || 
-                              (isIPhone && /Chrome/.test(ua) && !/Safari/.test(ua));
-        
-        if (isIPhone && isChromeOniOS) {
-          console.log('Chrome on iPhone detected - applying enhanced overscroll prevention', ua);
+
+        // Устанавливаем максимальную высоту скролла
+        function setMaxScrollHeight() {
+          const maxHeight = getMaxScrollHeight();
+          const clientHeight = window.innerHeight;
+          const maxScroll = Math.max(0, maxHeight - clientHeight);
+          
+          // Сохраняем максимальную высоту скролла
+          window._maxScrollHeight = maxHeight;
+          window._maxScroll = maxScroll;
         }
-        
-        // Устанавливаем при загрузке и при изменении размера
-        // Вызываем несколько раз с задержками, чтобы убедиться, что кнопка найдена и видна
-        function initMaxHeight() {
-          setMaxHeight();
-          setTimeout(setMaxHeight, 100);
-          setTimeout(setMaxHeight, 500);
-          setTimeout(setMaxHeight, 1000);
+
+        // Инициализация при загрузке
+        function init() {
+          setMaxScrollHeight();
+          setTimeout(setMaxScrollHeight, 100);
+          setTimeout(setMaxScrollHeight, 500);
         }
-        
+
         if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', initMaxHeight);
+          document.addEventListener('DOMContentLoaded', init);
         } else {
-          initMaxHeight();
+          init();
         }
-        window.addEventListener('load', initMaxHeight);
+
+        window.addEventListener('load', setMaxScrollHeight);
         window.addEventListener('resize', function() {
-          setTimeout(setMaxHeight, 50);
+          setTimeout(setMaxScrollHeight, 50);
         });
-        
-        // Также устанавливаем при изменении DOM (на случай динамического контента)
-        const observer = new MutationObserver(function() {
-          setTimeout(setMaxHeight, 100);
-        });
-        if (document.body) {
-          observer.observe(document.body, { childList: true, subtree: true, attributes: true });
-        }
 
         let lastTouchY = 0;
-        let isScrolling = false;
 
-        // Обработчик touchstart - сохраняем начальную позицию
         document.addEventListener('touchstart', function (e) {
-          const touch = e.touches[0] || e.changedTouches[0];
-          if (touch) {
-            lastTouchY = touch.clientY;
-            isScrolling = false;
-          }
-        }, { passive: true, capture: true });
+          lastTouchY = (e.touches[0] || e.changedTouches[0]).clientY;
+        }, { passive: true });
 
-        // Обработчик touchmove - предотвращаем overscroll
         document.addEventListener('touchmove', function (e) {
-          // если открыта модалка — не мешаем ей скроллиться
+          // если открыта модалка — не мешаем ей скроллиться (у тебя там свой скролл/лок)
           const modalOverlay = document.getElementById('modalOverlay');
-          if (modalOverlay && modalOverlay.classList.contains('active')) {
-            // Проверяем, происходит ли событие внутри модалки
-            if (modalOverlay.contains(e.target) || e.target.closest('#modalOverlay')) {
-              return;
-            }
+          if (modalOverlay && modalOverlay.classList.contains('active') && modalOverlay.contains(e.target)) {
+            return;
           }
 
-          const touch = e.touches[0] || e.changedTouches[0];
-          if (!touch) return;
+          const currentY = (e.touches[0] || e.changedTouches[0]).clientY;
+          const scrollingUp = currentY > lastTouchY;
+          const scrollingDown = currentY < lastTouchY;
 
-          const currentY = touch.clientY;
-          const deltaY = currentY - lastTouchY;
-
-          // Определяем направление скролла
-          const scrollingUp = deltaY > 0;   // палец движется вниз = скролл вверх
-          const scrollingDown = deltaY < 0; // палец движется вверх = скролл вниз
-
-          // Получаем текущую позицию скролла
-          const scrollTop = window.pageYOffset || 
-                           document.documentElement.scrollTop || 
-                           document.body.scrollTop || 0;
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
           
-          // Используем установленную высоту из height body (это ТОЧНАЯ высота до кнопки)
-          const bodyHeight = parseFloat(getComputedStyle(document.body).height) || 
-                            parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--page-max-height')) ||
-                            (function() {
-                              const btn = document.getElementById('openModalBtn');
-                              if (btn) {
-                                const rect = btn.getBoundingClientRect();
-                                const st = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-                                return rect.bottom + st + 30;
-                              }
-                              return Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
-                            })();
-          
-          const clientHeight = window.innerHeight || 
-                              document.documentElement.clientHeight || 
-                              document.body.clientHeight;
+          // Используем установленную максимальную высоту скролла
+          const maxScroll = window._maxScroll || getMaxScrollHeight() - window.innerHeight;
+          const clientHeight = window.innerHeight;
 
-          // Определяем, находимся ли мы на границах
-          // Используем более строгую проверку с небольшим допуском
-          const tolerance = 2; // пикселей допуска
-          const atTop = scrollTop <= tolerance;
-          const atBottom = (scrollTop + clientHeight) >= (bodyHeight - tolerance);
+          const atTop = scrollTop <= 0;
+          const atBottom = scrollTop + clientHeight >= (window._maxScrollHeight || getMaxScrollHeight()) - 1;
 
-          // Блокируем overscroll: если наверху и пытаемся скроллить вверх,
-          // или внизу и пытаемся скроллить вниз
+          // блокируем только "протягивание" за пределы
           if ((atTop && scrollingUp) || (atBottom && scrollingDown)) {
             e.preventDefault();
-            e.stopPropagation();
-            isScrolling = false;
-            return false;
           }
 
           lastTouchY = currentY;
-          isScrolling = true;
-        }, { passive: false, capture: true });
+        }, { passive: false });
 
-        // Дополнительная защита через wheel событие (для мыши/трекпада)
-        document.addEventListener('wheel', function (e) {
-          const modalOverlay = document.getElementById('modalOverlay');
-          if (modalOverlay && modalOverlay.classList.contains('active')) {
-            if (modalOverlay.contains(e.target) || e.target.closest('#modalOverlay')) {
-              return;
-            }
-          }
-
-          const scrollTop = window.pageYOffset || 
-                           document.documentElement.scrollTop || 
-                           document.body.scrollTop || 0;
-          // Используем установленную высоту из height body
-          const bodyHeight = parseFloat(getComputedStyle(document.body).height) || 
-                            parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--page-max-height')) ||
-                            (function() {
-                              const btn = document.getElementById('openModalBtn');
-                              if (btn) {
-                                const rect = btn.getBoundingClientRect();
-                                const st = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-                                return rect.bottom + st + 30;
-                              }
-                              return Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
-                            })();
-          const clientHeight = window.innerHeight;
-          const tolerance = 2;
-          const atTop = scrollTop <= tolerance;
-          const atBottom = (scrollTop + clientHeight) >= (bodyHeight - tolerance);
-
-          if ((atTop && e.deltaY < 0) || (atBottom && e.deltaY > 0)) {
-            e.preventDefault();
-            e.stopPropagation();
-            return false;
-          }
-        }, { passive: false, capture: true });
-
-        // КРИТИЧЕСКАЯ ЗАЩИТА: обработчик scroll события для принудительной блокировки
-        // Работает для всех браузеров, но особенно важно для Chrome на iOS
-        let lastScrollTop = 0;
+        // КРИТИЧЕСКАЯ ЗАЩИТА: принудительно возвращаем скролл, если он ушел за пределы
         let isCorrectingScroll = false;
-        
         window.addEventListener('scroll', function() {
           // Не мешаем модалке
           const modalOverlay = document.getElementById('modalOverlay');
@@ -528,29 +411,10 @@
 
           if (isCorrectingScroll) return; // Предотвращаем рекурсию
 
-          const scrollTop = window.pageYOffset || 
-                           document.documentElement.scrollTop || 
-                           document.body.scrollTop || 0;
-          
-          // Используем установленную высоту из height body (это ТОЧНАЯ высота до кнопки)
-          const bodyHeight = parseFloat(getComputedStyle(document.body).height) || 
-                            parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--page-max-height')) ||
-                            (function() {
-                              const btn = document.getElementById('openModalBtn');
-                              if (btn) {
-                                const rect = btn.getBoundingClientRect();
-                                const st = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-                                return rect.bottom + st + 30;
-                              }
-                              return Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
-                            })();
-          const clientHeight = window.innerHeight || 
-                              document.documentElement.clientHeight || 
-                              document.body.clientHeight;
-          
-          const maxScroll = Math.max(0, bodyHeight - clientHeight);
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+          const maxScroll = window._maxScroll || getMaxScrollHeight() - window.innerHeight;
           const tolerance = 5;
-          
+
           // Если скролл ушел за пределы - принудительно возвращаем
           if (scrollTop < -tolerance) {
             // Скролл выше верха - возвращаем на 0
@@ -563,56 +427,7 @@
             window.scrollTo(0, maxScroll);
             setTimeout(() => { isCorrectingScroll = false; }, 10);
           }
-          
-          lastScrollTop = scrollTop;
         }, { passive: true });
-
-        // Для Chrome на iOS - дополнительные меры через более агрессивную блокировку
-        if (isIPhone && isChromeOniOS) {
-          // Дополнительный обработчик touchmove на window для максимального приоритета
-          window.addEventListener('touchmove', function(e) {
-            const modalOverlay = document.getElementById('modalOverlay');
-            if (modalOverlay && modalOverlay.classList.contains('active')) {
-              if (modalOverlay.contains(e.target) || e.target.closest('#modalOverlay')) {
-                return;
-              }
-            }
-
-            const touch = e.touches[0] || e.changedTouches[0];
-            if (!touch) return;
-
-            const scrollTop = window.pageYOffset || 
-                             document.documentElement.scrollTop || 
-                             document.body.scrollTop || 0;
-            // Используем установленную высоту из height body
-            const bodyHeight = parseFloat(getComputedStyle(document.body).height) || 
-                              parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--page-max-height')) ||
-                              (function() {
-                                const btn = document.getElementById('openModalBtn');
-                                if (btn) {
-                                  const rect = btn.getBoundingClientRect();
-                                  const st = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-                                  return rect.bottom + st + 30;
-                                }
-                                return Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
-                              })();
-            const clientHeight = window.innerHeight;
-            const maxScroll = Math.max(0, bodyHeight - clientHeight);
-            const tolerance = 10;
-
-            // Блокируем любые попытки скролла за пределы
-            if (scrollTop <= tolerance && touch.clientY > (lastTouchY || touch.clientY)) {
-              e.preventDefault();
-              e.stopImmediatePropagation();
-              return false;
-            } else if (scrollTop >= maxScroll - tolerance && touch.clientY < (lastTouchY || touch.clientY)) {
-              e.preventDefault();
-              e.stopImmediatePropagation();
-              return false;
-            }
-          }, { passive: false, capture: true });
-        }
-
       })();
     </script>
 
