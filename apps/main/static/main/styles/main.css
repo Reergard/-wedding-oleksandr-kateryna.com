@@ -737,6 +737,11 @@
   position: absolute;
   top: 3099px;
   width: 638px;
+  /* Убеждаемся, что кнопка всегда видна */
+  visibility: visible !important;
+  display: block !important;
+  opacity: 1 !important;
+  z-index: 9999 !important;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-27 {

@@ -312,105 +312,58 @@
     <!-- Универсальный скрипт для предотвращения белого экрана при overscroll (работает для всех браузеров) -->
     <script>
       (function () {
-        // Универсальная функция для установки максимальной высоты страницы
-        // Работает для всех браузеров, но особенно важна для Chrome на iOS
+        // ПРОСТАЯ и ТОЧНАЯ функция: высота страницы = нижняя граница кнопки + небольшой отступ
+        // Элементы остаются видимыми, но скролл ограничен до кнопки
         function setMaxHeight() {
           // Находим последний видимый элемент - кнопку "Заповнити Анкету"
           const lastVisibleElement = document.getElementById('openModalBtn');
-          let maxBottom = 0;
           
-          if (lastVisibleElement) {
-            const rect = lastVisibleElement.getBoundingClientRect();
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-            maxBottom = rect.bottom + scrollTop;
-            // Добавляем небольшой отступ (20px) для безопасности
-            maxBottom += 20;
-            console.log('Last visible element (button) bottom:', maxBottom, 'rect:', rect);
+          if (!lastVisibleElement) {
+            console.error('Button "Заповнити Анкету" not found!');
+            return;
           }
           
-          // Также проверяем все элементы с абсолютным позиционированием
-          // Но учитываем только те, которые находятся в видимой области или выше кнопки
-          const container = document.querySelector('.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103');
-          if (container && lastVisibleElement) {
-            const buttonRect = lastVisibleElement.getBoundingClientRect();
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-            const buttonBottom = buttonRect.bottom + scrollTop;
-            
-            const allElements = container.querySelectorAll('*');
-            allElements.forEach(function(el) {
-              // Пропускаем саму кнопку
-              if (el === lastVisibleElement || el.contains(lastVisibleElement)) {
-                return;
-              }
-              
-              const style = window.getComputedStyle(el);
-              const rect = el.getBoundingClientRect();
-              const bottom = rect.bottom + scrollTop;
-              
-              // Учитываем только элементы, которые находятся ниже кнопки И видимы
-              if (bottom > buttonBottom && 
-                  style.display !== 'none' && 
-                  style.visibility !== 'hidden' && 
-                  rect.height > 0 &&
-                  rect.width > 0) {
-                // Проверяем, не выходит ли элемент за пределы экрана слишком далеко
-                // (это могут быть декоративные элементы, которые не должны влиять на высоту)
-                if (bottom <= buttonBottom + 500) { // Максимум 500px ниже кнопки
-                  if (bottom > maxBottom) {
-                    maxBottom = bottom;
-                  }
-                }
-              }
-            });
+          // Получаем ТОЧНУЮ нижнюю границу кнопки
+          const rect = lastVisibleElement.getBoundingClientRect();
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+          const buttonBottom = rect.bottom + scrollTop;
+          
+          // Высота страницы = нижняя граница кнопки + отступ (100px для безопасности, чтобы кнопка точно была видна)
+          // Элементы после кнопки остаются видимыми, но скролл будет ограничен
+          const scrollHeight = buttonBottom + 100;
+          
+          console.log('Button bottom:', buttonBottom, 'Button rect:', rect, 'Button top:', rect.top, 'Final scroll height:', scrollHeight);
+          
+          // Убеждаемся, что кнопка видна - проверяем её позицию и принудительно делаем видимой
+          if (rect.height === 0 || rect.width === 0) {
+            console.warn('Button has zero dimensions!', rect);
           }
           
-          // Получаем реальную высоту контента через стандартные методы
-          const standardScrollHeight = Math.max(
-            document.documentElement.scrollHeight,
-            document.body.scrollHeight,
-            document.documentElement.offsetHeight,
-            document.body.offsetHeight
-          );
+          // Принудительно делаем кнопку видимой и убеждаемся, что она не скрыта
+          lastVisibleElement.style.setProperty('visibility', 'visible', 'important');
+          lastVisibleElement.style.setProperty('display', 'block', 'important');
+          lastVisibleElement.style.setProperty('opacity', '1', 'important');
+          lastVisibleElement.style.setProperty('z-index', '9999', 'important');
+          lastVisibleElement.style.setProperty('position', 'absolute', 'important'); // Сохраняем absolute позиционирование
           
-          // Определяем финальную высоту:
-          // Если нашли кнопку и вычислили maxBottom, используем её + небольшой отступ
-          // Иначе используем стандартную высоту
-          // НО всегда убеждаемся, что высота достаточна для отображения кнопки
-          let scrollHeight;
-          if (maxBottom > 0 && lastVisibleElement) {
-            // Используем maxBottom, но убеждаемся, что она не меньше стандартной высоты
-            // Это важно для мобильной версии, где кнопка может быть ниже
-            scrollHeight = Math.max(maxBottom, standardScrollHeight);
-          } else {
-            scrollHeight = standardScrollHeight;
-          }
-          
-          // Дополнительная проверка: если кнопка существует, убеждаемся, что высота достаточна
-          if (lastVisibleElement) {
-            const buttonRect = lastVisibleElement.getBoundingClientRect();
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-            const buttonBottom = buttonRect.bottom + scrollTop;
-            // Высота должна быть как минимум на 50px больше, чем нижняя граница кнопки
-            const minRequiredHeight = buttonBottom + 50;
-            if (scrollHeight < minRequiredHeight) {
-              scrollHeight = minRequiredHeight;
-            }
-          }
-          
-          console.log('Calculated max height:', scrollHeight, 'maxBottom:', maxBottom, 'standard:', standardScrollHeight);
+          // Также проверяем и делаем видимыми дочерние элементы кнопки
+          const buttonChildren = lastVisibleElement.querySelectorAll('*');
+          buttonChildren.forEach(function(child) {
+            child.style.setProperty('visibility', 'visible', 'important');
+            child.style.setProperty('display', '', 'important');
+            child.style.setProperty('opacity', '1', 'important');
+          });
           
           if (scrollHeight > 0) {
-            // Устанавливаем CSS переменную для использования в CSS
+            // Устанавливаем CSS переменную
             document.documentElement.style.setProperty('--page-max-height', scrollHeight + 'px');
             
-            // Также устанавливаем напрямую через inline стили для максимальной надежности
-            // НО НЕ ограничиваем высоту контейнера, чтобы не обрезать контент
+            // Устанавливаем max-height для ограничения скролла
+            // Используем max-height (не height!), чтобы контент не обрезался, но скролл был ограничен
             document.body.style.setProperty('max-height', scrollHeight + 'px', 'important');
             document.documentElement.style.setProperty('max-height', scrollHeight + 'px', 'important');
             
-            // НЕ ограничиваем высоту контейнера через max-height, чтобы не обрезать контент
-            // Ограничение применяется только к html и body
-            // Контейнер может быть выше, но скролл будет ограничен на уровне body
+            console.log('Scroll height set to:', scrollHeight, 'Button should be visible at bottom:', buttonBottom, 'Button top:', rect.top + scrollTop);
           }
         }
         
@@ -425,12 +378,20 @@
         }
         
         // Устанавливаем при загрузке и при изменении размера
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', setMaxHeight);
-        } else {
+        // Вызываем несколько раз с задержками, чтобы убедиться, что кнопка найдена и видна
+        function initMaxHeight() {
           setMaxHeight();
+          setTimeout(setMaxHeight, 100);
+          setTimeout(setMaxHeight, 500);
+          setTimeout(setMaxHeight, 1000);
         }
-        window.addEventListener('load', setMaxHeight);
+        
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initMaxHeight);
+        } else {
+          initMaxHeight();
+        }
+        window.addEventListener('load', initMaxHeight);
         window.addEventListener('resize', function() {
           setTimeout(setMaxHeight, 50);
         });
@@ -481,13 +442,19 @@
                            document.documentElement.scrollTop || 
                            document.body.scrollTop || 0;
           
-          // Получаем высоту контента и видимой области
-          const scrollHeight = Math.max(
-            document.documentElement.scrollHeight,
-            document.body.scrollHeight,
-            document.documentElement.offsetHeight,
-            document.body.offsetHeight
-          );
+          // Используем установленную высоту из height body (это ТОЧНАЯ высота до кнопки)
+          const bodyHeight = parseFloat(getComputedStyle(document.body).height) || 
+                            parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--page-max-height')) ||
+                            (function() {
+                              const btn = document.getElementById('openModalBtn');
+                              if (btn) {
+                                const rect = btn.getBoundingClientRect();
+                                const st = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+                                return rect.bottom + st + 30;
+                              }
+                              return Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+                            })();
+          
           const clientHeight = window.innerHeight || 
                               document.documentElement.clientHeight || 
                               document.body.clientHeight;
@@ -496,7 +463,7 @@
           // Используем более строгую проверку с небольшим допуском
           const tolerance = 2; // пикселей допуска
           const atTop = scrollTop <= tolerance;
-          const atBottom = (scrollTop + clientHeight) >= (scrollHeight - tolerance);
+          const atBottom = (scrollTop + clientHeight) >= (bodyHeight - tolerance);
 
           // Блокируем overscroll: если наверху и пытаемся скроллить вверх,
           // или внизу и пытаемся скроллить вниз
@@ -523,14 +490,22 @@
           const scrollTop = window.pageYOffset || 
                            document.documentElement.scrollTop || 
                            document.body.scrollTop || 0;
-          const scrollHeight = Math.max(
-            document.documentElement.scrollHeight,
-            document.body.scrollHeight
-          );
+          // Используем установленную высоту из height body
+          const bodyHeight = parseFloat(getComputedStyle(document.body).height) || 
+                            parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--page-max-height')) ||
+                            (function() {
+                              const btn = document.getElementById('openModalBtn');
+                              if (btn) {
+                                const rect = btn.getBoundingClientRect();
+                                const st = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+                                return rect.bottom + st + 30;
+                              }
+                              return Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+                            })();
           const clientHeight = window.innerHeight;
           const tolerance = 2;
           const atTop = scrollTop <= tolerance;
-          const atBottom = (scrollTop + clientHeight) >= (scrollHeight - tolerance);
+          const atBottom = (scrollTop + clientHeight) >= (bodyHeight - tolerance);
 
           if ((atTop && e.deltaY < 0) || (atBottom && e.deltaY > 0)) {
             e.preventDefault();
@@ -557,17 +532,23 @@
                            document.documentElement.scrollTop || 
                            document.body.scrollTop || 0;
           
-          const scrollHeight = Math.max(
-            document.documentElement.scrollHeight,
-            document.body.scrollHeight,
-            document.documentElement.offsetHeight,
-            document.body.offsetHeight
-          );
+          // Используем установленную высоту из height body (это ТОЧНАЯ высота до кнопки)
+          const bodyHeight = parseFloat(getComputedStyle(document.body).height) || 
+                            parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--page-max-height')) ||
+                            (function() {
+                              const btn = document.getElementById('openModalBtn');
+                              if (btn) {
+                                const rect = btn.getBoundingClientRect();
+                                const st = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+                                return rect.bottom + st + 30;
+                              }
+                              return Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+                            })();
           const clientHeight = window.innerHeight || 
                               document.documentElement.clientHeight || 
                               document.body.clientHeight;
           
-          const maxScroll = Math.max(0, scrollHeight - clientHeight);
+          const maxScroll = Math.max(0, bodyHeight - clientHeight);
           const tolerance = 5;
           
           // Если скролл ушел за пределы - принудительно возвращаем
@@ -603,12 +584,20 @@
             const scrollTop = window.pageYOffset || 
                              document.documentElement.scrollTop || 
                              document.body.scrollTop || 0;
-            const scrollHeight = Math.max(
-              document.documentElement.scrollHeight,
-              document.body.scrollHeight
-            );
+            // Используем установленную высоту из height body
+            const bodyHeight = parseFloat(getComputedStyle(document.body).height) || 
+                              parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--page-max-height')) ||
+                              (function() {
+                                const btn = document.getElementById('openModalBtn');
+                                if (btn) {
+                                  const rect = btn.getBoundingClientRect();
+                                  const st = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+                                  return rect.bottom + st + 30;
+                                }
+                                return Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+                              })();
             const clientHeight = window.innerHeight;
-            const maxScroll = Math.max(0, scrollHeight - clientHeight);
+            const maxScroll = Math.max(0, bodyHeight - clientHeight);
             const tolerance = 10;
 
             // Блокируем любые попытки скролла за пределы
