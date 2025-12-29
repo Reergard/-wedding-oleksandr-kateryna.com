@@ -2,26 +2,20 @@
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 {
   background-color: #ffffff;
-  height: 3322px;
-  min-height: 3322px;
+  /* НЕ делаем внутренний скролл контейнеру - это создаёт проблемы на iPhone */
+  height: auto;          /* было 3322px */
+  min-height: 3322px;    /* оставляем для абсолютных блоков */
   min-width: 100%;
   max-width: 100%;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: visible;   /* было auto - убираем внутренний скролл */
   position: relative;
   width: 100%;
-  padding-bottom: 50px;
+  padding-bottom: 0;     /* было 50px - убираем, чтобы не было белого экрана на iPhone */
   box-sizing: border-box;
 }
 
-/* Увеличение высоты для мобильных устройств, чтобы контент не обрезался */
-@media (max-width: 768px) {
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 {
-    min-height: calc(3322px + 200px) !important;
-    height: calc(3322px + 200px) !important;
-    padding-bottom: 200px !important;
-  }
-}
+/* УДАЛЕН мобильный блок с +200px - он создавал пустоту на iPhone */
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .golden-fabric-cloth {
   aspect-ratio: 1.79;
@@ -41,6 +35,30 @@
   top: 1632px;
   width: 100%;
   z-index: 2;
+  position: absolute; /* важно для iOS */
+  pointer-events: none;
+  /* Отключаем blur и background на самом элементе, градиент только в ::before */
+  background: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+}
+
+/* Градиент через ::before для стабильности на iPhone */
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle-4128::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 243.18, 208.90, 0.80) 0%, #ffffff 100%);
+  /* iOS-friendly */
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Отключаем blur на iPhone для стабильности */
+@supports (-webkit-touch-callout: none) {
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle-4128::before {
+    filter: none !important;
+  }
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-1-1 {
@@ -493,6 +511,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  /* ВАЖНО для iOS - создаем контекст позиционирования и изоляцию слоёв */
+  isolation: isolate;
+  transform: translateZ(0);
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-18 {
@@ -504,16 +525,15 @@
   line-height: normal;
   position: relative;
   white-space: nowrap;
+  z-index: 2;         /* текст над рамкой */
   text-align: center;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-3 {
-  height: 100%;
-  left: 0;
   position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: 3;
+  inset: 0;           /* вместо left/top/width/height */
+  z-index: 1;         /* рамка под текстом */
+  pointer-events: none;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-3 svg {
@@ -899,24 +919,7 @@
 }
 
 /* Исправление проблемы со скроллом на iPhone - увеличенная высота и padding */
-@supports (-webkit-touch-callout: none) {
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 {
-    min-height: calc(3322px + 400px) !important;
-    height: calc(3322px + 400px) !important;
-    padding-bottom: 400px !important;
-  }
-}
-
-/* Дополнительное исправление для Safari iOS */
-@media screen and (-webkit-min-device-pixel-ratio: 0) {
-  @supports (-webkit-touch-callout: none) {
-    .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 {
-      min-height: calc(3322px + 450px) !important;
-      height: calc(3322px + 450px) !important;
-      padding-bottom: 450px !important;
-    }
-  }
-}
+/* УДАЛЕНЫ блоки с +400px и +450px - они создавали белый экран на iPhone */
 
 /* Мобильная версия - увеличение шрифта в 2 раза */
 /* Используем более широкий порог, так как viewport установлен на 1390px */

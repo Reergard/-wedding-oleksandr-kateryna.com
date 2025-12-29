@@ -822,26 +822,27 @@ html:not(.mobile-device) .modal-container:not(.mobile-device):not(.force-mobile)
     height: 100% !important;
   }
 
-  /* Угловые декоративные элементы - позиционирование */
-  .modal-content .Vector[data-layer="Vector"]:nth-of-type(1) {
+  /* Угловые декоративные элементы - позиционирование (СТАБИЛЬНО) */
+  .modal-content .corner-tr {
     right: 3% !important;
     left: auto !important;
     top: 3% !important;
+    bottom: auto !important;
   }
 
-  .modal-content .Vector[data-layer="Vector"]:nth-of-type(2) {
+  .modal-content .corner-br {
     right: 3% !important;
     left: auto !important;
     bottom: 3% !important;
     top: auto !important;
   }
 
-  .modal-content .Vector[data-layer="Vector"]:nth-of-type(3) {
+  .modal-content .corner-tl {
     left: 3% !important;
     top: 3% !important;
   }
 
-  .modal-content .Vector[data-layer="Vector"]:nth-of-type(4) {
+  .modal-content .corner-bl {
     left: 3% !important;
     bottom: 3% !important;
     top: auto !important;
