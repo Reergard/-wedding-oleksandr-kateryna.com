@@ -315,21 +315,102 @@
         // Универсальная функция для установки максимальной высоты страницы
         // Работает для всех браузеров, но особенно важна для Chrome на iOS
         function setMaxHeight() {
-          // Получаем реальную высоту контента
-          const scrollHeight = Math.max(
+          // Находим последний видимый элемент - кнопку "Заповнити Анкету"
+          const lastVisibleElement = document.getElementById('openModalBtn');
+          let maxBottom = 0;
+          
+          if (lastVisibleElement) {
+            const rect = lastVisibleElement.getBoundingClientRect();
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+            maxBottom = rect.bottom + scrollTop;
+            // Добавляем небольшой отступ (20px) для безопасности
+            maxBottom += 20;
+            console.log('Last visible element (button) bottom:', maxBottom, 'rect:', rect);
+          }
+          
+          // Также проверяем все элементы с абсолютным позиционированием
+          // Но учитываем только те, которые находятся в видимой области или выше кнопки
+          const container = document.querySelector('.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103');
+          if (container && lastVisibleElement) {
+            const buttonRect = lastVisibleElement.getBoundingClientRect();
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+            const buttonBottom = buttonRect.bottom + scrollTop;
+            
+            const allElements = container.querySelectorAll('*');
+            allElements.forEach(function(el) {
+              // Пропускаем саму кнопку
+              if (el === lastVisibleElement || el.contains(lastVisibleElement)) {
+                return;
+              }
+              
+              const style = window.getComputedStyle(el);
+              const rect = el.getBoundingClientRect();
+              const bottom = rect.bottom + scrollTop;
+              
+              // Учитываем только элементы, которые находятся ниже кнопки И видимы
+              if (bottom > buttonBottom && 
+                  style.display !== 'none' && 
+                  style.visibility !== 'hidden' && 
+                  rect.height > 0 &&
+                  rect.width > 0) {
+                // Проверяем, не выходит ли элемент за пределы экрана слишком далеко
+                // (это могут быть декоративные элементы, которые не должны влиять на высоту)
+                if (bottom <= buttonBottom + 500) { // Максимум 500px ниже кнопки
+                  if (bottom > maxBottom) {
+                    maxBottom = bottom;
+                  }
+                }
+              }
+            });
+          }
+          
+          // Получаем реальную высоту контента через стандартные методы
+          const standardScrollHeight = Math.max(
             document.documentElement.scrollHeight,
             document.body.scrollHeight,
             document.documentElement.offsetHeight,
             document.body.offsetHeight
           );
           
+          // Определяем финальную высоту:
+          // Если нашли кнопку и вычислили maxBottom, используем её + небольшой отступ
+          // Иначе используем стандартную высоту
+          // НО всегда убеждаемся, что высота достаточна для отображения кнопки
+          let scrollHeight;
+          if (maxBottom > 0 && lastVisibleElement) {
+            // Используем maxBottom, но убеждаемся, что она не меньше стандартной высоты
+            // Это важно для мобильной версии, где кнопка может быть ниже
+            scrollHeight = Math.max(maxBottom, standardScrollHeight);
+          } else {
+            scrollHeight = standardScrollHeight;
+          }
+          
+          // Дополнительная проверка: если кнопка существует, убеждаемся, что высота достаточна
+          if (lastVisibleElement) {
+            const buttonRect = lastVisibleElement.getBoundingClientRect();
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+            const buttonBottom = buttonRect.bottom + scrollTop;
+            // Высота должна быть как минимум на 50px больше, чем нижняя граница кнопки
+            const minRequiredHeight = buttonBottom + 50;
+            if (scrollHeight < minRequiredHeight) {
+              scrollHeight = minRequiredHeight;
+            }
+          }
+          
+          console.log('Calculated max height:', scrollHeight, 'maxBottom:', maxBottom, 'standard:', standardScrollHeight);
+          
           if (scrollHeight > 0) {
             // Устанавливаем CSS переменную для использования в CSS
             document.documentElement.style.setProperty('--page-max-height', scrollHeight + 'px');
             
             // Также устанавливаем напрямую через inline стили для максимальной надежности
+            // НО НЕ ограничиваем высоту контейнера, чтобы не обрезать контент
             document.body.style.setProperty('max-height', scrollHeight + 'px', 'important');
             document.documentElement.style.setProperty('max-height', scrollHeight + 'px', 'important');
+            
+            // НЕ ограничиваем высоту контейнера через max-height, чтобы не обрезать контент
+            // Ограничение применяется только к html и body
+            // Контейнер может быть выше, но скролл будет ограничен на уровне body
           }
         }
         
