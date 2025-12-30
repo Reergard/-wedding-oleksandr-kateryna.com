@@ -13,6 +13,7 @@ urlpatterns = [
     path('api/main/', include('apps.main.api.urls')),
     path('api/gallery/', include('apps.gallery.api.urls')),
     path('api/invitations/', include('apps.invitations.api.urls')),
+    path('', include('apps.invitations.urls')),  # Маршруты для приглашений
 ]
 
 if settings.DEBUG:

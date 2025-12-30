@@ -19,6 +19,9 @@
 
     <meta name="twitter:card" content="photo" />
 
+    {% csrf_token %}
+    <meta name="csrf-token" content="{{ csrf_token }}">
+
     <link rel="stylesheet" type="text/css" href="{% static 'main/styles/globals.css' %}" />
 
     <link rel="stylesheet" type="text/css" href="{% static 'main/styles/main.css' %}" />

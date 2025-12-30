@@ -1,6 +1,6 @@
 {% load static %}
 <!-- Модальное окно -->
-<div class="modal-overlay" id="modalOverlay">
+<div class="modal-overlay" id="modalOverlay"{% if token %} data-token="{{ token }}"{% endif %}>
   <div class="modal-container">
     <div class="modal-close" id="modalClose">&times;</div>
     <div class="modal-content" data-layer="МОДАЛЬНЕ ВІКНО">
@@ -165,7 +165,7 @@
       </div>
 
       <!-- Остальные декоративные элементы и текст -->
-      <div data-layer="Дорога Хрещена!">Дорога Хрещена!</div>
+      <div data-layer="Дорога Хрещена!">{% if guest %}{{ guest.full_name }}{% else %}Дорога Хрещена!{% endif %}</div>
       <div data-layer="Чи зможете ви бути присутніми на весіллі?">Чи зможете ви бути присутніми на весіллі?<br/></div>
       <div data-layer="Так, з радістю буду! На жаль, не зможу бути присутня." class="option-list">
         <label class="option-item">
@@ -1812,6 +1812,220 @@
     setTimeout(function() {
       removeBordersFromImages();
     }, 500);
+
+    // ========== ФУНКЦИОНАЛ ОТПРАВКИ ДАННЫХ ==========
+    
+    // Получение CSRF токена
+    function getCSRFToken() {
+      const meta = document.querySelector('meta[name="csrf-token"]');
+      return meta ? meta.getAttribute('content') : '';
+    }
+
+    // Сбор данных из модального окна
+    function collectModalPayload() {
+      // 1) attendance (radio) - первый вопрос
+      const attendChecked = document.querySelector('input[name="attendance"]:checked');
+      let attendance = "";
+      if (attendChecked) {
+        // Берем текст из span рядом с input
+        const span = attendChecked.closest('.option-item').querySelector('span');
+        attendance = span ? span.textContent.trim() : "";
+      }
+
+      // 2) note (textarea)
+      const noteEl = document.querySelector('textarea[name="comments"]');
+      const note = noteEl ? noteEl.value.trim() : "";
+
+      // 3) answers по вопросам
+      const answers = {};
+
+      // Еда (MULTI - checkbox)
+      const foodChecked = Array.from(document.querySelectorAll('input[name="food"]:checked')).map(function(input) {
+        const span = input.closest('.option-item').querySelector('span');
+        return span ? span.textContent.trim() : "";
+      }).filter(function(text) { return text; });
+      if (foodChecked.length) {
+        answers["Відмітьте, будь ласка, ваші вподобання:"] = foodChecked;
+      }
+
+      // Аллергии (SINGLE - radio)
+      const allergiesChecked = document.querySelector('input[name="allergies"]:checked');
+      if (allergiesChecked) {
+        const span = allergiesChecked.closest('.option-item').querySelector('span');
+        if (span) {
+          answers["Чи є у вас є харчові алергії або продукти, які вам не можна:"] = span.textContent.trim();
+        }
+      }
+
+      // Напитки (MULTI - в HTML это radio, но по заданию MULTI, поэтому собираем все выбранные)
+      // В HTML это radio, но для MULTI нужно собирать все выбранные
+      // Поскольку radio позволяет выбрать только один, обрабатываем как SINGLE
+      // В БД это должно быть MULTI, но в HTML это radio - значит пользователь выберет один вариант
+      const drinksChecked = document.querySelector('input[name="drinks"]:checked');
+      if (drinksChecked) {
+        const span = drinksChecked.closest('.option-item').querySelector('span');
+        if (span) {
+          // Отправляем как массив с одним элементом для MULTI вопроса
+          answers["Відмітьте, будь ласка, ваші уподобання щодо напоїв:"] = [span.textContent.trim()];
+        }
+      }
+
+      // Трансфер (SINGLE - radio)
+      const transferChecked = document.querySelector('input[name="transfer"]:checked');
+      if (transferChecked) {
+        const span = transferChecked.closest('.option-item').querySelector('span');
+        if (span) {
+          answers["Чи потрібен вам трансфер до місця проведення або назад:"] = span.textContent.trim();
+        }
+      }
+
+      return { attendance, answers, note };
+    }
+
+    // Функция для показа кастомного уведомления
+    function showCustomNotification(message, isSuccess = true) {
+      // Создаем элемент уведомления
+      const notification = document.createElement('div');
+      notification.id = 'custom-notification';
+      notification.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(255, 255, 255, 0.95);
+        border: 2px solid #D4AF37;
+        border-radius: 15px;
+        padding: 30px 50px;
+        z-index: 100000;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        min-width: 300px;
+        max-width: 90%;
+        font-family: Gabriola, Helvetica, serif;
+        color: #D4AF37;
+        font-size: 28px;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+        animation: fadeIn 0.3s ease-in;
+      `;
+      
+      notification.textContent = message;
+      
+      // Добавляем стили для анимации
+      if (!document.getElementById('notification-styles')) {
+        const style = document.createElement('style');
+        style.id = 'notification-styles';
+        style.textContent = `
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -60%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+          }
+          @keyframes fadeOut {
+            from { opacity: 1; transform: translate(-50%, -50%); }
+            to { opacity: 0; transform: translate(-50%, -60%); }
+          }
+        `;
+        document.head.appendChild(style);
+      }
+      
+      // Удаляем предыдущее уведомление, если есть
+      const existing = document.getElementById('custom-notification');
+      if (existing) {
+        existing.remove();
+      }
+      
+      // Добавляем на страницу
+      document.body.appendChild(notification);
+      
+      // Автоматически скрываем через 3 секунды
+      setTimeout(() => {
+        notification.style.animation = 'fadeOut 0.3s ease-out';
+        setTimeout(() => {
+          if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+          }
+        }, 300);
+      }, 3000);
+      
+      // Закрытие по клику
+      notification.addEventListener('click', () => {
+        notification.style.animation = 'fadeOut 0.3s ease-out';
+        setTimeout(() => {
+          if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+          }
+        }, 300);
+      });
+    }
+
+    // Отправка данных на сервер
+    async function submitRSVP() {
+      // Получаем token из URL или из глобальной переменной
+      let token = "";
+      const pathMatch = window.location.pathname.match(/\/Invitation\/([^\/]+)/);
+      if (pathMatch) {
+        token = pathMatch[1];
+      } else {
+        // Пытаемся получить из data-атрибута модалки
+        const modalEl = document.getElementById('modalOverlay');
+        if (modalEl && modalEl.dataset.token) {
+          token = modalEl.dataset.token;
+        }
+      }
+
+      if (!token) {
+        console.error("Token not found");
+        showCustomNotification("Помилка: токен не знайдено. Перевірте посилання.", false);
+        return;
+      }
+
+      const payload = collectModalPayload();
+
+      try {
+        const res = await fetch(`/api/invitation/${token}/submit/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": getCSRFToken(),
+          },
+          body: JSON.stringify(payload),
+          credentials: "same-origin",
+        });
+
+        if (!res.ok) {
+          const errorText = await res.text();
+          console.error("Server error:", errorText);
+          showCustomNotification("Помилка збереження. Спробуйте ще раз.", false);
+          return;
+        }
+
+        const data = await res.json();
+        if (data.ok) {
+          // Закрываем модалку
+          if (modalOverlay) {
+            modalOverlay.classList.remove('active');
+            unlockBodyScroll();
+          }
+          // Показываем кастомное уведомление
+          showCustomNotification("Дякуємо! Відповідь збережено.", true);
+        } else {
+          showCustomNotification("Помилка збереження. Спробуйте ще раз.", false);
+        }
+      } catch (error) {
+        console.error("Fetch error:", error);
+        showCustomNotification("Помилка з'єднання. Спробуйте ще раз.", false);
+      }
+    }
+
+    // Обработчик клика на кнопку "підтвердити"
+    document.addEventListener("click", function(e) {
+      const confirmBtn = e.target.closest('.Frame16');
+      const confirmText = e.target.closest('[data-layer="підтвердити"]');
+      if (confirmBtn || confirmText) {
+        e.preventDefault();
+        submitRSVP();
+      }
+    });
   });
 </script>
 
