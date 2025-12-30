@@ -24,6 +24,7 @@ def invitation_page(request, token: str):
             "invitation": invitation,
             "guest": invitation.guest,
             "token": invitation.token,
+            "absolute_url": request.build_absolute_uri(),
         }
     )
 
