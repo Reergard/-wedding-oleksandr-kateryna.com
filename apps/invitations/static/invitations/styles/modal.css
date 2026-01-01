@@ -1,3 +1,26 @@
+/* =========================
+   MODAL-ONLY webfont Gabriola - ПОДКЛЮЧАЕМ ПЕРВЫМ!
+   ========================= */
+@font-face {
+  font-family: "Gabriola";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  /* Пробуем все возможные пути */
+  src: url("/static/main/fonts/gabriola.ttf") format("truetype"),
+       url("../../main/fonts/gabriola.ttf") format("truetype"),
+       url("../../../main/fonts/gabriola.ttf") format("truetype"),
+       url("../main/fonts/gabriola.ttf") format("truetype");
+}
+
+/* =========================
+   БАЗОВОЕ ПРАВИЛО: Gabriola для модалки - применяется сразу!
+   ========================= */
+.modal-overlay.active .modal-content,
+.modal-overlay.active .modal-content * {
+  font-family: "Gabriola", serif !important;
+}
+
 /* Модальное окно */
 .modal-overlay {
   display: none;
@@ -1140,26 +1163,22 @@ html:not(.mobile-device) .modal-container:not(.mobile-device):not(.force-mobile)
 }
 
 /* =========================
-   MODAL-ONLY webfont (не трогаем globals.css)
+   Шрифт Gabriola для модалки - МАКСИМАЛЬНАЯ СПЕЦИФИЧНОСТЬ!
    ========================= */
-@font-face {
-  font-family: "Modal-Liberty";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  /* Используем несколько вариантов пути для совместимости */
-  /* После collectstatic: staticfiles/invitations/styles/ -> staticfiles/main/fonts/ = ../../main/fonts/ */
-  /* В dev режиме: apps/invitations/static/invitations/styles/ -> apps/main/static/main/fonts/ = ../../../main/fonts/ */
-  src: url("../../main/fonts/ofont.ru_Liberty%20TL.ttf") format("truetype"),
-       url("../../../main/fonts/ofont.ru_Liberty%20TL.ttf") format("truetype");
-}
-
-/* =========================
-   Шрифт для модалки (все устройства - десктоп и мобилка)
-   ========================= */
+/* Применяем ко ВСЕМ элементам модалки с максимальной силой */
 .modal-overlay.active .modal-content,
-.modal-overlay.active .modal-content * {
-  font-family: "Modal-Liberty", serif !important;
+.modal-overlay.active .modal-content *,
+.modal-overlay.active .modal-content [data-layer],
+.modal-overlay.active .modal-content textarea,
+.modal-overlay.active .modal-content input,
+.modal-overlay.active .modal-content button,
+.modal-overlay.active .modal-content .option-item,
+.modal-overlay.active .modal-content .option-item span,
+.modal-overlay.active .modal-content .comments-textarea,
+.modal-overlay.active .modal-content .Frame16 [data-layer="підтвердити"],
+.modal-overlay.active .modal-container .modal-content,
+.modal-overlay.active .modal-container .modal-content * {
+  font-family: "Gabriola", serif !important;
 }
 
 /* =========================
@@ -1196,5 +1215,37 @@ html:not(.mobile-device) .modal-container:not(.mobile-device):not(.force-mobile)
     height: 1183px !important; /* твоя "дизайн-высота" */
     overflow: hidden !important;
   }
+  
+  /* Шрифт Gabriola для мобилки - перебивает ВСЁ */
+  .modal-overlay.active .modal-content,
+  .modal-overlay.active .modal-content *,
+  .modal-overlay.active .modal-content [data-layer],
+  .modal-overlay.active .modal-content textarea,
+  .modal-overlay.active .modal-content input,
+  .modal-overlay.active .modal-content button,
+  .modal-overlay.active .modal-content .option-item,
+  .modal-overlay.active .modal-content .option-item span,
+  .modal-overlay.active .modal-content .comments-textarea,
+  .modal-overlay.active .modal-content .Frame16 [data-layer="підтвердити"] {
+    font-family: "Gabriola", serif !important;
+  }
+}
+
+/* =========================
+   ФИНАЛЬНОЕ ПРАВИЛО: Gabriola для модалки - ПЕРЕБИВАЕТ ВСЁ!
+   ========================= */
+.modal-overlay.active .modal-content,
+.modal-overlay.active .modal-content *,
+.modal-overlay.active .modal-content [data-layer],
+.modal-overlay.active .modal-content textarea,
+.modal-overlay.active .modal-content input,
+.modal-overlay.active .modal-content button,
+.modal-overlay.active .modal-content .option-item,
+.modal-overlay.active .modal-content .option-item span,
+.modal-overlay.active .modal-content .comments-textarea,
+.modal-overlay.active .modal-content .Frame16,
+.modal-overlay.active .modal-content .Frame16 *,
+.modal-overlay.active .modal-content .Frame16 [data-layer="підтвердити"] {
+  font-family: "Gabriola", serif !important;
 }
 
