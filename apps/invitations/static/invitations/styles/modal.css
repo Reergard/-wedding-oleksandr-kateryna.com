@@ -1147,6 +1147,7 @@ html:not(.mobile-device) .modal-container:not(.mobile-device):not(.force-mobile)
   font-style: normal;
   font-weight: 400;
   font-display: swap;
+  /* Используем абсолютный путь от корня static (после collectstatic) */
   src: url("/static/main/fonts/ofont.ru_Liberty%20TL.ttf") format("truetype");
 }
 
@@ -1154,44 +1155,40 @@ html:not(.mobile-device) .modal-container:not(.mobile-device):not(.force-mobile)
    MOBILE ONLY: stable modal scroll (iOS/Android, Safari/Chrome)
    ПЕРЕБИВАЕТ ВСЕ ПРЕДЫДУЩИЕ ПРАВИЛА
    ========================= */
-@media (max-width: 768px), (max-device-width: 768px) {
+@media (max-width: 768px) {
   /* шрифт: только modal-only */
   .modal-overlay.active .modal-content,
   .modal-overlay.active .modal-content * {
     font-family: "Modal-Liberty", serif !important;
   }
 
-  /* один скролл: только контейнер */
+  /* overlay всегда полностью покрывает экран */
   .modal-overlay.active {
-    overflow: hidden !important;
     position: fixed !important;
     inset: 0 !important;
     width: 100vw !important;
-    height: 100dvh !important;
+    height: 100dvh !important; /* iOS dynamic viewport */
+    overflow: hidden !important; /* скролл НЕ на overlay */
     padding: calc(env(safe-area-inset-top) + 10px) 10px
              calc(env(safe-area-inset-bottom) + 10px) 10px !important;
     box-sizing: border-box !important;
   }
 
+  /* единственный скролл-контейнер — modal-container */
   .modal-overlay.active .modal-container {
     width: 90vw !important;
     max-width: 500px !important;
-    height: auto !important;
-    max-height: calc(100dvh - (10vh + env(safe-area-inset-top) + env(safe-area-inset-bottom))) !important;
+    max-height: 100% !important;
     overflow-y: auto !important;
-    overflow-x: hidden !important;
-    -webkit-overflow-scrolling: touch !important;
-    touch-action: pan-y !important;
-    overscroll-behavior: contain !important;
-    border-radius: 49px !important;
-    margin: 0 auto !important;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+    overscroll-behavior: contain;
   }
 
-  /* контент остаётся "макетом" 1183px (как в фигме) */
-  .modal-overlay.active .modal-content {
-    height: 1183px !important;
+  /* НЕ даём .modal-content становиться auto по высоте (иначе схлопнется из-за absolute-детей) */
+  .modal-overlay.active .modal-container .modal-content {
+    height: 1183px !important; /* твоя "дизайн-высота" */
     overflow: hidden !important;
-    border-radius: 49px !important;
   }
 }
 
