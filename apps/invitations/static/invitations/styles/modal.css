@@ -1139,3 +1139,71 @@ html:not(.mobile-device) .modal-container:not(.mobile-device):not(.force-mobile)
   min-height: 90px !important;
 }
 
+/* =========================
+   MOBILE ONLY: fix fonts + iOS Chrome scroll/white bar
+   ========================= */
+
+/* 1) Шрифт: Gabriola нет на iOS/Android -> на мобилке используем ваш webfont */
+@media (max-width: 768px), (max-device-width: 768px) {
+  /* только модалка */
+  .modal-content [data-layer],
+  .modal-content .comments-textarea,
+  .modal-content .option-item,
+  .modal-content label {
+    font-family: "Isadora Cyr-Regular", Helvetica, serif !important;
+    font-weight: 400 !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* 2) iOS (Safari + Chrome): стабильный скролл модалки */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px), (max-device-width: 768px) {
+    /* overlay без flex (flex+overflow на iOS часто ломает scroll) */
+    .modal-overlay.active {
+      display: block !important;
+      /* 100dvh корректнее, чем 100%/100vh на iOS с адресной строкой */
+      height: 100dvh !important;
+      max-height: 100dvh !important;
+      overflow: hidden !important; /* скролл переносим внутрь modal-content */
+      padding: calc(5vh + env(safe-area-inset-top))
+               calc(5vw + env(safe-area-inset-right))
+               calc(5vh + env(safe-area-inset-bottom))
+               calc(5vw + env(safe-area-inset-left)) !important;
+      box-sizing: border-box !important;
+    }
+
+    /* контейнер по высоте viewport */
+    .modal-container {
+      height: auto !important;
+      max-height: calc(100dvh - 10vh - env(safe-area-inset-top) - env(safe-area-inset-bottom)) !important;
+      margin: 0 auto !important;
+    }
+
+    /* скролл внутри контента */
+    .modal-container .modal-content {
+      height: auto !important;
+      max-height: calc(100dvh - 10vh - env(safe-area-inset-top) - env(safe-area-inset-bottom)) !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+    }
+
+    /* убрать белую "подложку", которая может проявляться снизу на iOS */
+    .modal-container .Rectangle4130 {
+      background: transparent !important;
+    }
+  }
+}
+
+/* 3) Preload шрифта для модалки */
+.modal-font-preload {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  font-family: "Isadora Cyr-Regular", Helvetica, serif;
+}
+
