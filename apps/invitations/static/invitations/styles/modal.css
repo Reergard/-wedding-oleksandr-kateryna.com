@@ -1147,8 +1147,19 @@ html:not(.mobile-device) .modal-container:not(.mobile-device):not(.force-mobile)
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  /* Используем абсолютный путь от корня static (после collectstatic) */
-  src: url("/static/main/fonts/ofont.ru_Liberty%20TL.ttf") format("truetype");
+  /* Используем несколько вариантов пути для совместимости */
+  /* После collectstatic: staticfiles/invitations/styles/ -> staticfiles/main/fonts/ = ../../main/fonts/ */
+  /* В dev режиме: apps/invitations/static/invitations/styles/ -> apps/main/static/main/fonts/ = ../../../main/fonts/ */
+  src: url("../../main/fonts/ofont.ru_Liberty%20TL.ttf") format("truetype"),
+       url("../../../main/fonts/ofont.ru_Liberty%20TL.ttf") format("truetype");
+}
+
+/* =========================
+   Шрифт для модалки (все устройства - десктоп и мобилка)
+   ========================= */
+.modal-overlay.active .modal-content,
+.modal-overlay.active .modal-content * {
+  font-family: "Modal-Liberty", serif !important;
 }
 
 /* =========================
@@ -1156,11 +1167,6 @@ html:not(.mobile-device) .modal-container:not(.mobile-device):not(.force-mobile)
    ПЕРЕБИВАЕТ ВСЕ ПРЕДЫДУЩИЕ ПРАВИЛА
    ========================= */
 @media (max-width: 768px) {
-  /* шрифт: только modal-only */
-  .modal-overlay.active .modal-content,
-  .modal-overlay.active .modal-content * {
-    font-family: "Modal-Liberty", serif !important;
-  }
 
   /* overlay всегда полностью покрывает экран */
   .modal-overlay.active {
