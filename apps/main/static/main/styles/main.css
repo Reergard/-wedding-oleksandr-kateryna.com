@@ -1121,7 +1121,7 @@
     color: #C09B20 !important;
   }
   
-  /* Дополнительный сдвиг для text-1 в group-12 (строки 182-184) */
+  /* Дополнительный сдвиг для text-1 в group-12 (строки 212-213) */
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 .text-1.libertytl-regular-normal-old-gold-25px {
     top: 5px !important; /* было 10px, поднимаем еще на 5px вверх = 5px */
     color: #C09B20 !important;
@@ -1182,5 +1182,57 @@
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 span,
   .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 .x {
     font-size: calc(var(--font-size-m) * 2 * 1.5) !important; /* 25px * 2 * 1.5 = 75px */
+  }
+  
+  /* Увеличение шрифта для text-1-1 (строки 76-84) в 2 раза только для мобильной версии */
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-1-1 {
+    font-size: calc(var(--font-size-l) * 2) !important; /* увеличение в 2 раза (было 40px, стало 80px) */
+  }
+  
+  /* Увеличение расстояния между строчками на 10px для конкретных элементов только в мобильной версии */
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-13 .text-7.literaturedecor-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-11 .text-9.literaturedecor-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-10 .text-12.literaturedecor-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-8 .text-14.literaturedecor-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-9 .text-16.literaturedecor-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 .x {
+    line-height: calc(1em + 10px) !important; /* увеличение расстояния между строчками на 10px (было 5px, стало 10px) */
+  }
+  
+  /* Увеличение шрифта в 1.5 раза для конкретных элементов только в мобильной версии */
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-13 .text-7.literaturedecor-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-11 .text-9.literaturedecor-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-10 .text-12.literaturedecor-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-8 .text-14.literaturedecor-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-9 .text-16.literaturedecor-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 .x {
+    font-size: calc(var(--font-size-m) * 2 * 1.5 * 1.5) !important; /* увеличение в 1.5 раза (было 75px, стало 112.5px) */
+  }
+  
+  /* Увеличение шрифта в 1.5 раза для span элементов внутри конкретных параграфов только в мобильной версии */
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-13 .text-7.literaturedecor-regular-normal-green-pea-25px .literaturedecor-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-13 .text-7.literaturedecor-regular-normal-green-pea-25px .libertytl-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-11 .text-9.literaturedecor-regular-normal-green-pea-25px .literaturedecor-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-11 .text-9.literaturedecor-regular-normal-green-pea-25px .libertytl-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-10 .text-12.literaturedecor-regular-normal-green-pea-25px .literaturedecor-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-10 .text-12.literaturedecor-regular-normal-green-pea-25px .libertytl-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-8 .text-14.literaturedecor-regular-normal-green-pea-25px .literaturedecor-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-8 .text-14.literaturedecor-regular-normal-green-pea-25px .libertytl-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-9 .text-16.literaturedecor-regular-normal-green-pea-25px .literaturedecor-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-9 .text-16.literaturedecor-regular-normal-green-pea-25px .libertytl-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 .x .literaturedecor-regular-normal-green-pea-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 .x .libertytl-regular-normal-green-pea-25px {
+    font-size: calc(var(--font-size-m) * 2 * 0.75 * 1.5) !important; /* увеличение в 1.5 раза (было 37.5px, стало 56.25px) */
+  }
+  
+  /* Увеличение шрифта в 2 раза и жирности на 0.5 для конкретных элементов только в мобильной версии (после общего правила) */
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-8.libertytl-regular-normal-old-gold-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-11.libertytl-regular-normal-old-gold-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-13.libertytl-regular-normal-old-gold-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-15.libertytl-regular-normal-old-gold-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-11 .text-1.libertytl-regular-normal-old-gold-25px,
+  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 .text-1.libertytl-regular-normal-old-gold-25px {
+    font-size: calc(var(--font-size-m) * 2 * 0.79 * 2) !important; /* увеличение в 2 раза (было 39.5px, стало 79px) */
+    font-weight: 475 !important; /* было 425, увеличиваем на 0.5 (425 + 50 = 475) */
   }
 }
