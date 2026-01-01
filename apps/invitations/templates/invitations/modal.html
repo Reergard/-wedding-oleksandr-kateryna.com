@@ -4,7 +4,6 @@
   <div class="modal-container">
     <div class="modal-close" id="modalClose">&times;</div>
     <div class="modal-content" data-layer="МОДАЛЬНЕ ВІКНО">
-      <div class="modal-font-preload" aria-hidden="true">.</div>
       <div data-layer="Rectangle 4130" class="Rectangle4130"></div>
       <img data-layer="golden-fabric-cloth-isolated-on-transparent-background-free-png 2" class="GoldenFabricClothIsolatedOnTransparentBackgroundFreePng2" src="{% static 'main/img/golden-fabric-cloth-isolated-on-transparent-background-free-png-.png' %}" alt="Background" />
       <div data-layer="Rectangle 4129" class="Rectangle4129"></div>
@@ -321,6 +320,11 @@
     
     // Предотвращение overscroll в Chrome на iOS (когда достигнут конец страницы)
     function preventOverscroll(e) {
+      // если открыта модалка — не мешаем ей скроллиться
+      if (modalOverlay && modalOverlay.classList.contains('active') && modalOverlay.contains(e.target)) {
+        return;
+      }
+      
       const target = e.target;
       const scrollTop = target.scrollTop || document.documentElement.scrollTop || document.body.scrollTop;
       const scrollHeight = target.scrollHeight || document.documentElement.scrollHeight || document.body.scrollHeight;
@@ -337,6 +341,11 @@
     // Для touch событий на iPhone
     let lastTouchY = 0;
     function preventTouchOverscroll(e) {
+      // если открыта модалка — не мешаем ей скроллиться
+      if (modalOverlay && modalOverlay.classList.contains('active') && modalOverlay.contains(e.target)) {
+        return;
+      }
+      
       const touch = e.touches[0] || e.changedTouches[0];
       const currentTouchY = touch.clientY;
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
@@ -377,19 +386,24 @@
       if (modalContainer) {
         if (isMobile) {
           modalContainer.classList.add('mobile-device');
-          // Применяем стили напрямую через JavaScript для гарантии
-          modalContainer.style.width = '90vw';
-          modalContainer.style.maxWidth = '500px';
-          modalContainer.style.height = 'auto';
-          modalContainer.style.minHeight = '90vh';
+          // iOS: вместо min-height на vh — max-height на dvh (стабильнее) + один скроллер внутри
+          modalContainer.style.minHeight = 'unset';
+          modalContainer.style.maxHeight = 'calc(100dvh - 10vh)';
+          modalContainer.style.overflow = 'hidden';
           
           const modalContent = modalContainer.querySelector('.modal-content');
           if (modalContent) {
+            modalContent.style.minHeight = 'unset';
+            modalContent.style.maxHeight = 'calc(100dvh - 10vh)';
+            modalContent.style.overflowY = 'auto';
+            modalContent.style.webkitOverflowScrolling = 'touch';
             modalContent.style.width = '100%';
             modalContent.style.height = 'auto';
-            modalContent.style.minHeight = '90vh';
             modalContent.style.borderRadius = '35px';
           }
+          
+          // Добавляем класс modal-mobile на overlay
+          if (modalOverlay) modalOverlay.classList.add('modal-mobile');
           
           // Масштабируем все элементы внутри
           const allDataLayers = modalContainer.querySelectorAll('[data-layer]');
@@ -409,14 +423,22 @@
           modalContainer.style.maxWidth = '';
           modalContainer.style.height = '';
           modalContainer.style.minHeight = '';
+          modalContainer.style.maxHeight = '';
+          modalContainer.style.overflow = '';
           
           const modalContent = modalContainer.querySelector('.modal-content');
           if (modalContent) {
             modalContent.style.width = '';
             modalContent.style.height = '';
             modalContent.style.minHeight = '';
+            modalContent.style.maxHeight = '';
+            modalContent.style.overflowY = '';
+            modalContent.style.webkitOverflowScrolling = '';
             modalContent.style.borderRadius = '';
           }
+          
+          // Убираем класс modal-mobile с overlay
+          if (modalOverlay) modalOverlay.classList.remove('modal-mobile');
         }
       }
     }
@@ -1740,6 +1762,7 @@
     function closeModal() {
       if (modalOverlay) {
         modalOverlay.classList.remove('active');
+        modalOverlay.classList.remove('modal-mobile');
       }
       unlockBodyScroll();
       document.removeEventListener('touchmove', preventBackgroundScroll);
