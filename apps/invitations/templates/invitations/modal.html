@@ -318,63 +318,6 @@
     const modalContainer = document.querySelector('.modal-container');
     // Переменная scrollY объявлена выше в функции lockBodyScroll
     
-    // Предотвращение overscroll в Chrome на iOS (когда достигнут конец страницы)
-    function preventOverscroll(e) {
-      // если открыта модалка — не мешаем ей скроллиться
-      if (modalOverlay && modalOverlay.classList.contains('active') && modalOverlay.contains(e.target)) {
-        return;
-      }
-      
-      const target = e.target;
-      const scrollTop = target.scrollTop || document.documentElement.scrollTop || document.body.scrollTop;
-      const scrollHeight = target.scrollHeight || document.documentElement.scrollHeight || document.body.scrollHeight;
-      const clientHeight = target.clientHeight || window.innerHeight;
-      const isAtTop = scrollTop <= 0;
-      const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
-      
-      // Если скроллим вверх когда уже наверху, или вниз когда уже внизу - предотвращаем
-      if ((isAtTop && e.deltaY < 0) || (isAtBottom && e.deltaY > 0)) {
-        e.preventDefault();
-      }
-    }
-    
-    // Для touch событий на iPhone
-    let lastTouchY = 0;
-    function preventTouchOverscroll(e) {
-      // если открыта модалка — не мешаем ей скроллиться
-      if (modalOverlay && modalOverlay.classList.contains('active') && modalOverlay.contains(e.target)) {
-        return;
-      }
-      
-      const touch = e.touches[0] || e.changedTouches[0];
-      const currentTouchY = touch.clientY;
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-      const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
-      const clientHeight = window.innerHeight;
-      const isAtTop = scrollTop <= 0;
-      const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
-      
-      // Если скроллим вверх когда уже наверху, или вниз когда уже внизу - предотвращаем
-      if ((isAtTop && currentTouchY > lastTouchY) || (isAtBottom && currentTouchY < lastTouchY)) {
-        e.preventDefault();
-      }
-      
-      lastTouchY = currentTouchY;
-    }
-    
-    // Определяем, является ли устройство iPhone
-    const isIPhone = /iPhone|iPod/.test(navigator.userAgent);
-    const isChrome = /CriOS|Chrome/.test(navigator.userAgent);
-    
-    // Добавляем обработчики для предотвращения overscroll в Chrome на iOS
-    if (isIPhone && isChrome) {
-      document.addEventListener('wheel', preventOverscroll, { passive: false });
-      document.addEventListener('touchstart', function(e) {
-        lastTouchY = (e.touches[0] || e.changedTouches[0]).clientY;
-      }, { passive: true });
-      document.addEventListener('touchmove', preventTouchOverscroll, { passive: false });
-    }
-    
     // Определяем мобильное устройство по реальному размеру экрана и применяем стили
     function checkMobileDevice() {
       const viewportWidth = document.documentElement.clientWidth || document.body.clientWidth;
@@ -383,63 +326,14 @@
       const isMobileMedia = window.matchMedia('(max-width: 768px)').matches;
       const isMobile = isMobileMedia || (hasTouch && (viewportWidth <= 768 || screenWidth <= 768));
       
-      if (modalContainer) {
-        if (isMobile) {
-          modalContainer.classList.add('mobile-device');
-          // iOS: вместо min-height на vh — max-height на dvh (стабильнее) + один скроллер внутри
-          modalContainer.style.minHeight = 'unset';
-          modalContainer.style.maxHeight = 'calc(100dvh - 10vh)';
-          modalContainer.style.overflow = 'hidden';
-          
-          const modalContent = modalContainer.querySelector('.modal-content');
-          if (modalContent) {
-            modalContent.style.minHeight = 'unset';
-            modalContent.style.maxHeight = 'calc(100dvh - 10vh)';
-            modalContent.style.overflowY = 'auto';
-            modalContent.style.webkitOverflowScrolling = 'touch';
-            modalContent.style.width = '100%';
-            modalContent.style.height = 'auto';
-            modalContent.style.borderRadius = '35px';
-          }
-          
-          // Добавляем класс modal-mobile на overlay
-          if (modalOverlay) modalOverlay.classList.add('modal-mobile');
-          
-          // Масштабируем все элементы внутри
-          const allDataLayers = modalContainer.querySelectorAll('[data-layer]');
-          allDataLayers.forEach(function(el) {
-            if (el.classList.contains('Rectangle4130') || el.classList.contains('Rectangle4129')) {
-              el.style.width = '100%';
-              el.style.height = '100%';
-              el.style.left = '0';
-              el.style.top = '0';
-              el.style.borderRadius = '35px';
-            }
-          });
-        } else {
-          modalContainer.classList.remove('mobile-device');
-          // Сбрасываем стили для десктопа
-          modalContainer.style.width = '';
-          modalContainer.style.maxWidth = '';
-          modalContainer.style.height = '';
-          modalContainer.style.minHeight = '';
-          modalContainer.style.maxHeight = '';
-          modalContainer.style.overflow = '';
-          
-          const modalContent = modalContainer.querySelector('.modal-content');
-          if (modalContent) {
-            modalContent.style.width = '';
-            modalContent.style.height = '';
-            modalContent.style.minHeight = '';
-            modalContent.style.maxHeight = '';
-            modalContent.style.overflowY = '';
-            modalContent.style.webkitOverflowScrolling = '';
-            modalContent.style.borderRadius = '';
-          }
-          
-          // Убираем класс modal-mobile с overlay
-          if (modalOverlay) modalOverlay.classList.remove('modal-mobile');
-        }
+      if (!modalContainer) return;
+      
+      if (isMobile) {
+        modalContainer.classList.add('mobile-device');
+        if (modalOverlay) modalOverlay.classList.add('modal-mobile');
+      } else {
+        modalContainer.classList.remove('mobile-device');
+        if (modalOverlay) modalOverlay.classList.remove('modal-mobile');
       }
     }
     

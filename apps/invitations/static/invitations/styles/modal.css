@@ -1139,39 +1139,60 @@ html:not(.mobile-device) .modal-container:not(.mobile-device):not(.force-mobile)
   min-height: 90px !important;
 }
 
-/* === MOBILE ONLY: fix missing Gabriola on real phones (iOS/Android) === */
-@media (max-width: 768px) {
-  /* Если Figma проставил Gabriola инлайном — заменяем только в модалке */
-  .modal-overlay.active .modal-content [style*="Gabriola"] {
-    font-family: "Liberty TL-Regular", serif !important;
-  }
-
-  /* Заменяем Gabriola во всех элементах модалки на мобилке */
-  .modal-overlay.active .modal-content [data-layer],
-  .modal-overlay.active .modal-content textarea,
-  .modal-overlay.active .modal-content input,
-  .modal-overlay.active .modal-content button,
-  .modal-overlay.active .modal-content .Frame16 [data-layer="підтвердити"],
-  .mobile-device.modal-container .modal-content [data-layer],
-  .mobile-device.modal-container .modal-content textarea,
-  .mobile-device.modal-container .modal-content input,
-  .mobile-device.modal-container .modal-content button,
-  .mobile-device.modal-container .Frame16 [data-layer="підтвердити"] {
-    font-family: "Liberty TL-Regular", serif !important;
-  }
+/* =========================
+   MODAL-ONLY webfont (не трогаем globals.css)
+   ========================= */
+@font-face {
+  font-family: "Modal-Liberty";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  /* modal.css лежит в /static/invitations/styles/
+     fonts лежат в /static/main/fonts/
+     => ../../main/fonts/ */
+  src: url("../../main/fonts/ofont.ru_Liberty%20TL.ttf") format("truetype");
 }
 
-/* === MOBILE ONLY: fix scroll and white stripe on iOS Chrome === */
+/* =========================
+   MOBILE ONLY: stable modal scroll (iOS/Android, Safari/Chrome)
+   ========================= */
 @media (max-width: 768px) {
-  .modal-overlay.active.modal-mobile {
-    height: 100vh !important;
-    height: 100dvh !important; /* iOS */
-    overflow: hidden !important; /* скролл только внутри .modal-content */
+  /* overlay всегда полностью покрывает экран */
+  .modal-overlay.active {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100dvh !important; /* iOS dynamic viewport */
+    overflow: hidden !important; /* скролл НЕ на overlay */
+    padding: calc(env(safe-area-inset-top) + 10px) 10px
+             calc(env(safe-area-inset-bottom) + 10px) 10px !important;
+    box-sizing: border-box !important;
   }
 
-  .modal-overlay.active.modal-mobile .modal-content {
+  /* единственный скролл-контейнер — modal-container */
+  .modal-overlay.active .modal-container {
+    width: 90vw !important;
+    max-width: 500px !important;
+    height: auto !important; /* разрешаем auto для контейнера */
+    max-height: 100% !important; /* но ограничиваем максимумом */
     overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
+    overscroll-behavior: contain !important;
+  }
+
+  /* НЕ даём .modal-content становиться auto по высоте (иначе схлопнется из-за absolute-детей) */
+  .modal-overlay.active .modal-container .modal-content {
+    height: 1183px !important; /* твоя "дизайн-высота" */
+    min-height: 1183px !important; /* гарантируем минимум */
+    overflow: hidden !important;
+    overflow-y: hidden !important; /* скролл только на container, не на content */
+  }
+
+  /* перебиваем Gabriola только в модалке на мобилке */
+  .modal-overlay.active .modal-content,
+  .modal-overlay.active .modal-content * {
+    font-family: "Modal-Liberty", serif !important;
   }
 }
 
