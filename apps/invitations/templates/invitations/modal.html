@@ -464,45 +464,29 @@
       modalContent.style.setProperty('padding-bottom', `${bottomSafe}px`, 'important');
     }
 
-    // Функция для принудительного удаления рамок/теней у всех img/svg элементов
-    function removeBordersFromImages() {
-      const allImages = document.querySelectorAll('img, svg, [data-svg-wrapper], [data-svg-wrapper] svg, [data-svg-wrapper] img, .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 img, .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 svg, .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 [data-svg-wrapper], .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 [data-svg-wrapper] *');
-      allImages.forEach(function(el) {
-        el.style.setProperty('border', '0', 'important');
-        el.style.setProperty('outline', 'none', 'important');
-        el.style.setProperty('box-shadow', 'none', 'important');
-        el.style.setProperty('-webkit-box-shadow', 'none', 'important');
-        el.style.setProperty('-moz-box-shadow', 'none', 'important');
-        el.style.setProperty('-webkit-tap-highlight-color', 'transparent', 'important');
-        el.style.setProperty('-webkit-appearance', 'none', 'important');
-        el.style.setProperty('appearance', 'none', 'important');
-        // Также убираем рамки у всех дочерних элементов
-        const children = el.querySelectorAll('*');
-        children.forEach(function(child) {
-          child.style.setProperty('border', '0', 'important');
-          child.style.setProperty('outline', 'none', 'important');
-          child.style.setProperty('box-shadow', 'none', 'important');
-          child.style.setProperty('-webkit-box-shadow', 'none', 'important');
-        });
-      });
-    }
 
     // Функция блокировки скролла страницы
     // Переменная для сохранения позиции скролла
     let scrollY = 0;
 
+    // Блокировка touchmove для iOS (только когда модалка открыта)
+    const isIOS = /iP(ad|hone|od)/.test(navigator.userAgent);
+    let onTouchMoveHandler = null;
+
     function lockBodyScroll() {
       scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
       document.body.classList.add('modal-open');
       document.body.style.top = `-${scrollY}px`;
-      // Убираем рамки/тени при открытии модалки
-      removeBordersFromImages();
-      setTimeout(function() {
-        removeBordersFromImages();
-      }, 100);
-      setTimeout(function() {
-        removeBordersFromImages();
-      }, 300);
+      
+      // Для iOS: блокируем touchmove вне модального контейнера
+      if (isIOS && modalContainer) {
+        onTouchMoveHandler = function(e) {
+          if (!modalContainer.contains(e.target)) {
+            e.preventDefault();
+          }
+        };
+        document.addEventListener("touchmove", onTouchMoveHandler, { passive: false });
+      }
     }
 
     // Функция разблокировки скролла страницы
@@ -510,17 +494,12 @@
       document.body.classList.remove('modal-open');
       document.body.style.top = '';
       window.scrollTo(0, scrollY);
-      // Убираем рамки/тени после закрытия модалки (несколько раз для надежности)
-      removeBordersFromImages();
-      setTimeout(function() {
-        removeBordersFromImages();
-      }, 50);
-      setTimeout(function() {
-        removeBordersFromImages();
-      }, 200);
-      setTimeout(function() {
-        removeBordersFromImages();
-      }, 500);
+      
+      // Для iOS: убираем блокировку touchmove
+      if (isIOS && onTouchMoveHandler) {
+        document.removeEventListener("touchmove", onTouchMoveHandler, { passive: false });
+        onTouchMoveHandler = null;
+      }
     }
 
     // Предотвращение скролла фона при touch событиях (только для мобильных)
@@ -1579,6 +1558,8 @@
     if (openModalBtn && modalOverlay) {
       openModalBtn.addEventListener('click', function() {
         modalOverlay.classList.add('active');
+        // Убеждаемся, что класс modal-mobile добавлен на мобилке
+        checkMobileDevice();
         lockBodyScroll();
         // Предотвращаем скролл фона на мобильных устройствах (только touchmove)
         document.addEventListener('touchmove', preventBackgroundScroll, { passive: false });
@@ -1722,14 +1703,6 @@
       });
     });
     
-    // Убираем рамки/тени при загрузке страницы
-    removeBordersFromImages();
-    setTimeout(function() {
-      removeBordersFromImages();
-    }, 100);
-    setTimeout(function() {
-      removeBordersFromImages();
-    }, 500);
 
     // ========== ФУНКЦИОНАЛ ОТПРАВКИ ДАННЫХ ==========
     
