@@ -252,5 +252,47 @@
       <img class="group-20-1" src="{% static 'main/img-mobile/group-20@2x.png' %}" alt="Group 20" />
     </div>
 
+    <script>
+      (() => {
+        const root = document.querySelector('.home-page-mobile');
+        if (!root) return;
+      
+        const update = () => {
+          const r = root.getBoundingClientRect();
+          let maxBottom = 0;
+      
+          root.querySelectorAll('*').forEach(el => {
+            const cs = getComputedStyle(el);
+      
+            // ❌ исключаем декор и мусор
+            if (
+              cs.display === 'none' ||
+              cs.position === 'fixed' ||
+              cs.position === 'absolute' && el.tagName === 'IMG'
+            ) return;
+      
+            const rect = el.getBoundingClientRect();
+            if (rect.height < 5) return; // защита от линий/векторов
+      
+            const b = rect.bottom - r.top;
+            if (b > maxBottom) maxBottom = b;
+          });
+      
+          root.style.height = Math.ceil(maxBottom) + 'px';
+        };
+      
+        const rafUpdate = () => requestAnimationFrame(update);
+        window.addEventListener('load', rafUpdate);
+        window.addEventListener('resize', rafUpdate);
+      
+        if ('ResizeObserver' in window) {
+          new ResizeObserver(rafUpdate).observe(root);
+        }
+      
+        rafUpdate();
+      })();
+      </script>
+      
+
 {% endblock %}
 
