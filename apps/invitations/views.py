@@ -8,7 +8,7 @@ from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_protect
 
 from .models import Invitation, Question, Choice, Answer
-from apps.main.utils import is_mobile_device
+from apps.main.utils import is_mobile_device, ua_genitive_phrase
 
 
 logger = logging.getLogger(__name__)
@@ -36,6 +36,8 @@ def invitation_page(request, token: str):
             "guest": invitation.guest,
             "token": invitation.token,
             "absolute_url": request.build_absolute_uri(),
+            # ✅ ВАЖНО: имя в родительном падеже для preview/карточек ссылок
+            "guest_name_for_link": ua_genitive_phrase(invitation.guest.full_name) if invitation.guest else "",
         },
     )
 
@@ -80,7 +82,7 @@ def submit_rsvp(request, token: str):
     invitation.responded_at = timezone.now()
     invitation.save(update_fields=["status", "note", "responded_at"])
 
-    # Счётчики (объявляем ДО любого saved_count += 1)
+    # Счётчики
     saved_count = 0
     skipped_count = 0
 
