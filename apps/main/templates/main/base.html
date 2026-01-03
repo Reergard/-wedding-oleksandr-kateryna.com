@@ -1,0 +1,602 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    
+    {% block viewport %}
+    {% endblock %}
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'main/img/favicon/favicon.ico' %}" sizes="any">
+    <link rel="icon" type="image/png" href="{% static 'main/img/favicon/favicon-32x32.png' %}" sizes="32x32">
+    <link rel="icon" type="image/png" href="{% static 'main/img/favicon/favicon-16x16.png' %}" sizes="16x16">
+    <link rel="apple-touch-icon" href="{% static 'main/img/favicon/favicon-180x180.png' %}" sizes="180x180">
+
+    <!-- Open Graph / Facebook / Telegram -->
+    {% if guest %}
+    <!-- Персонализированные мета-теги для страницы приглашения -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ absolute_url }}">
+    <meta property="og:title" content="Запрошення для {{ guest.full_name }}">
+    <meta property="og:image" content="https://wedding-oleksandr-kateryna.com{% static 'main/img/favicon/preview.jpg' %}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Запрошення для {{ guest.full_name }}">
+    <meta name="twitter:image" content="https://wedding-oleksandr-kateryna.com{% static 'main/img/favicon/preview.jpg' %}">
+    {% else %}
+    <!-- Мета-теги для главной страницы -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://wedding-oleksandr-kateryna.com/">
+    <meta property="og:title" content="Весілля Олександр & Катерина — 06.06.2026">
+    <meta property="og:image" content="https://wedding-oleksandr-kateryna.com{% static 'main/img/favicon/preview.jpg' %}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Весілля Олександр & Катерина — 06.06.2026">
+    <meta name="twitter:image" content="https://wedding-oleksandr-kateryna.com{% static 'main/img/favicon/preview.jpg' %}">
+    {% endif %}
+
+    {% csrf_token %}
+    <meta name="csrf-token" content="{{ csrf_token }}">
+
+    {% block styles %}
+    {% endblock %}
+
+</head>
+
+<body style="margin: 0; background: #ffffff">
+    {% block content %}
+    {% endblock %}
+
+    {% block scripts %}
+    {% endblock %}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Получение CSRF токена
+    function getCSRFToken() {
+        const meta = document.querySelector('meta[name="csrf-token"]');
+        return meta ? meta.getAttribute('content') : '';
+    }
+
+    // Функция для показа звезды вместо кружочка
+    function showStar(rectangle) {
+        // Проверяем, нет ли уже звезды
+        if (rectangle.querySelector('.star-checkbox')) {
+            return;
+        }
+
+        // Определяем путь к звезде в зависимости от версии
+        const isMobile = document.querySelector('.home-page-mobile');
+        const starPath = isMobile 
+            ? '/static/main/img-mobile/star-2.svg' 
+            : '/static/main/img/star-2-1.svg';
+
+        // Получаем data-input-id для связи звезды с rectangle
+        const inputId = rectangle.getAttribute('data-input-id');
+        
+        // Создаем элемент звезды
+        const star = document.createElement('img');
+        star.className = 'star-checkbox';
+        star.src = starPath;
+        star.alt = 'Star';
+        // Добавляем data-атрибут для связи с rectangle
+        if (inputId) {
+            star.setAttribute('data-rectangle-id', inputId);
+        }
+        
+        // Получаем размеры и позицию rectangle
+        const rect = rectangle.getBoundingClientRect();
+        const computedStyle = window.getComputedStyle(rectangle);
+        const baseWidth = parseFloat(computedStyle.width) || 18;
+        const baseHeight = parseFloat(computedStyle.height) || 18;
+        
+        // Получаем позицию родителя для правильного позиционирования звезды
+        const parent = rectangle.parentElement;
+        const parentRect = parent.getBoundingClientRect();
+        
+        // Вычисляем относительные координаты центра rectangle
+        const centerX = rect.left - parentRect.left + rect.width / 2;
+        const centerY = rect.top - parentRect.top + rect.height / 2;
+        
+        // Позиционируем звезду в центре rectangle (увеличена в 1.7 раза)
+        const width = baseWidth * 1.7;
+        const height = baseHeight * 1.7;
+        
+        // Убеждаемся что родитель имеет position: relative или absolute
+        const parentPosition = window.getComputedStyle(parent).position;
+        if (parentPosition === 'static') {
+            parent.style.position = 'relative';
+        }
+        
+        // Скрываем кружок при выборе
+        rectangle.classList.add('rectangle-selected');
+        
+        star.style.cssText = `
+            position: absolute;
+            left: ${centerX}px;
+            top: ${centerY}px;
+            transform: translate(-50%, -50%);
+            width: ${width}px;
+            height: ${height}px;
+            object-fit: contain;
+            pointer-events: none;
+            z-index: 10;
+            margin: 0;
+            padding: 0;
+        `;
+
+        // Добавляем звезду в родителя rectangle (не в сам rectangle)
+        parent.appendChild(star);
+    }
+
+    // Функция для скрытия звезды
+    function hideStar(rectangle) {
+        // Звезда находится в родителе rectangle, ищем её по data-атрибуту
+        const inputId = rectangle.getAttribute('data-input-id');
+        if (!inputId) return;
+        
+        const parent = rectangle.parentElement;
+        if (!parent) return;
+        
+        // Ищем звезду по data-атрибуту (более точный способ)
+        const star = parent.querySelector(`.star-checkbox[data-rectangle-id="${inputId}"]`);
+        if (star) {
+            star.remove();
+        } else {
+            // Fallback: ищем все звезды в родителе и проверяем позицию
+            const stars = parent.querySelectorAll('.star-checkbox');
+            const rectRect = rectangle.getBoundingClientRect();
+            const rectCenterX = rectRect.left + rectRect.width / 2;
+            const rectCenterY = rectRect.top + rectRect.height / 2;
+            
+            stars.forEach(function(starEl) {
+                const starRect = starEl.getBoundingClientRect();
+                const starCenterX = starRect.left + starRect.width / 2;
+                const starCenterY = starRect.top + starRect.height / 2;
+                
+                // Если звезда находится в центре rectangle (в пределах 10px), удаляем её
+                const distance = Math.sqrt(
+                    Math.pow(starCenterX - rectCenterX, 2) +
+                    Math.pow(starCenterY - rectCenterY, 2)
+                );
+                if (distance < 10) {
+                    starEl.remove();
+                }
+            });
+        }
+        
+        // Также проверяем старый способ (если звезда была внутри rectangle)
+        const starInRect = rectangle.querySelector('.star-checkbox');
+        if (starInRect) {
+            starInRect.remove();
+        }
+        
+        // Показываем кружок обратно при снятии выбора
+        rectangle.classList.remove('rectangle-selected');
+    }
+
+    // Обработка показа/скрытия дополнительных вариантов для вопроса "+1"
+    function toggleCompanionDetails() {
+        const companionYes = document.querySelector('input[name="companion"][value="yes"]');
+        const companionDetails = document.querySelectorAll('.companion-details');
+        
+        if (companionYes && companionYes.checked) {
+            // Показываем дополнительные варианты
+            companionDetails.forEach(function(details) {
+                details.style.display = 'block';
+            });
+        } else {
+            // Скрываем дополнительные варианты и сбрасываем выбор
+            companionDetails.forEach(function(details) {
+                details.style.display = 'none';
+                // Сбрасываем выбор типа спутника
+                const companionTypeInputs = details.querySelectorAll('input[name="companion_type"]');
+                companionTypeInputs.forEach(function(input) {
+                    input.checked = false;
+                    const rectId = input.id;
+                    const rectEl = document.querySelector(`[data-input-id="${rectId}"]`);
+                    if (rectEl) hideStar(rectEl);
+                });
+            });
+        }
+    }
+
+    // Обработка кликов на rectangles
+    document.querySelectorAll('[class*="rectangle-"]').forEach(function(rectangle) {
+        const inputId = rectangle.getAttribute('data-input-id');
+        if (!inputId) return;
+
+        const input = document.getElementById(inputId);
+        if (!input) return;
+
+        // Делаем rectangle кликабельным
+        rectangle.style.cursor = 'pointer';
+
+        // Обработчик клика
+        rectangle.addEventListener('click', function() {
+            if (input.type === 'radio') {
+                // Для radio - снимаем выбор с других в группе
+                const groupName = input.name;
+                document.querySelectorAll(`input[name="${groupName}"]`).forEach(function(radio) {
+                    radio.checked = false;
+                    const rectId = radio.id;
+                    const rectEl = document.querySelector(`[data-input-id="${rectId}"]`);
+                    if (rectEl) hideStar(rectEl);
+                });
+                // Выбираем текущий
+                input.checked = true;
+                showStar(rectangle);
+                
+                // Если это вопрос о "+1", показываем/скрываем дополнительные варианты
+                if (input.name === 'companion') {
+                    toggleCompanionDetails();
+                }
+            } else if (input.type === 'checkbox') {
+                // Для checkbox - множественный выбор разрешен для food и companion_type
+                // Для остальных - работаем как radio (только один выбор в группе)
+                const groupName = input.name;
+                
+                if (groupName === 'food' || groupName === 'companion_type' || groupName === 'drinks') {
+                    // Множественный выбор: toggle текущего checkbox
+                    input.checked = !input.checked;
+                    if (input.checked) {
+                        showStar(rectangle);
+                    } else {
+                        hideStar(rectangle);
+                    }
+                } else {
+                    // Одиночный выбор: снимаем выбор со всех checkbox в группе
+                    document.querySelectorAll(`input[name="${groupName}"]`).forEach(function(checkbox) {
+                        checkbox.checked = false;
+                        const rectId = checkbox.id;
+                        const rectEl = document.querySelector(`[data-input-id="${rectId}"]`);
+                        if (rectEl) hideStar(rectEl);
+                    });
+                    // Выбираем текущий
+                    input.checked = true;
+                    showStar(rectangle);
+                }
+            }
+        });
+
+        // Инициализация: показываем звезду если input уже выбран
+        if (input.checked) {
+            showStar(rectangle);
+        }
+    });
+
+    // Слушаем изменения в вопросе "+1"
+    document.addEventListener('change', function(e) {
+        if (e.target.name === 'companion') {
+            toggleCompanionDetails();
+        }
+    });
+
+    // Инициализация при загрузке страницы
+    setTimeout(function() {
+        toggleCompanionDetails();
+    }, 100);
+
+    // Сбор данных формы
+    function collectFormPayload() {
+        // 1) attendance (radio)
+        const attendChecked = document.querySelector('input[name="attendance"]:checked');
+        let attendance = "";
+        if (attendChecked) {
+            const rectangle = document.querySelector(`[data-input-id="${attendChecked.id}"]`);
+            attendance = rectangle ? rectangle.getAttribute('data-text') : "";
+        }
+
+        // 2) note (textarea)
+        const noteEl = document.querySelector('textarea[name="comments"]');
+        const note = noteEl ? noteEl.value.trim() : "";
+
+        // 3) answers по вопросам
+        const answers = {};
+
+        // Companion (SINGLE - radio) - новый вопрос
+        const companionChecked = document.querySelector('input[name="companion"]:checked');
+        if (companionChecked) {
+            const rectangle = document.querySelector(`[data-input-id="${companionChecked.id}"]`);
+            if (rectangle) {
+                // Используем текст вопроса из HTML страницы
+                const group335 = rectangle.closest('.group-33-5');
+                const questionEl = group335 ? group335.querySelector('.text-26-5') : null;
+                const questionText = questionEl ? questionEl.textContent.trim() : "Чи потрібно вам запрошення \"+1\"?";
+                let companionAnswer = rectangle.getAttribute('data-text');
+                
+                // Если выбрано "Так", добавляем информацию о типе спутника (может быть несколько)
+                if (companionChecked.value === 'yes') {
+                    const companionTypeChecked = document.querySelectorAll('input[name="companion_type"]:checked');
+                    if (companionTypeChecked.length > 0) {
+                        const selectedTypes = Array.from(companionTypeChecked).map(function(input) {
+                            const typeRectangle = document.querySelector(`[data-input-id="${input.id}"]`);
+                            return typeRectangle ? typeRectangle.getAttribute('data-text') : '';
+                        }).filter(Boolean);
+                        if (selectedTypes.length > 0) {
+                            companionAnswer += ' (' + selectedTypes.join(', ') + ')';
+                        }
+                    }
+                }
+                
+                answers[questionText] = companionAnswer;
+            }
+        }
+
+        // Еда (MULTI - собираем все выбранные checkbox'ы)
+        const foodChecked = document.querySelectorAll('input[name="food"]:checked');
+        if (foodChecked.length > 0) {
+            // Используем текст вопроса из HTML страницы (мобильная: .text-34, ПК: .text в group-34)
+            const firstFood = foodChecked[0];
+            const firstRectangle = document.querySelector(`[data-input-id="${firstFood.id}"]`);
+            if (firstRectangle) {
+                const group34 = firstRectangle.closest('.group-34');
+                const questionEl = group34 ? group34.querySelector('.text-34, .text') : null;
+                const questionText = questionEl ? questionEl.textContent.trim() : "Відмітьте, будь ласка, ваші вподобання:";
+                
+                // Собираем все выбранные варианты
+                const selectedFoods = Array.from(foodChecked).map(function(input) {
+                    const rect = document.querySelector(`[data-input-id="${input.id}"]`);
+                    return rect ? rect.getAttribute('data-text') : '';
+                }).filter(Boolean);
+                
+                if (selectedFoods.length > 0) {
+                    answers[questionText] = selectedFoods;
+                }
+            }
+        }
+
+        // Аллергии (SINGLE - radio)
+        const allergiesChecked = document.querySelector('input[name="allergies"]:checked');
+        if (allergiesChecked) {
+            const rectangle = document.querySelector(`[data-input-id="${allergiesChecked.id}"]`);
+            if (rectangle) {
+                // Используем текст вопроса из HTML страницы (мобильная: .text-37, ПК: .text-31)
+                const group35 = rectangle.closest('.group-35');
+                const questionEl = group35 ? group35.querySelector('.text-37, .text-31') : null;
+                const questionText = questionEl ? questionEl.textContent.trim() : "Чи є у вас харчові алергії або продукти, які вам не можна:";
+                answers[questionText] = rectangle.getAttribute('data-text');
+            }
+        }
+
+        // Напитки (MULTI - собираем все выбранные checkbox'ы или radio)
+        // Проверяем сначала checkbox'ы (если они есть), иначе radio
+        const drinksCheckedCheckboxes = document.querySelectorAll('input[name="drinks"][type="checkbox"]:checked');
+        const drinksCheckedRadio = document.querySelector('input[name="drinks"][type="radio"]:checked');
+        
+        if (drinksCheckedCheckboxes.length > 0) {
+            // Если есть checkbox'ы, собираем все выбранные
+            const firstDrink = drinksCheckedCheckboxes[0];
+            const firstRectangle = document.querySelector(`[data-input-id="${firstDrink.id}"]`);
+            if (firstRectangle) {
+                const group36 = firstRectangle.closest('.group-36');
+                const questionEl = group36 ? group36.querySelector('.text-40, .text') : null;
+                const questionText = questionEl ? questionEl.textContent.trim() : "Відмітьте, будь ласка, ваші уподобання щодо напоїв:";
+                
+                const selectedDrinks = Array.from(drinksCheckedCheckboxes).map(function(input) {
+                    const rect = document.querySelector(`[data-input-id="${input.id}"]`);
+                    return rect ? rect.getAttribute('data-text') : '';
+                }).filter(Boolean);
+                
+                if (selectedDrinks.length > 0) {
+                    answers[questionText] = selectedDrinks;
+                }
+            }
+        } else if (drinksCheckedRadio) {
+            // Если только radio, отправляем как массив с одним элементом
+            const rectangle = document.querySelector(`[data-input-id="${drinksCheckedRadio.id}"]`);
+            if (rectangle) {
+                const group36 = rectangle.closest('.group-36');
+                const questionEl = group36 ? group36.querySelector('.text-40, .text') : null;
+                const questionText = questionEl ? questionEl.textContent.trim() : "Відмітьте, будь ласка, ваші уподобання щодо напоїв:";
+                answers[questionText] = [rectangle.getAttribute('data-text')];
+            }
+        }
+
+        // Трансфер (SINGLE - radio)
+        const transferChecked = document.querySelector('input[name="transfer"]:checked');
+        if (transferChecked) {
+            const rectangle = document.querySelector(`[data-input-id="${transferChecked.id}"]`);
+            if (rectangle) {
+                // Используем текст вопроса из HTML страницы (мобильная: .text-38, ПК: .text-32)
+                const group37 = rectangle.closest('.group-37');
+                const questionEl = group37 ? group37.querySelector('.text-38, .text-32') : null;
+                const questionText = questionEl ? questionEl.textContent.trim() : "Чи потрібна вам трансфер до місця проведення або назад:";
+                answers[questionText] = rectangle.getAttribute('data-text');
+            }
+        }
+
+        return { attendance, answers, note };
+    }
+
+    // Функция для показа уведомления
+    function showCustomNotification(message, isSuccess = true) {
+        const notification = document.createElement('div');
+        notification.id = 'custom-notification';
+        notification.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid #D4AF37;
+            border-radius: 15px;
+            padding: 30px 50px;
+            z-index: 100000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            min-width: 300px;
+            max-width: 90%;
+            font-family: Gabriola, Helvetica, serif;
+            color: #D4AF37;
+            font-size: 28px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            animation: fadeIn 0.3s ease-in;
+        `;
+        
+        notification.textContent = message;
+        
+        // Добавляем стили для анимации
+        if (!document.getElementById('notification-styles')) {
+            const style = document.createElement('style');
+            style.id = 'notification-styles';
+            style.textContent = `
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translate(-50%, -60%); }
+                    to { opacity: 1; transform: translate(-50%, -50%); }
+                }
+                @keyframes fadeOut {
+                    from { opacity: 1; transform: translate(-50%, -50%); }
+                    to { opacity: 0; transform: translate(-50%, -60%); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        // Удаляем предыдущее уведомление
+        const existing = document.getElementById('custom-notification');
+        if (existing) {
+            existing.remove();
+        }
+        
+        document.body.appendChild(notification);
+        
+        // Автоматически скрываем через 3 секунды
+        setTimeout(() => {
+            notification.style.animation = 'fadeOut 0.3s ease-out';
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 300);
+        }, 3000);
+        
+        // Закрытие по клику
+        notification.addEventListener('click', () => {
+            notification.style.animation = 'fadeOut 0.3s ease-out';
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 300);
+        });
+    }
+
+    // Отправка данных на сервер
+    async function submitRSVP() {
+        // Получаем token из URL
+        let token = "";
+        const pathMatch = window.location.pathname.match(/\/Invitation\/([^\/]+)/);
+        if (pathMatch) {
+            token = pathMatch[1];
+        }
+
+        if (!token) {
+            console.error("Token not found");
+            showCustomNotification("Помилка: токен не знайдено. Перевірте посилання.", false);
+            return;
+        }
+
+        const payload = collectFormPayload();
+
+        try {
+            const res = await fetch(`/api/invitation/${token}/submit/`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": getCSRFToken(),
+                },
+                body: JSON.stringify(payload),
+                credentials: "same-origin",
+            });
+
+            if (!res.ok) {
+                const errorText = await res.text();
+                console.error("Server error:", errorText);
+                showCustomNotification("Помилка збереження. Спробуйте ще раз.", false);
+                return;
+            }
+
+            const data = await res.json();
+            if (data.ok) {
+                showCustomNotification("Дякуємо! Відповідь збережено.", true);
+            } else {
+                showCustomNotification("Помилка збереження. Спробуйте ще раз.", false);
+            }
+        } catch (error) {
+            console.error("Fetch error:", error);
+            showCustomNotification("Помилка з'єднання. Спробуйте ще раз.", false);
+        }
+    }
+
+    // Обработчик клика на кнопку подтверждения
+    document.addEventListener("click", function(e) {
+        // Мобильная версия: .group-32 или .text-43
+        // ПК версия: .group-32 или .text-37
+        const confirmBtn = e.target.closest('.group-32, .group-27');
+        const confirmText = e.target.closest('.text-43, .text-37, [data-layer="підтвердити"]');
+        if (confirmBtn || confirmText) {
+            e.preventDefault();
+            e.stopPropagation();
+            submitRSVP();
+        }
+    });
+
+    // Исправляем позиционирование textarea чтобы текст писался только внутри области
+    function fixTextareaPositioning() {
+        const textareas = document.querySelectorAll('textarea[name="comments"]');
+        const isMobile = document.querySelector('.home-page-mobile');
+        
+        textareas.forEach(function(textarea) {
+            const group38 = textarea.closest('.group-38');
+            if (group38) {
+                // Убеждаемся что group-38 имеет position: relative
+                group38.style.position = 'relative';
+                
+                // Убеждаемся что textarea занимает всю область group-38
+                textarea.style.position = 'absolute';
+                textarea.style.top = '0';
+                textarea.style.height = '100%';
+                textarea.style.boxSizing = 'border-box';
+                textarea.style.overflow = 'hidden';
+                
+                // Для PC версии добавляем отступы: 10px слева, 30px справа
+                if (!isMobile) {
+                    textarea.style.left = '100px';
+                    textarea.style.width = 'calc(100% - 130px)';
+                    textarea.style.paddingRight = '10px';
+                } else {
+                    // Для мобильной версии без отступов
+                    textarea.style.left = '0';
+                    textarea.style.width = '100%';
+                }
+            }
+        });
+    }
+
+    // Вызываем после загрузки DOM
+    setTimeout(fixTextareaPositioning, 100);
+    
+    // Также вызываем при изменении размера окна
+    window.addEventListener('resize', fixTextareaPositioning);
+});
+</script>
+
+<style>
+    /* Скрываем кружок при выборе чекбокса */
+    .rectangle-selected {
+        border: none !important;
+        opacity: 0 !important;
+    }
+</style>
+</body>
+
+</html>

@@ -2,116 +2,89 @@
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 {
   background-color: #ffffff;
-  /* Высота определяется контентом, скролл на body */
-  height: auto;
-  min-height: 3322px;           /* Минимальная высота для абсолютных блоков */
-  max-height: none;              /* Убираем ограничение высоты - контент определяет высоту */
-  min-width: 100%;
-  max-width: 100%;
+  height: 5255px;
+  min-width: 1390px;
+  max-width: 100vw;
   overflow-x: hidden;
-  overflow-y: visible;          /* Скролл на body, не здесь */
+  overflow-y: visible;
   position: relative;
   width: 100%;
-  padding-bottom: 0;
   box-sizing: border-box;
-  overscroll-behavior-y: none;  /* Предотвращает белый экран при скролле ниже страницы на iPhone */
+  margin: 0;
+  padding: 0;
 }
-
-/* УДАЛЕН мобильный блок с +200px - он создавал пустоту на iPhone */
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .golden-fabric-cloth {
   aspect-ratio: 1.79;
   height: 792px;
-  left: 0;
+  left: -17px;
   object-fit: cover;
   position: absolute;
   top: 1706px;
-  width: 100%;
-  max-width: 1413px;
-  z-index: 1;
+  width: 1413px;
+  max-width: calc(100vw + 17px);
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle-4128 {
+  background: linear-gradient(180deg, rgba(255, 243, 209, 0.8) 0%, rgba(255, 255, 255, 1) 100%);
+  filter: blur(100px);;
   height: 1504px;
-  left: 0;
-  top: 1632px;
-  width: 100%;
-  z-index: 2;
-  position: absolute; /* важно для iOS */
-  pointer-events: none;
-}
-
-/* Градиент через ::before для стабильности на iPhone */
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle-4128::before {
-  content: "";
+  left: -438px;
   position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(255, 243.18, 208.90, 0.80) 0%, #ffffff 100%);
-  /* iOS-friendly */
-  transform: translateZ(0);
-  will-change: transform;
-}
-
-/* Отключаем blur на iPhone для стабильности */
-@supports (-webkit-touch-callout: none) {
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle-4128::before {
-    filter: none !important;
-  }
+  top: 1632px;
+  width: 2234px;
+  max-width: calc(100vw + 438px);
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-1-1 {
   -webkit-text-stroke: 0.5px var(--old-gold);
   color: var(--old-gold);
-  font-family: "Isadora Cyr-Regular", Helvetica;
-  font-size: var(--font-size-l);
+  font-family: var(--font-family-isadora_cyr_-regular);
+  font-size: 40px;
   font-weight: 400;
-  left: 50%;
-  transform: translateX(-50%);
+  left: calc(50.00% - 470px);
   letter-spacing: 0;
   line-height: 65px;
   position: absolute;
   text-align: center;
   top: 2571px;
-  width: 90%;
-  max-width: 937px;
-  z-index: 3;
+  width: 937px;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-2 {
   color: var(--old-gold);
-  font-family: "Isadora Cyr-Regular", Helvetica;
-  font-size: var(--font-size-xxl);
+  font-family: var(--font-family-isadora_cyr_-regular);
+  font-size: 70px;
   font-weight: 400;
-  left: 50%;
-  transform: translateX(-50%);
+  left: calc(50.00% - 293px);
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
   text-align: center;
   top: 2473px;
-  width: 90%;
-  max-width: 586px;
-  z-index: 3;
+  width: 586px;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .golden-fabric-cloth-1 {
   aspect-ratio: 1.79;
   height: 792px;
-  left: 0;
+  left: -7px;
   object-fit: cover;
   position: absolute;
   top: 122px;
-  width: 100%;
-  max-width: 1413px;
-  z-index: 1;
+  width: 1413px;
+  max-width: calc(100vw + 7px);
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle-4126 {
+  background: linear-gradient(180deg, rgba(255, 243, 209, 0.8) 0%, rgba(255, 255, 255, 1) 100%);
+  filter: blur(100px);;
   height: 1288px;
-  left: 0;
+  left: -428px;
+  position: absolute;
   top: -69px;
-  width: 100%;
-  z-index: 2;
+  width: 2234px;
+  max-width: calc(100vw + 428px);
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .ellipse-9 {
@@ -138,90 +111,76 @@
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .adobe-stock_744484201 {
   height: 881px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: calc(50.00% - 695px);
   position: absolute;
   top: 0;
-  width: 100%;
-  max-width: 1390px;
-  object-fit: cover;
-  z-index: 3;
+  width: 1390px;
+  max-width: 100vw;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-3 {
   color: var(--old-gold);
-  font-family: "Markiz de Sad Script-Regular", Helvetica;
-  font-size: var(--font-size-xxxxl);
+  font-family: var(--font-family-markiz_de_sad_script-regular);
+  font-size: 190px;
   font-weight: 400;
-  left: calc(50.00% - 295px);
+  left: calc(50.00% - 387px);
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
-  top: 395px;
+  top: 357px;
   white-space: nowrap;
-  z-index: 3;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-4 {
   color: var(--old-gold);
-  font-family: "Markiz de Sad Script-Regular", Helvetica;
-  font-size: var(--font-size-xxxxl);
+  font-family: var(--font-family-markiz_de_sad_script-regular);
+  font-size: 190px;
   font-weight: 400;
-  left: calc(50.00% - 190px);
+  left: calc(50.00% - 243px);
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
-  top: 515px;
+  top: 575px;
   white-space: nowrap;
-  z-index: 3;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-5 {
   color: var(--old-gold);
-  font-family: "Markiz de Sad Script-Regular", Helvetica;
-  font-size: var(--font-size-xxxl);
-  font-weight: 150;
-  left: calc(50.00% + 190px);
+  font-family: var(--font-family-markiz_de_sad_script-regular);
+  font-size: 190px;
+  font-weight: 400;
+  left: calc(50.00% + 213px);
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
   top: 478px;
-  z-index: 3;
 }
 
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .date,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .date-text {
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .date {
   color: var(--old-gold);
-  font-family: "Calligraphia One-Regular", Helvetica !important;
-  font-size: 180px !important;
-  font-weight: 500 !important;
+  font-family: var(--font-family-calligraphia_one-regular);
+  font-size: 190px;
+  font-weight: 400;
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
-  right: 100px;
-  -webkit-font-smoothing: antialiased !important;
-  -moz-osx-font-smoothing: grayscale !important;
-  text-rendering: optimizeLegibility !important;
+  right: 135px;
   top: 1396px;
   white-space: nowrap;
-  z-index: 3;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-6 {
   color: var(--old-gold);
-  font-family: "Liberty TL-Regular", Helvetica;
-  font-size: calc(70px * 0.95);
+  font-family: var(--font-family-liberty_tl-regular);
+  font-size: var(--font-size-xxxxl);
   font-weight: 400;
   letter-spacing: 0;
-  line-height: 1.1;
+  line-height: 90px;
   position: absolute;
-  right: 35px; /* было 65px, сдвигаем вправо на 30px = 35px */
+  right: 65px;
   text-align: center;
   top: 1111px;
   width: 587px;
-  z-index: 3;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-13 {
@@ -249,16 +208,6 @@
   line-height: normal;
   white-space: nowrap;
   width: 473px;
-}
-
-/* Цвет для указанных элементов */
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-8.libertytl-regular-normal-old-gold-25px,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-11.libertytl-regular-normal-old-gold-25px,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-13.libertytl-regular-normal-old-gold-25px,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-15.libertytl-regular-normal-old-gold-25px,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-11 .text-1.libertytl-regular-normal-old-gold-25px,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 .text-1.libertytl-regular-normal-old-gold-25px {
-  color: #C09B20 !important;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-11 {
@@ -474,25 +423,25 @@
   width: 15px;
 }
 
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector {
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-1 {
   aspect-ratio: 0.97;
   height: 87px;
   left: 35.67%;
   position: absolute;
-  top: calc(50.00% + 96px);
+  top: calc(50.00% - 870px);
   width: 6.11%;
 }
 
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-1 {
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-2 {
   aspect-ratio: 1.18;
   height: 58px;
   left: 36.30%;
   position: absolute;
-  top: calc(50.00% + 422px);
+  top: calc(50.00% - 545px);
   width: 4.93%;
 }
 
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-2 {
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-3 {
   height: 158px;
   left: calc(50.00% - 141px);
   position: absolute;
@@ -501,145 +450,123 @@
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .frame-11 {
-  height: 100px;
-  left: 358px;
+  height: 80px;
+  left: 508px;
   position: absolute;
-  top: 1652px;
-  width: 542px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* ВАЖНО для iOS - создаем контекст позиционирования и изоляцию слоёв */
-  isolation: isolate;
-  transform: translateZ(0);
+  top: 1662px;
+  width: 242px;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-18 {
   color: var(--old-gold);
-  font-family: "Literature Decor-Regular", Helvetica;
-  font-size: 50px;
+  font-family: var(--font-family-literature_decor-regular);
+  font-size: var(--font-size-m);
   font-weight: 400;
+  left: calc(50.00% - 103px);
   letter-spacing: 0;
   line-height: normal;
-  position: relative;
-  white-space: nowrap;
-  z-index: 2;         /* текст над рамкой */
-  text-align: center;
-}
-
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-3 {
   position: absolute;
-  inset: 0;           /* вместо left/top/width/height */
-  z-index: 1;         /* рамка под текстом */
-  pointer-events: none;
-}
-
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-3 svg {
-  width: 100%;
-  height: 100%;
-  display: block;
+  top: 27px;
+  white-space: nowrap;
+  width: 207px;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-4 {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100.00%;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-5 {
   aspect-ratio: 0.74;
   height: 101px;
   left: 36.02%;
   position: absolute;
-  top: calc(50.00% + 202px);
+  top: calc(50.00% - 765px);
   width: 5.42%;
 }
 
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-5 {
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-6 {
   aspect-ratio: 1.46;
   height: 58px;
   left: 35.74%;
   position: absolute;
-  top: calc(50.00% + 521px);
+  top: calc(50.00% - 445px);
   width: 6.04%;
 }
 
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-6 {
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-7 {
   aspect-ratio: 0.79;
   height: 77px;
   left: 36.56%;
   position: absolute;
-  top: calc(50.00% + 615px);
+  top: calc(50.00% - 351px);
   width: 4.40%;
 }
 
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-7 {
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-8 {
   aspect-ratio: 1.15;
   height: 49px;
   left: 36.71%;
   position: absolute;
-  top: calc(50.00% + 331px);
+  top: calc(50.00% - 636px);
   width: 4.03%;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-19 {
-  font-family: "Calligraphia One-Regular", Helvetica;
   left: calc(50.00% - 337px);
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
   top: 1763px;
   white-space: nowrap;
-  color: #C09B20 !important;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-20 {
-  font-family: "Calligraphia One-Regular", Helvetica;
   left: calc(50.00% - 342px);
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
   top: 1870px;
   white-space: nowrap;
-  color: #C09B20 !important;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-21 {
-  font-family: "Calligraphia One-Regular", Helvetica;
   left: calc(50.00% - 345px);
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
   top: 2070px;
   white-space: nowrap;
-  color: #C09B20 !important;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-22 {
-  font-family: "Calligraphia One-Regular", Helvetica;
   left: calc(50.00% - 344px);
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
   top: 1970px;
   white-space: nowrap;
-  color: #C09B20 !important;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-23 {
-  font-family: "Calligraphia One-Regular", Helvetica;
   left: calc(50.00% - 344px);
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
   top: 2174px;
   white-space: nowrap;
-  color: #C09B20 !important;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-24 {
-  font-family: "Calligraphia One-Regular", Helvetica;
   left: calc(50.00% - 337px);
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
   top: 2277px;
   white-space: nowrap;
-  color: #C09B20 !important;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-16 {
@@ -654,23 +581,14 @@
   height: 761px;
   left: 0;
   position: absolute;
-  top: calc(50.00% - 35px);
+  top: calc(50.00% - 1002px);
   width: 97.27%;
-}
-
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-8 {
-  aspect-ratio: 0.99;
-  height: 130px;
-  left: 0;
-  position: absolute;
-  top: calc(50.00% - 380px);
-  width: 9.54%;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-9 {
   aspect-ratio: 0.99;
   height: 130px;
-  left: 90.46%;
+  left: 0;
   position: absolute;
   top: calc(50.00% - 380px);
   width: 9.54%;
@@ -679,13 +597,22 @@
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-10 {
   aspect-ratio: 0.99;
   height: 130px;
+  left: 90.46%;
+  position: absolute;
+  top: calc(50.00% - 380px);
+  width: 9.54%;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-11 {
+  aspect-ratio: 0.99;
+  height: 130px;
   left: 0;
   position: absolute;
   top: calc(50.00% + 250px);
   width: 9.54%;
 }
 
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-11 {
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-12 {
   aspect-ratio: 0.99;
   height: 130px;
   left: 90.46%;
@@ -730,77 +657,16 @@
   width: 1px;
 }
 
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-32 {
-  height: 163px;
-  left: calc(50.00% - 318px);
-  position: absolute;
-  top: 3099px;
-  width: 638px;
-}
-
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-27 {
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 99.69%;
-}
-
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-12 {
-  height: 76.09%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 50.41%;
-}
-
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-13 {
-  height: 76.09%;
-  left: 49.59%;
+  height: 18.57%;
+  left: -877.12%;
   position: absolute;
-  top: 0;
-  width: 50.41%;
-}
-
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-14 {
-  height: 27.59%;
-  left: 2.24%;
-  position: absolute;
-  top: 72.41%;
-  width: 47.58%;
-}
-
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-15 {
-  height: 27.59%;
-  left: 50.09%;
-  position: absolute;
-  top: 71.92%;
-  width: 47.58%;
-}
-
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-25 {
-  color: var(--old-gold);
-  font-family: "Literature Decor-Regular", Helvetica;
-  font-size: var(--font-size-l);
-  font-weight: 400;
-  left: calc(50.00% - 233px);
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  top: 71px;
-  width: 465px;
-}
-
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-16 {
-  height: 29.38%;
-  left: -442.30%;
-  position: absolute;
-  top: 587.75%;
+  top: 247.46%;
   width: 100.36%;
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .mask-group {
-  height: 4.09%;
+  height: 2.59%;
   left: 0;
   position: absolute;
   top: 0;
@@ -808,7 +674,7 @@
 }
 
 .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .mask-group-1 {
-  height: 4.09%;
+  height: 2.59%;
   left: 89.50%;
   position: absolute;
   top: 0;
@@ -835,352 +701,687 @@
   width: 309px;
 }
 
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle {
-  background: linear-gradient(180deg, rgba(255, 243, 209, 0.8) 0%, rgba(255, 255, 255, 1) 100%);
-  -webkit-background: linear-gradient(180deg, rgba(255, 243, 209, 0.8) 0%, rgba(255, 255, 255, 1) 100%);
-  filter: blur(100px);
-  -webkit-filter: blur(100px);
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .frame-17 {
+  display: flex;
+  height: 2094px;
+  left: -19px;
   position: absolute;
-  width: 100%;
-  max-width: 2234px;
-  z-index: 2;
+  top: 3183px;
+  width: 1409px;
+  max-width: calc(100vw + 19px);
 }
 
-/* Общее правило для всех элементов контента - они должны быть выше градиента */
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-8,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-9,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-10,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-11,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-13,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-16,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-19,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-27,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-32,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .ellipse-9,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .ellipse-8,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .ellipse-3,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .ellipse-2,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .ellipse-4,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .ellipse-7,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .ellipse-5,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .ellipse-6,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .line-1,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .line-2,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .frame-11,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-19,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-20,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-21,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-22,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-23,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-24,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-25,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-1,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-2,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-3,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-4,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-5,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-6,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-7,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-8,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-9,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-10,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-11,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-1-1,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-2-1,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-3-1,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-4-1,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-12,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-13,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-14,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-15,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-16,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .c-h-jpdm-f0-zs9sci9p,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .c-h-jpdm-f0-zs9sci9p-1,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .mask-group,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .mask-group-1 {
-  z-index: 3;
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .view {
+  height: 2094.03px;
+  margin-left: 0;
+  margin-top: 0;
+  position: relative;
+  width: 1409px;
+  max-width: calc(100vw + 19px);
 }
 
-/* Media queries для предотвращения горизонтального скролла */
-@media (max-width: 1390px) {
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 {
-    overflow-x: hidden;
-  }
-  
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-1-1,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-2 {
-    width: 95%;
-    max-width: 937px;
-  }
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle-4129 {
+  background-color: #d4af3733;
+  border-radius: 86.73px;
+  filter: blur(60px);;
+  height: 1943px;
+  left: 65px;
+  position: absolute;
+  top: 82px;
+  width: 1284px;
 }
 
-/* УДАЛЕНЫ блоки с +400px и +450px - они создавали белый экран на iPhone */
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-20 {
+  height: 1347px;
+  left: -20.54%;
+  position: absolute;
+  top: calc(50.00% - 667px);
+  transform: rotate(90deg);
+  width: 141.46%;
+}
 
-/* Мобильная версия - увеличение шрифта в 2 раза */
-/* Используем более широкий порог, так как viewport установлен на 1390px */
-@media (max-width: 1390px) and (orientation: portrait), 
-       (max-width: 768px),
-       (max-device-width: 768px) {
-  /* Центрирование градиента в мобильной версии */
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle {
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    /* Горизонтальный градиент: слабый на 5% от левого края, усиливается к центру */
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 5%, rgba(255, 243, 209, 0.8) 50%, rgba(255, 255, 255, 1) 100%) !important;
-    -webkit-background: linear-gradient(90deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 5%, rgba(255, 243, 209, 0.8) 50%, rgba(255, 255, 255, 1) 100%) !important;
-  }
-  
-  /* Уменьшение размера шрифта для текстов локаций до 60px в мобильной версии */
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-8 .libertytl-regular-normal-green-pea-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-9 .libertytl-regular-normal-green-pea-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-10 .libertytl-regular-normal-green-pea-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-11 .libertytl-regular-normal-green-pea-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 .libertytl-regular-normal-green-pea-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-13 .libertytl-regular-normal-green-pea-25px {
-    font-size: 60px !important;
-  }
-  
-  /* Програма Дня */
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-18 {
-    font-size: calc(var(--font-size-m) * 2 * 1.5 * 0.83) !important; /* 25px * 2 * 1.5 * 0.83 = 62.25px (уменьшение на 17%) */
-  }
-  
-  /* Времена (11:00, 11:30, 12:30, 15:00, 15:30, 18:00) - увеличены в 1.5 раза, затем уменьшены на 17% */
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-19,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-20,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-21,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-22,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-23,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-24 {
-    font-size: calc(var(--font-size-xl) * 1.5 * 1.5 * 0.83) !important; /* 64px * 1.5 * 1.5 * 0.83 = 119.52px (уменьшение на 17%) */
-  }
-  
-  /* Текст приглашения */
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-6 {
-    font-size: calc(70px * 1.5 * 0.95 * 0.85) !important; /* 70px * 1.5 * 0.95 * 0.85 = 84.7875px (уменьшение на 15%) */
-    line-height: 1.0 !important; /* 1.0 от высоты шрифта */
-    width: calc(587px + 15px) !important; /* увеличение ширины на 15px = 602px */
-  }
-  
-  /* Дата - опускаем немного ниже на мобильных */
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .date-text {
-    top: calc(1396px + 30px) !important; /* опускаем на 30px ниже */
-  }
-  
-  /* Позиционирование: самый левый элемент (text-21) на 20px от края (30px - 10px), остальные относительно него */
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-19 {
-    left: 28px !important; /* было 38px, сдвигаем влево на 10px */
-    top: 1733px !important; /* было 1763px, стало 1733px (1763 - 30) */
-  }
-  
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-20 {
-    left: 23px !important; /* было 33px, сдвигаем влево на 10px */
-    top: 1840px !important; /* было 1870px, стало 1840px (1870 - 30) */
-  }
-  
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-21 {
-    left: 20px !important; /* было 30px, сдвигаем влево на 10px */
-    top: 2040px !important; /* было 2070px, стало 2040px (2070 - 30) */
-  }
-  
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-22 {
-    left: 21px !important; /* было 31px, сдвигаем влево на 10px */
-    top: 1940px !important; /* было 1970px, стало 1940px (1970 - 30) */
-  }
-  
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-23 {
-    left: 21px !important; /* было 31px, сдвигаем влево на 10px */
-    top: 2144px !important; /* было 2174px, стало 2144px (2174 - 30) */
-  }
-  
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-24 {
-    left: 28px !important; /* было 38px, сдвигаем влево на 10px */
-    top: 2247px !important; /* было 2277px, стало 2247px (2277 - 30) */
-  }
-  
-  /* Группы: сдвигаем относительно text-21 (разница была 666px - (50% - 345px) = 666px - 350px = 316px при 1390px) */
-  /* Для мобильной версии: группы были на 666px, text-21 был на calc(50% - 345px) ≈ 350px при 1390px */
-  /* Разница: 666 - 350 = 316px. Если text-21 теперь на 30px, группы на 30 + 316 = 346px */
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-8,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-9,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-10,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-11,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-13 {
-    left: 346px !important; /* сохраняем относительное положение относительно text-21 */
-  }
-  
-  /* frame-11 и векторы: сдвигаем на такое же расстояние (320px влево) */
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .frame-11 {
-    left: 38px !important; /* Центр line-2: 196 + 226/2 = 309px, центр frame-11 должен быть 309px: 309 - 542/2 = 38px */
-    top: 1652px !important; /* Сохраняем правильную позицию сверху на iPhone */
-  }
-  
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-4 {
-    left: calc(180px + 25px) !important; /* сдвигаем вправо на 25px = 205px */
-  }
-  
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-5 {
-    left: calc(177px + 25px) !important; /* сдвигаем вправо на 25px = 202px */
-  }
-  
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-6 {
-    left: 215px !important; /* выравниваем с vector-7 (215px) или правее остальных */
-    width: 4.40% !important; /* сохраняем ширину */
-  }
-  
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-7 {
-    left: calc(190px + 25px) !important; /* сдвигаем вправо на 25px = 215px */
-  }
-  
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector {
-    left: calc(176px + 25px) !important; /* сдвигаем вправо на 25px = 201px */
-  }
-  
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-1 {
-    left: calc(185px + 25px) !important; /* сдвигаем вправо на 25px = 210px */
-  }
-  
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-3 {
-    /* Центр line-1: 308px + 1px = 309px */
-    /* Центр frame-11: 38px + 542px/2 = 309px */
-    /* Центр vector-3 должен быть на 309px: left = 309px - 38px (frame-11) - 542px/2 (половина ширины vector-3) = 309 - 38 - 271 = 0px */
-    left: 0px !important; /* центрируем рамку так, чтобы ее центр совпадал с центром line-1 */
-  }
-  
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-2 {
-    left: 50% !important; /* центрируем по горизонтали */
-    transform: translateX(-50%) !important; /* сдвигаем влево на половину ширины для точного центрирования */
-  }
-  
-  /* Линии и эллипсы: сдвигаем на такое же расстояние */
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .line-1 {
-    left: 308px !important; /* было 628px, стало 308px (628 - 320 = 308) */
-  }
-  
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .line-2 {
-    left: 196px !important; /* было 516px, стало 196px (516 - 320 = 196) */
-  }
-  
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .ellipse-3,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .ellipse-2,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .ellipse-4,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .ellipse-7,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .ellipse-5,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .ellipse-6 {
-    left: 301px !important; /* было 621px, стало 301px (621 - 320 = 301) */
-  }
-  
-  /* group-16: сдвигаем, но не меньше 30px от края */
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-16 {
-    left: 30px !important; /* было 65px, но с учетом общего сдвига ставим на 30px от края */
-  }
-  
-  /* Правые элементы в group-19: сдвигаем еще правее */
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-9,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-11 {
-    left: calc(90.46% + 30px) !important; /* было 90.46%, сдвигаем еще на 30px вправо */
-  }
-  
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-4-1 {
-    left: calc(1334px + 30px) !important; /* было 1334px, сдвигаем еще на 30px вправо */
-  }
-  
-  /* Сдвиг вверх на 15px и уменьшение шрифта в 0.75 раза для span элементов с текстом "Ранок Нареченої", "Збори Нареченого", "Викуп Нареченої", "Церемонія Одруження", "Фотосесія Молодят", "Весільний Бенкет" */
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-8 .literaturedecor-regular-normal-green-pea-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-9 .literaturedecor-regular-normal-green-pea-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-10 .literaturedecor-regular-normal-green-pea-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-11 .literaturedecor-regular-normal-green-pea-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 .literaturedecor-regular-normal-green-pea-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-13 .literaturedecor-regular-normal-green-pea-25px {
-    position: relative !important;
-    top: -9px !important; /* сдвиг вверх на 15px */
-    font-size: calc(var(--font-size-m) * 2 * 0.75) !important; /* уменьшение в 0.75 раза (было 50px, стало 37.5px) */
-  }
-  
-  /* Уменьшение шрифта в 0.79 раза для конкретных текстовых элементов */
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-8.libertytl-regular-normal-old-gold-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-8.libertytl-regular-normal-old-gold-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-1.libertytl-regular-normal-old-gold-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-11.libertytl-regular-normal-old-gold-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-15.libertytl-regular-normal-old-gold-25px {
-    font-size: calc(var(--font-size-m) * 2 * 0.79) !important; /* уменьшение в 0.79 раза (было 50px, стало 39.5px) */
-    font-weight: 425 !important; /* было 400, увеличиваем на 0.25 (400 + 25 = 425) */
-    position: relative !important;
-    top: 0px !important; /* было 5px, поднимаем еще на 5px вверх = 0px */
-    color: #C09B20 !important;
-  }
-  
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-13.libertytl-regular-normal-old-gold-25px {
-    font-size: calc(var(--font-size-m) * 2 * 0.79) !important; /* уменьшение в 0.79 раза (было 50px, стало 39.5px) */
-    font-weight: 425 !important; /* было 400, увеличиваем на 0.25 (400 + 25 = 425) */
-    position: relative !important;
-    top: -5px !important; /* было 0px, поднимаем еще на 5px вверх = -5px */
-    color: #C09B20 !important;
-  }
-  
-  /* Дополнительный сдвиг для text-1 в group-12 (строки 182-184) */
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 .text-1.libertytl-regular-normal-old-gold-25px {
-    top: 5px !important; /* было 10px, поднимаем еще на 5px вверх = 5px */
-    color: #C09B20 !important;
-  }
-  
-  /* Поднимаем параграф .x внутри group-12 (строки 171-180) - поднимаем сам параграф, span внутри уже подняты общим правилом */
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 .x {
-    position: relative !important;
-    top: -35px !important; /* было -30px, поднимаем еще на 5px вверх = -35px */
-  }
-  
-  /* Отменяем двойной сдвиг для span внутри .x, так как сам параграф уже поднят */
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 .x .literaturedecor-regular-normal-green-pea-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 .x .libertytl-regular-normal-green-pea-25px {
-    top: 0px !important; /* отменяем сдвиг span, так как параграф уже поднят */
-  }
-  
-  /* Сдвиг вверх на 20px для span элементов и параграфов внутри групп */
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-8 .libertytl-regular-normal-green-pea-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-9 .libertytl-regular-normal-green-pea-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-10 .libertytl-regular-normal-green-pea-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-11 .libertytl-regular-normal-green-pea-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 .libertytl-regular-normal-green-pea-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-13 .libertytl-regular-normal-green-pea-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-8 .literaturedecor-regular-normal-green-pea-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-9 .literaturedecor-regular-normal-green-pea-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-10 .literaturedecor-regular-normal-green-pea-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-11 .literaturedecor-regular-normal-green-pea-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 .literaturedecor-regular-normal-green-pea-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-13 .literaturedecor-regular-normal-green-pea-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-13 .text-7.literaturedecor-regular-normal-green-pea-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-11 .text-9.literaturedecor-regular-normal-green-pea-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-10 .text-12.literaturedecor-regular-normal-green-pea-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-8 .text-14.literaturedecor-regular-normal-green-pea-25px,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-9 .text-16.literaturedecor-regular-normal-green-pea-25px {
-    position: relative !important;
-    top: -20px !important; /* было -15px, поднимаем еще на 5px вверх = -20px */
-  }
-  
-  /* Все текстовые элементы внутри групп - увеличены в 1.5 раза */
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-13 p,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-13 div,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-13 span,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-11 p,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-11 div,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-11 span,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-10 p,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-10 div,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-10 span,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-8 p,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-8 div,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-8 span,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-9 p,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-9 div,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-9 span,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 p,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 div,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 span,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-12 .x {
-    font-size: calc(var(--font-size-m) * 2 * 1.5) !important; /* 25px * 2 * 1.5 = 75px */
-  }
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-14 {
+  aspect-ratio: 0.99;
+  height: 215px;
+  left: 0;
+  position: absolute;
+  top: calc(50.00% - 676px);
+  transform: rotate(-90deg);
+  width: 10.90%;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-15 {
+  aspect-ratio: 0.99;
+  height: 215px;
+  left: 89.33%;
+  position: absolute;
+  top: calc(50.00% - 664px);
+  transform: rotate(-90deg);
+  width: 10.90%;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-16 {
+  aspect-ratio: 0.99;
+  height: 215px;
+  left: 0;
+  position: absolute;
+  top: calc(50.00% + 451px);
+  transform: rotate(-90deg);
+  width: 10.89%;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-17 {
+  aspect-ratio: 0.99;
+  height: 215px;
+  left: 89.33%;
+  position: absolute;
+  top: calc(50.00% + 461px);
+  transform: rotate(-90deg);
+  width: 10.90%;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-1-2 {
+  height: 1620px;
+  left: 988px;
+  position: absolute;
+  top: 505px;
+  transform: rotate(-90deg);
+  width: 16px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-2-2 {
+  height: 1614px;
+  left: 986px;
+  position: absolute;
+  top: -775px;
+  transform: rotate(-90deg);
+  width: 16px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-3-2 {
+  height: 16px;
+  left: -419px;
+  position: absolute;
+  top: 665px;
+  transform: rotate(-90deg);
+  width: 889px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-4-2 {
+  height: 16px;
+  left: 1524px;
+  position: absolute;
+  top: 666px;
+  transform: rotate(-90deg);
+  width: 889px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-25 {
+  color: var(--old-gold);
+  font-family: var(--font-family-gabriola-regular);
+  font-size: 70.8px;
+  font-weight: 400;
+  left: calc(50.00% - 522px);
+  letter-spacing: 0;
+  line-height: 159.3px;
+  position: absolute;
+  text-align: center;
+  top: 90px;
+  width: 1039px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-33 {
+  height: 138px;
+  left: calc(50.00% - 540px);
+  position: absolute;
+  top: 220px;
+  width: 772px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-26 {
+  left: calc(50.00% - 386px);
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 0;
+  width: 768px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-27 {
+  left: calc(50.00% - 322px);
+  letter-spacing: 0;
+  line-height: 35.4px;
+  position: absolute;
+  top: 74px;
+  width: 533px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle-4131 {
+  aspect-ratio: 1;
+  border: 1.77px solid;
+  border-color: var(--old-gold);
+  border-radius: 12.39px;
+  height: 18px;
+  left: 25px;
+  position: absolute;
+  top: 80px;
+  width: 18px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle-4132 {
+  aspect-ratio: 1;
+  border: 1.77px solid;
+  border-color: var(--old-gold);
+  border-radius: 12.39px;
+  height: 18px;
+  left: 25px;
+  position: absolute;
+  top: 115px;
+  width: 18px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-33-5 {
+  height: 138px;
+  left: calc(50.00% - 540px);
+  position: absolute;
+  top: 375px;
+  width: 772px;
+}
+
+.u1079u1072u1087u1088u1096u1077u1085u1085u1103 .text-26-5 {
+  left: calc(50.00% - 386px);
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 0;
+  width: 768px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-27-5 {
+  left: calc(50.00% - 322px);
+  letter-spacing: 0;
+  line-height: 35.4px;
+  position: absolute;
+  top: 74px;
+  width: 533px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle-4150 {
+  aspect-ratio: 1;
+  border: 1.77px solid;
+  border-color: var(--old-gold);
+  border-radius: 12.39px;
+  height: 18px;
+  left: 25px;
+  position: absolute;
+  top: 80px;
+  width: 18px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle-4151 {
+  aspect-ratio: 1;
+  border: 1.77px solid;
+  border-color: var(--old-gold);
+  border-radius: 12.39px;
+  height: 18px;
+  left: 25px;
+  position: absolute;
+  top: 115px;
+  width: 18px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .companion-details {
+  position: absolute;
+  left: 400px;
+  top: 74px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-27-6 {
+  left: 30px;
+  letter-spacing: 0;
+  line-height: 35.4px;
+  position: absolute;
+  top: 0;
+  width: 300px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle-4152 {
+  aspect-ratio: 1;
+  border: 1.77px solid;
+  border-color: var(--old-gold);
+  border-radius: 12.39px;
+  height: 18px;
+  left: 0;
+  position: absolute;
+  top: 6px;
+  width: 18px;
+  z-index: 100;
+  pointer-events: auto;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle-4153 {
+  aspect-ratio: 1;
+  border: 1.77px solid;
+  border-color: var(--old-gold);
+  border-radius: 12.39px;
+  height: 18px;
+  left: 0;
+  position: absolute;
+  top: 41px;
+  width: 18px;
+  z-index: 100;
+  pointer-events: auto;
+}
+
+/* Убеждаемся что rectangles могут иметь position: relative для правильного позиционирования звезды */
+/* JavaScript устанавливает position: relative через inline стили при добавлении звезды */
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-34 {
+  height: 241px;
+  left: 149px;
+  position: absolute;
+  top: 512px;
+  width: 1002px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle-4133 {
+  aspect-ratio: 1;
+  border: 1.77px solid;
+  border-color: var(--old-gold);
+  border-radius: 12.39px;
+  height: 18px;
+  left: 25px;
+  position: absolute;
+  top: 84px;
+  width: 18px;
+  z-index: 100;
+  pointer-events: auto;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle-4135 {
+  aspect-ratio: 1;
+  border: 1.77px solid;
+  border-color: var(--old-gold);
+  border-radius: 12.39px;
+  height: 18px;
+  left: 25px;
+  position: absolute;
+  top: 119px;
+  width: 18px;
+  z-index: 100;
+  pointer-events: auto;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle-4136 {
+  aspect-ratio: 1;
+  border: 1.77px solid;
+  border-color: var(--old-gold);
+  border-radius: 12.39px;
+  height: 18px;
+  left: 25px;
+  position: absolute;
+  top: 155px;
+  width: 18px;
+  z-index: 100;
+  pointer-events: auto;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle-4144 {
+  aspect-ratio: 1;
+  border: 1.77px solid;
+  border-color: var(--old-gold);
+  border-radius: 12.39px;
+  height: 18px;
+  left: 25px;
+  position: absolute;
+  top: 190px;
+  width: 18px;
+  z-index: 100;
+  pointer-events: auto;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle-4148 {
+  aspect-ratio: 1;
+  border: 1.77px solid;
+  border-color: var(--old-gold);
+  border-radius: 12.39px;
+  height: 18px;
+  left: 25px;
+  position: absolute;
+  top: 226px;
+  width: 18px;
+  z-index: 100;
+  pointer-events: auto;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle-4149 {
+  aspect-ratio: 1;
+  border: 1.77px solid;
+  border-color: var(--old-gold);
+  border-radius: 12.39px;
+  height: 18px;
+  left: 25px;
+  position: absolute;
+  top: 261px;
+  width: 18px;
+  z-index: 100;
+  pointer-events: auto;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text {
+  left: calc(50.00% - 501px);
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 1px;
+  width: 998px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-29 {
+  left: calc(50.00% - 437px);
+  letter-spacing: 0;
+  line-height: 35.4px;
+  position: absolute;
+  top: 76px;
+  width: 533px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-35 {
+  height: 147px;
+  left: 149px;
+  position: absolute;
+  top: 789px;
+  width: 1139px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle-4137 {
+  aspect-ratio: 1;
+  border: 1.77px solid;
+  border-color: var(--old-gold);
+  border-radius: 12.39px;
+  height: 18px;
+  left: 25px;
+  position: absolute;
+  top: 87px;
+  width: 18px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle-4138 {
+  aspect-ratio: 1;
+  border: 1.77px solid;
+  border-color: var(--old-gold);
+  border-radius: 12.39px;
+  height: 18px;
+  left: 25px;
+  position: absolute;
+  top: 120px;
+  width: 18px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-30 {
+  left: calc(50.00% - 506px);
+  letter-spacing: 0;
+  line-height: 35.4px;
+  position: absolute;
+  top: 80px;
+  width: 533px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-31 {
+  left: calc(50.00% - 569px);
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 0;
+  width: 1135px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-37 {
+  height: 154px;
+  left: 149px;
+  position: absolute;
+  top: 1240px;
+  width: 1147px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle-4145 {
+  aspect-ratio: 1;
+  border: 1.77px solid;
+  border-color: var(--old-gold);
+  border-radius: 12.39px;
+  height: 18px;
+  left: 25px;
+  position: absolute;
+  top: 127px;
+  width: 18px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle-4146 {
+  aspect-ratio: 1;
+  border: 1.77px solid;
+  border-color: var(--old-gold);
+  border-radius: 12.39px;
+  height: 18px;
+  left: 25px;
+  position: absolute;
+  top: 96px;
+  width: 18px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-32 {
+  left: calc(50.00% - 574px);
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 0;
+  width: 1143px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-33 {
+  left: calc(50.00% - 510px);
+  letter-spacing: 0;
+  line-height: 35.4px;
+  position: absolute;
+  top: 87px;
+  width: 533px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-34 {
+  left: calc(50.00% - 556px);
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 1415px;
+  width: 1159px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-36 {
+  height: 258px;
+  left: 149px;
+  position: absolute;
+  top: 958px;
+  width: 1002px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle-4139 {
+  aspect-ratio: 1;
+  border: 1.77px solid;
+  border-color: var(--old-gold);
+  border-radius: 12.39px;
+  height: 18px;
+  left: 25px;
+  position: absolute;
+  top: 90px;
+  width: 18px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle-4141 {
+  aspect-ratio: 1;
+  border: 1.77px solid;
+  border-color: var(--old-gold);
+  border-radius: 12.39px;
+  height: 18px;
+  left: 25px;
+  position: absolute;
+  top: 161px;
+  width: 18px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle-4143 {
+  aspect-ratio: 1;
+  border: 1.77px solid;
+  border-color: var(--old-gold);
+  border-radius: 12.39px;
+  height: 18px;
+  left: 25px;
+  position: absolute;
+  top: 230px;
+  width: 18px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle-4140 {
+  aspect-ratio: 1;
+  border: 1.77px solid;
+  border-color: var(--old-gold);
+  border-radius: 12.39px;
+  height: 18px;
+  left: 25px;
+  position: absolute;
+  top: 126px;
+  width: 18px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .rectangle-4142 {
+  aspect-ratio: 1;
+  border: 1.77px solid;
+  border-color: var(--old-gold);
+  border-radius: 12.39px;
+  height: 18px;
+  left: 25px;
+  position: absolute;
+  top: 196px;
+  width: 18px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-36 {
+  left: calc(50.00% - 437px);
+  letter-spacing: 0;
+  line-height: 35.4px;
+  position: absolute;
+  top: 83px;
+  width: 533px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-38 {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 48.4px;
+  height: 297px;
+  left: calc(50.00% - 572px);
+  position: absolute;
+  top: 1551px;
+  width: 1151px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-5-1 {
+  height: 1.77px;
+  margin-left: 0;
+  margin-top: -0.9px;
+  width: 1152.33px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector {
+  height: 1.77px;
+  margin-left: 0;
+  width: 1152.33px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-10-1 {
+  height: 2px;
+  left: calc(50.00% - 450px);
+  position: absolute;
+  top: 792px;
+  width: 1030px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .union {
+  height: 28px;
+  left: 173px;
+  position: absolute;
+  top: 1256px;
+  width: 23px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .star-2 {
+  height: 26px;
+  left: 169px;
+  position: absolute;
+  top: 527px;
+  width: 27px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-32 {
+  height: 218px;
+  left: calc(50.00% - 424px);
+  position: absolute;
+  top: 1770px;
+  width: 852px;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .group-27 {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 99.77%;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-18 {
+  height: 76.09%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 50.41%;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-19 {
+  height: 76.09%;
+  left: 49.59%;
+  position: absolute;
+  top: 0;
+  width: 50.41%;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-20 {
+  height: 27.59%;
+  left: 2.24%;
+  position: absolute;
+  top: 72.41%;
+  width: 47.58%;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .vector-21 {
+  height: 27.59%;
+  left: 50.09%;
+  position: absolute;
+  top: 71.92%;
+  width: 47.58%;
+}
+
+.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 .text-37 {
+  color: var(--old-gold);
+  font-family: var(--font-family-literature_decor-regular);
+  font-size: var(--font-size-xl);
+  font-weight: 400;
+  left: calc(50.00% - 300px);
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 99px;
+  width: 618px;
 }

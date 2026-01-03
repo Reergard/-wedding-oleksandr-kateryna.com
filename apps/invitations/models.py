@@ -7,7 +7,12 @@ from django.utils import timezone
 
 
 class Guest(models.Model):
+    class Gender(models.TextChoices):
+        MALE = "male", "Чоловічий"
+        FEMALE = "female", "Жіночий"
+    
     full_name = models.CharField(max_length=255)
+    gender = models.CharField(max_length=10, choices=Gender.choices, default=Gender.FEMALE, verbose_name="Рід")
     # контакты опционально (для тебя)
     email = models.EmailField(blank=True, null=True)
     telegram = models.CharField(max_length=255, blank=True, null=True)
@@ -94,7 +99,9 @@ class Answer(models.Model):
     choice = models.ForeignKey(Choice, on_delete=models.PROTECT)
 
     class Meta:
-        unique_together = ("invitation", "question", "choice")
+        constraints = [
+            models.UniqueConstraint(fields=['invitation', 'question', 'choice'], name='unique_answer')
+        ]
 
     def __str__(self) -> str:
         return f"{self.invitation_id} -> {self.question_id}: {self.choice.text}"

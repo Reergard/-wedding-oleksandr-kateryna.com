@@ -1,4 +1,6 @@
 import json
+import logging
+
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
@@ -6,6 +8,10 @@ from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_protect
 
 from .models import Invitation, Question, Choice, Answer
+from apps.main.utils import is_mobile_device
+
+
+logger = logging.getLogger(__name__)
 
 
 def invitation_page(request, token: str):
@@ -16,17 +22,30 @@ def invitation_page(request, token: str):
         invitation.opened_at = timezone.now()
         invitation.save(update_fields=["opened_at"])
 
-    # важно: передаём guest в шаблон, чтобы в modal.html подставить имя
-    return render(
+    # Определяем устройство
+    user_agent = request.META.get("HTTP_USER_AGENT", "")
+    is_mobile = is_mobile_device(user_agent)
+
+    template = "main/home_mobile.html" if is_mobile else "main/home_pc.html"
+
+    response = render(
         request,
-        "main/index.html",  # главная страница, где подключается модалка
+        template,
         {
             "invitation": invitation,
             "guest": invitation.guest,
             "token": invitation.token,
             "absolute_url": request.build_absolute_uri(),
-        }
+        },
     )
+
+    # Настройка кэширования
+    response["Vary"] = "User-Agent"
+    response["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response["Pragma"] = "no-cache"
+    response["Expires"] = "0"
+
+    return response
 
 
 @require_POST
@@ -39,89 +58,220 @@ def submit_rsvp(request, token: str):
     except Exception:
         return HttpResponseBadRequest("Invalid JSON")
 
-    # ожидаем:
-    # payload = {
-    #   "attendance": "Так, з радістю буду!" / "На жаль, не зможу бути.",
-    #   "answers": {
-    #      "Відмітьте, будь ласка, ваші вподобання:": ["Лосось", "Курятина", ...],
-    #      "Чи потрібен вам трансфер до місця проведення або назад:": "Так",
-    #      ...
-    #   },
-    #   "note": "..."
-    # }
-
     note = (payload.get("note") or "").strip()
     attendance = (payload.get("attendance") or "").strip()
     answers = payload.get("answers") or {}
 
+    logger.info(f"=== ОБРАБОТКА RSVP ДЛЯ {invitation.guest.full_name} (token: {token}) ===")
+    logger.info(f"Attendance: {attendance}")
+    logger.info(f"Note: {note[:100] if note else '(пусто)'}")
+    logger.info(f"Всего вопросов в answers: {len(answers)}")
+    logger.info(f"Вопросы в answers: {list(answers.keys())}")
+
     # 1) статус по attendance
     if attendance:
-        if "не зможу" in attendance.lower() or "не сможу" in attendance.lower():
+        att_lower = attendance.lower()
+        if "не зможу" in att_lower or "не сможу" in att_lower:
             invitation.status = Invitation.Status.DECLINED
         else:
             invitation.status = Invitation.Status.ACCEPTED
-    else:
-        # если не прислали attendance — оставляем pending
-        pass
 
     invitation.note = note
     invitation.responded_at = timezone.now()
     invitation.save(update_fields=["status", "note", "responded_at"])
 
-    # 2) сохранение ответов
-    # грузим активные вопросы
-    questions = {q.text.strip(): q for q in Question.objects.filter(is_active=True)}
+    # Счётчики (объявляем ДО любого saved_count += 1)
+    saved_count = 0
+    skipped_count = 0
+
+    # 1.5) ДОПОЛНИТЕЛЬНО: сохранить attendance как Answer (чтобы в админке был ответ на 1-й вопрос)
+    # ВАЖНО: ищем мягко (icontains), чтобы не сломалось из-за "?" и пробелов
+    ATTENDANCE_Q_TEXT = "Чи зможете ви бути присутніми на весіллі"
+    attendance_q = Question.objects.filter(is_active=True, text__icontains=ATTENDANCE_Q_TEXT).first()
+
+    if attendance:
+        if attendance_q:
+            # Пытаемся найти Choice под пришедший текст
+            attendance_choice = Choice.objects.filter(
+                question=attendance_q,
+                text__iexact=attendance
+            ).first()
+
+            # Запасной вариант: сравнение по началу строки (если чуть отличается пунктуация/окончание)
+            if not attendance_choice:
+                attendance_choice = Choice.objects.filter(
+                    question=attendance_q,
+                    text__istartswith=attendance.strip()[:10]
+                ).first()
+
+            if attendance_choice:
+                Answer.objects.filter(invitation=invitation, question=attendance_q).delete()
+                Answer.objects.create(
+                    invitation=invitation,
+                    question=attendance_q,
+                    choice=attendance_choice
+                )
+                saved_count += 1
+                logger.info(f"✓ Attendance сохранён в Answer: {attendance_choice.text}")
+            else:
+                logger.warning(f"✗ Choice для attendance не найден: '{attendance}'")
+                logger.warning(
+                    f"  Доступные choices: {list(Choice.objects.filter(question=attendance_q).values_list('text', flat=True))}"
+                )
+                skipped_count += 1
+        else:
+            logger.warning(f"✗ Вопрос attendance не найден в БД (icontains): '{ATTENDANCE_Q_TEXT}'")
+            skipped_count += 1
+
+    # 2) сохранение ответов из payload["answers"]
+    all_questions = Question.objects.filter(is_active=True)
+
+    questions_exact = {q.text.strip(): q for q in all_questions}
+    questions_normalized = {}
+    for q in all_questions:
+        normalized = q.text.strip().lower().replace("  ", " ")
+        questions_normalized[normalized] = q
+
+    logger.info(f"Активных вопросов в БД: {len(questions_exact)}")
+    logger.info(f"Тексты вопросов в БД: {list(questions_exact.keys())}")
 
     for q_text, selected in answers.items():
         q_text_norm = (q_text or "").strip()
         if not q_text_norm:
+            logger.warning("Пропущен пустой вопрос")
+            skipped_count += 1
             continue
 
-        question = questions.get(q_text_norm)
+        # точное совпадение
+        question = questions_exact.get(q_text_norm)
+
+        # нормализованное
         if not question:
-            # если текста вопроса нет в БД — игнорируем (или можно вернуть ошибку)
+            normalized = q_text_norm.lower().replace("  ", " ")
+            question = questions_normalized.get(normalized)
+            if question:
+                logger.info(f"Вопрос найден по нормализованному тексту: '{q_text_norm}' → '{question.text}'")
+
+        # частичное совпадение
+        if not question:
+            for db_q in all_questions:
+                db_text_norm = db_q.text.strip()
+                if q_text_norm in db_text_norm or db_text_norm in q_text_norm:
+                    question = db_q
+                    logger.info(f"Вопрос найден по частичному совпадению: '{q_text_norm}' → '{question.text}'")
+                    break
+
+        if not question:
+            logger.warning(f"Вопрос не найден в БД: '{q_text_norm}'")
+            logger.warning(f"  Полученный ответ: {selected}")
+            logger.warning(f"  Доступные вопросы в БД: {list(questions_exact.keys())}")
+            skipped_count += 1
             continue
 
-        # MULTI: список строк
+        logger.info(f"Обработка вопроса: '{q_text_norm}' → {selected}")
+
+        # MULTI
         if question.kind == Question.Kind.MULTI:
             if isinstance(selected, str):
                 selected_list = [selected]
             else:
                 selected_list = list(selected or [])
 
-            selected_list = [s.strip() for s in selected_list if str(s).strip()]
+            selected_list = [str(s).strip() for s in selected_list if str(s).strip()]
 
-            # удалим старые ответы на этот вопрос
             Answer.objects.filter(invitation=invitation, question=question).delete()
 
             for choice_text in selected_list:
                 choice = Choice.objects.filter(question=question, text=choice_text).first()
                 if choice:
-                    Answer.objects.get_or_create(
+                    Answer.objects.create(
                         invitation=invitation,
                         question=question,
                         choice=choice
                     )
+                    saved_count += 1
+                    logger.info(f"  ✓ Сохранен ответ: {choice_text}")
+                else:
+                    logger.warning(f"  ✗ Choice не найден: '{choice_text}' для вопроса '{q_text_norm}'")
+                    skipped_count += 1
 
-        # SINGLE: одна строка
+        # SINGLE
         else:
             if isinstance(selected, list):
-                # если пришёл список — возьмём первый
                 selected_value = (selected[0] if selected else "")
             else:
                 selected_value = selected
 
             selected_value = str(selected_value).strip()
             if not selected_value:
+                skipped_count += 1
                 continue
 
+            # Специальная обработка для "+1" формата "Так (....)"
+            if "+1" in q_text_norm and "(" in selected_value and selected_value.startswith("Так"):
+                base_text = "Так"
+                base_choice = Choice.objects.filter(question=question, text=base_text).first()
+
+                companion_types_text = selected_value.split("(", 1)[1].split(")", 1)[0].strip()
+                companion_types = [t.strip() for t in companion_types_text.split(",") if t.strip()]
+
+                Answer.objects.filter(invitation=invitation, question=question).delete()
+
+                if base_choice:
+                    Answer.objects.create(invitation=invitation, question=question, choice=base_choice)
+                    saved_count += 1
+                    logger.info(f"  ✓ Сохранен ответ: {base_text}")
+                else:
+                    logger.warning(f"  ✗ Base choice не найден: '{base_text}'")
+                    skipped_count += 1
+
+                for companion_type in companion_types:
+                    type_choice = Choice.objects.filter(question=question, text=companion_type).first()
+                    if type_choice:
+                        Answer.objects.create(invitation=invitation, question=question, choice=type_choice)
+                        saved_count += 1
+                        logger.info(f"  ✓ Сохранен ответ: {companion_type}")
+                    else:
+                        logger.warning(f"  ✗ Choice не найден для типа спутника: '{companion_type}'")
+                        skipped_count += 1
+
+                continue
+
+            # точное совпадение choice
             choice = Choice.objects.filter(question=question, text=selected_value).first()
+
+            # если "Так (....)" → пробуем "Так"
             if not choice:
+                base_text = selected_value.split("(", 1)[0].strip()
+                if base_text and base_text != selected_value:
+                    choice = Choice.objects.filter(question=question, text=base_text).first()
+                    if choice:
+                        logger.info(f"  Найден choice по базовому тексту: '{base_text}' вместо '{selected_value}'")
+
+            # частичное совпадение
+            if not choice:
+                for c in Choice.objects.filter(question=question):
+                    if c.text in selected_value or selected_value in c.text:
+                        choice = c
+                        logger.info(f"  Найден choice по частичному совпадению: '{c.text}' для '{selected_value}'")
+                        break
+
+            if not choice:
+                logger.warning(f"  ✗ Choice не найден для значения: '{selected_value}' (вопрос: '{q_text_norm}')")
+                logger.warning(
+                    f"  Доступные choices: {list(Choice.objects.filter(question=question).values_list('text', flat=True))}"
+                )
+                skipped_count += 1
                 continue
 
-            # удаляем старое, сохраняем одно
             Answer.objects.filter(invitation=invitation, question=question).delete()
             Answer.objects.create(invitation=invitation, question=question, choice=choice)
+            saved_count += 1
+            logger.info(f"  ✓ Сохранен ответ: {selected_value}")
 
-    return JsonResponse({"ok": True})
+    logger.info("=== ИТОГИ ОБРАБОТКИ ===")
+    logger.info(f"Сохранено ответов: {saved_count}")
+    logger.info(f"Пропущено: {skipped_count}")
+    logger.info(f"Всего обработано answers: {len(answers)}")
 
+    return JsonResponse({"ok": True, "saved": saved_count, "skipped": skipped_count})

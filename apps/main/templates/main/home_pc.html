@@ -1,0 +1,313 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block viewport %}
+<meta charset="utf-8" />
+
+<meta name="viewport" content="width=1390, maximum-scale=1.0" />
+
+<!-- Favicon -->
+<link rel="icon" href="{% static 'main/img/favicon/favicon.ico' %}" sizes="any">
+<link rel="icon" type="image/png" href="{% static 'main/img/favicon/favicon-32x32.png' %}" sizes="32x32">
+<link rel="icon" type="image/png" href="{% static 'main/img/favicon/favicon-16x16.png' %}" sizes="16x16">
+<link rel="apple-touch-icon" href="{% static 'main/img/favicon/favicon-180x180.png' %}" sizes="180x180">
+
+<!-- Open Graph / Facebook / Telegram -->
+{% if guest %}
+<!-- Персонализированные мета-теги для страницы приглашения -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ absolute_url }}">
+<meta property="og:title" content="Запрошення для {{ guest.full_name }}">
+<meta property="og:image" content="https://wedding-oleksandr-kateryna.com{% static 'main/img/favicon/preview.jpg' %}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Запрошення для {{ guest.full_name }}">
+<meta name="twitter:image" content="https://wedding-oleksandr-kateryna.com{% static 'main/img/favicon/preview.jpg' %}">
+{% else %}
+<!-- Мета-теги для главной страницы -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://wedding-oleksandr-kateryna.com/">
+<meta property="og:title" content="Весілля Олександр & Катерина — 06.06.2026">
+<meta property="og:image" content="https://wedding-oleksandr-kateryna.com{% static 'main/img/favicon/preview.jpg' %}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Весілля Олександр & Катерина — 06.06.2026">
+<meta name="twitter:image" content="https://wedding-oleksandr-kateryna.com{% static 'main/img/favicon/preview.jpg' %}">
+{% endif %}
+
+{% csrf_token %}
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'main/styles/globals.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'main/styles/main.css' %}" />
+{% endblock %}
+
+{% block content %}
+<body style="margin: 0; background: #ffffff">
+    <input type="hidden" id="anPageName" name="page" value="u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103" />
+    <div class="u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 screen">
+      <img
+        class="golden-fabric-cloth"
+        src="{% static 'main/img/golden-fabric-cloth-isolated-on-transparent-background-free-png-.png' %}"
+        alt="golden-fabric-cloth-isolated-on-transparent-background-free-png 2"
+      />
+      <div class="rectangle-4128"></div>
+      <p class="text-1-1">
+        Ми будемо надзвичайно раді розділити з вами наш особливий день.<br />Щоб ми могли підготувати святкування
+        максимально комфортно для кожного, будь ласка, заповніть невелику анкету нижче. Це допоможе нам врахувати ваші
+        побажання та зробити подію справді ідеальною.
+      </p>
+      <div class="text-2">Дорогі Гості!</div>
+      <img
+        class="golden-fabric-cloth-1"
+        src="{% static 'main/img/golden-fabric-cloth-isolated-on-transparent-background-free-png-.png' %}"
+        alt="golden-fabric-cloth-isolated-on-transparent-background-free-png 1"
+      />
+      <div class="rectangle-4126"></div>
+      <div class="ellipse-9"></div>
+      <div class="ellipse-8"></div>
+      <img class="adobe-stock_744484201" src="{% static 'main/img/adobestock-744484201.png' %}" alt="AdobeStock_744484201" />
+      <h1 class="text-3">Олександр</h1>
+      <div class="text-4">Катерина</div>
+      <div class="text-5">&amp;</div>
+      <div class="date">06.06.2026</div>
+      <p class="text-6">Дорогі наші рідні та друзі!<br />Раді запросити Вас на наше весілля!</p>
+      <div class="group-13">
+        <p class="text-7 literaturedecor-regular-normal-green-pea-25px">
+          <span class="literaturedecor-regular-normal-green-pea-25px">Фотосесія Молодят - </span
+          ><span class="libertytl-regular-normal-green-pea-25px">Замок Пругоніце</span>
+        </p>
+        <p class="text-8 libertytl-regular-normal-old-gold-25px">
+          Гості можуть прогулятися парком або вирушити до ресторану!
+        </p>
+      </div>
+      <div class="group-11">
+        <p class="text-9 literaturedecor-regular-normal-green-pea-25px">
+          <span class="literaturedecor-regular-normal-green-pea-25px">Церемонія Одруження - </span
+          ><span class="libertytl-regular-normal-green-pea-25px">Замок Пругоніце</span>
+        </p>
+        <div class="text-1 libertytl-regular-normal-old-gold-25px">Запрошуються всі гості!</div>
+      </div>
+      <div class="group-10">
+        <p class="text-12 literaturedecor-regular-normal-green-pea-25px">
+          <span class="literaturedecor-regular-normal-green-pea-25px">Викуп Нареченої - </span
+          ><span class="libertytl-regular-normal-green-pea-25px">Готель Прага</span>
+        </p>
+        <p class="text-11 libertytl-regular-normal-old-gold-25px">
+          Всі гості збираються для проведення&nbsp;&nbsp;викупу!
+        </p>
+      </div>
+      <div class="group-8">
+        <p class="text-14 literaturedecor-regular-normal-green-pea-25px">
+          <span class="literaturedecor-regular-normal-green-pea-25px">Ранок Нареченої - </span
+          ><span class="libertytl-regular-normal-green-pea-25px">Готель Прага</span>
+        </p>
+        <div class="text-13 libertytl-regular-normal-old-gold-25px">Подружка нареченої обов'язково!</div>
+      </div>
+      <div class="group-9">
+        <p class="text-16 literaturedecor-regular-normal-green-pea-25px">
+          <span class="literaturedecor-regular-normal-green-pea-25px">Збори Нареченого - </span
+    ><span class="libertytl-regular-normal-green-pea-25px">Готель Прага</span>
+        </p>
+        <div class="text-15 libertytl-regular-normal-old-gold-25px">Друг нареченого обов'язково!</div>
+      </div>
+      <div class="group-12">
+        <p class="x">
+          <span class="literaturedecor-regular-normal-green-pea-25px">Весільний Б</span
+          ><span class="literaturedecor-regular-normal-green-pea-25px">енкет - </span
+          ><span class="libertytl-regular-normal-green-pea-25px">Ресторан"Green Garden"</span>
+        </p>
+        <div class="text-1 libertytl-regular-normal-old-gold-25px">Запрошуються всі гості!</div>
+      </div>
+      <img class="line-1" src="{% static 'main/img/line-1.svg' %}" alt="Line 1" />
+      <img class="line-2" src="{% static 'main/img/line-2-1.svg' %}" alt="Line 2" />
+      <div class="ellipse-3"></div>
+      <div class="ellipse-2"></div>
+      <div class="ellipse-4"></div>
+      <div class="ellipse-7"></div>
+      <div class="ellipse-5"></div>
+      <div class="ellipse-6"></div>
+      <img class="vector-1" src="{% static 'main/img/vector.png' %}" alt="Vector" />
+      <img class="vector-2" src="{% static 'main/img/vector-18.svg' %}" alt="Vector" />
+      <img class="vector-3" src="{% static 'main/img/vector.svg' %}" alt="Vector" />
+      <div class="frame-11">
+        <div class="text-18">Програма Дня</div>
+        <img class="vector-4" src="{% static 'main/img/vector-25.svg' %}" alt="Vector" />
+      </div>
+      <img class="vector-5" src="{% static 'main/img/vector-20.svg' %}" alt="Vector" />
+      <img class="vector-6" src="{% static 'main/img/vector-21.svg' %}" alt="Vector" />
+      <img class="vector-7" src="{% static 'main/img/vector-22.svg' %}" alt="Vector" />
+      <img class="vector-8" src="{% static 'main/img/vector-23.svg' %}" alt="Vector" />
+      <div class="text-19 calligraphiaone-regular-normal-old-gold-64px">11:00</div>
+      <div class="text-20 calligraphiaone-regular-normal-old-gold-64px">11:30</div>
+      <div class="text-21 calligraphiaone-regular-normal-old-gold-64px">15:00</div>
+      <div class="text-22 calligraphiaone-regular-normal-old-gold-64px">12:30</div>
+      <div class="text-23 calligraphiaone-regular-normal-old-gold-64px">15:30</div>
+      <div class="text-24 calligraphiaone-regular-normal-old-gold-64px">18:00</div>
+      <img class="group-16" src="{% static 'main/img/group-16.png' %}" alt="Group 16" />
+      <div class="group-19">
+        <img class="vector-9" src="{% static 'main/img/vector-9.svg' %}" alt="Vector" />
+        <img class="vector-10" src="{% static 'main/img/vector-10.svg' %}" alt="Vector" />
+        <img class="vector-11" src="{% static 'main/img/vector-28.svg' %}" alt="Vector" />
+        <img class="vector-12" src="{% static 'main/img/vector-12.svg' %}" alt="Vector" />
+        <img class="vector-1-1" src="{% static 'main/img/vector-1-2.svg' %}" alt="Vector 1" />
+        <img class="vector-2-1" src="{% static 'main/img/vector-2-2.svg' %}" alt="Vector 2" />
+        <img class="vector-3-1" src="{% static 'main/img/vector-3-2.svg' %}" alt="Vector 3" />
+        <img class="vector-4-1" src="{% static 'main/img/vector-3-2.svg' %}" alt="Vector 4" />
+      </div>
+      <img class="vector-13" src="{% static 'main/img/vector-7.png' %}" alt="Vector" />
+      <img class="mask-group" src="{% static 'main/img/mask-group@2x.png' %}" alt="Mask group" />
+      <img class="mask-group-1" src="{% static 'main/img/mask-group-3@2x.png' %}" alt="Mask group" />
+      <img
+        class="c-h-jpdm-f0-zs9sci9p"
+        src="{% static 'main/img/chjpdmf0zs9sci9pbwfnzxmvd2vic2l0zs8ymdi0ltewl3jhd3bpegvsb2zmawnl.png' %}"
+        alt="cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI0LTEwL3Jhd3BpeGVsb2ZmaWNlN18zZF9yZW5kZXJfb2ZfZ29sZF9sZWF2ZXNfYm9yZGVyX2lzb2xhdGVkX29uX3doaV81YTgwN2Q2Ny1kN2RlLTQ3ZDItOGZmMS0zNmU0NDBlZGUxYTFfMS5wbmc_LE_upscale_gentle_x4_remove 1"
+      />
+      <img
+        class="c-h-jpdm-f0-zs9sci9p-1"
+        src="{% static 'main/img/chjpdmf0zs9sci9pbwfnzxmvd2vic2l0zs8ymdi0ltewl3jhd3bpegvsb2zmawnl-3.png' %}"
+        alt="cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI0LTEwL3Jhd3BpeGVsb2ZmaWNlN18zZF9yZW5kZXJfb2ZfZ29sZF9sZWF2ZXNfYm9yZGVyX2lzb2xhdGVkX29uX3doaV81YTgwN2Q2Ny1kN2RlLTQ3ZDItOGZmMS0zNmU0NDBlZGUxYTFfMS5wbmc_LE_upscale_gentle_x4_remove 2"
+      />
+      <div class="frame-17">
+        <div class="view">
+          <div class="rectangle-4129"></div>
+          <div class="group-20">
+            <img class="vector-14" src="{% static 'main/img/vector-30.svg' %}" alt="Vector" />
+            <img class="vector-15" src="{% static 'main/img/vector-31.svg' %}" alt="Vector" />
+            <img class="vector-16" src="{% static 'main/img/vector-32.svg' %}" alt="Vector" />
+            <img class="vector-17" src="{% static 'main/img/vector-33.svg' %}" alt="Vector" />
+            <img class="vector-1-2" src="{% static 'main/img/vector-1-3.svg' %}" alt="Vector 1" />
+            <img class="vector-2-2" src="{% static 'main/img/vector-2-3.svg' %}" alt="Vector 2" />
+            <img class="vector-3-2" src="{% static 'main/img/vector-3-3.svg' %}" alt="Vector 3" />
+            <img class="vector-4-2" src="{% static 'main/img/vector-4-3.svg' %}" alt="Vector 4" />
+          </div>
+
+          <div class="text-25">
+            {% if guest %}
+              {% if guest.gender == 'male' %}Дорогий{% else %}Дорога{% endif %} {{ guest.full_name }}!
+            {% else %}
+              Дорога Хрещена!
+            {% endif %}
+          </div>
+          
+          <div class="group-33">
+            <p class="text-26 gabriola-regular-normal-old-gold-53-1px">Чи зможете ви бути присутніми на весіллі?</p>
+            <p class="text-27 gabriola-regular-normal-old-gold-35-4px">
+              Так, з радістю буду!<br />На жаль, не зможу бути присутня.
+            </p>
+            <input type="radio" name="attendance" value="yes" id="attendance-yes-pc" style="display: none;">
+            <input type="radio" name="attendance" value="no" id="attendance-no-pc" style="display: none;">
+            <div class="rectangle-4131" data-input-id="attendance-yes-pc" data-text="Так, з радістю буду!"></div>
+            <div class="rectangle-4132" data-input-id="attendance-no-pc" data-text="На жаль, не зможу бути присутня."></div>
+          </div>
+          <div class="group-33-5">
+            <p class="text-26-5 gabriola-regular-normal-old-gold-53-1px">Чи потрібно вам запрошення "+1"?</p>
+            <p class="text-27-5 gabriola-regular-normal-old-gold-35-4px">
+              Так<br />Ні
+            </p>
+            <input type="radio" name="companion" value="yes" id="companion-yes-pc" style="display: none;">
+            <input type="radio" name="companion" value="no" id="companion-no-pc" style="display: none;">
+            <div class="rectangle-4150" data-input-id="companion-yes-pc" data-text="Так"></div>
+            <div class="rectangle-4151" data-input-id="companion-no-pc" data-text="Ні"></div>
+            <!-- Дополнительные варианты, появляющиеся при выборе "Так" -->
+            <div class="companion-details" style="display: none;">
+              <p class="text-27-6 gabriola-regular-normal-old-gold-35-4px">
+                Друга половинка<br />Дитина
+              </p>
+              <input type="checkbox" name="companion_type" value="partner" id="companion-partner-pc" style="display: none;">
+              <input type="checkbox" name="companion_type" value="child" id="companion-child-pc" style="display: none;">
+              <div class="rectangle-4152" data-input-id="companion-partner-pc" data-text="Друга половинка"></div>
+              <div class="rectangle-4153" data-input-id="companion-child-pc" data-text="Дитина"></div>
+            </div>
+          </div>
+          <div class="group-34">
+            <input type="checkbox" name="food" value="salmon" id="food-salmon-pc" style="display: none;">
+            <input type="checkbox" name="food" value="chicken" id="food-chicken-pc" style="display: none;">
+            <input type="checkbox" name="food" value="pork" id="food-pork-pc" style="display: none;">
+            <input type="checkbox" name="food" value="beef" id="food-beef-pc" style="display: none;">
+            <input type="checkbox" name="food" value="vegetables" id="food-vegetables-pc" style="display: none;">
+            <input type="checkbox" name="food" value="not-important" id="food-not-important-pc" style="display: none;">
+            <div class="rectangle-4133" data-input-id="food-salmon-pc" data-text="Лосось"></div>
+            <div class="rectangle-4135" data-input-id="food-chicken-pc" data-text="Курятина"></div>
+            <div class="rectangle-4136" data-input-id="food-pork-pc" data-text="Свинина"></div>
+            <div class="rectangle-4144" data-input-id="food-beef-pc" data-text="Яловичина"></div>
+            <div class="rectangle-4148" data-input-id="food-vegetables-pc" data-text="Овочі"></div>
+            <div class="rectangle-4149" data-input-id="food-not-important-pc" data-text="Неважливо"></div>
+            <p class="text gabriola-regular-normal-old-gold-53-1px">Відмітьте, будь ласка, ваші вподобання:</p>
+            <div class="text-29 gabriola-regular-normal-old-gold-35-4px">
+              Лосось<br />Курятина<br />Свинина<br />Яловичина<br />Овочі<br />Неважливо
+            </div>
+          </div>
+          <div class="group-35">
+            <input type="radio" name="allergies" value="yes" id="allergies-yes-pc" style="display: none;">
+            <input type="radio" name="allergies" value="no" id="allergies-no-pc" style="display: none;">
+            <div class="rectangle-4137" data-input-id="allergies-yes-pc" data-text="Так"></div>
+            <div class="rectangle-4138" data-input-id="allergies-no-pc" data-text="Ні"></div>
+            <div class="text-30 gabriola-regular-normal-old-gold-35-4px">Так<br />Ні</div>
+            <p class="text-31 gabriola-regular-normal-old-gold-53-1px">
+              Чи є у вас харчові алергії або продукти, які вам не можна:
+            </p>
+          </div>
+          <div class="group-37">
+            <input type="radio" name="transfer" value="yes" id="transfer-yes-pc" style="display: none;">
+            <input type="radio" name="transfer" value="no" id="transfer-no-pc" style="display: none;">
+            <div class="rectangle-4145" data-input-id="transfer-yes-pc" data-text="Так"></div>
+            <div class="rectangle-4146" data-input-id="transfer-no-pc" data-text="Ні"></div>
+            <p class="text-32 gabriola-regular-normal-old-gold-53-1px">
+              Чи потрібна вам трансфер до місця проведення або назад:
+            </p>
+            <div class="text-33 gabriola-regular-normal-old-gold-35-4px">Так<br />Ні</div>
+          </div>
+          <p class="text-34 gabriola-regular-normal-old-gold-53-1px">
+            Тут ви можете залишити будь-які уточнення або побажання:
+          </p>
+          <div class="group-36">
+            <input type="checkbox" name="drinks" value="champagne" id="drinks-champagne-pc" style="display: none;">
+            <input type="checkbox" name="drinks" value="white-wine" id="drinks-white-wine-pc" style="display: none;">
+            <input type="checkbox" name="drinks" value="red-wine" id="drinks-red-wine-pc" style="display: none;">
+            <input type="checkbox" name="drinks" value="strong-alcohol" id="drinks-strong-alcohol-pc" style="display: none;">
+            <input type="checkbox" name="drinks" value="non-alcoholic" id="drinks-non-alcoholic-pc" style="display: none;">
+            <div class="rectangle-4139" data-input-id="drinks-champagne-pc" data-text="Шампанське"></div>
+            <div class="rectangle-4141" data-input-id="drinks-white-wine-pc" data-text="Біле вино"></div>
+            <div class="rectangle-4143" data-input-id="drinks-red-wine-pc" data-text="Червоне вино"></div>
+            <div class="rectangle-4140" data-input-id="drinks-strong-alcohol-pc" data-text="Міцний алкголь"></div>
+            <div class="rectangle-4142" data-input-id="drinks-non-alcoholic-pc" data-text="Безалкогольні напої"></div>
+            <p class="text gabriola-regular-normal-old-gold-53-1px">
+              Відмітьте, будь ласка, ваші уподобання щодо напоїв:
+            </p>
+            <p class="text-36 gabriola-regular-normal-old-gold-35-4px">
+              Шампанське<br />Біле вино<br />Червоне вино<br />Міцний алкголь<br />Безалкогольні напої
+            </p>
+          </div>
+          <div class="group-38">
+            <img class="vector-5-1" src="{% static 'main/img/vector-5-2.svg' %}" alt="Vector 5" />
+            <img class="vector" src="{% static 'main/img/vector-5-2.svg' %}" alt="Vector 6" />
+            <img class="vector" src="{% static 'main/img/vector-5-2.svg' %}" alt="Vector 7" />
+            <img class="vector" src="{% static 'main/img/vector-5-2.svg' %}" alt="Vector 8" />
+            <img class="vector" src="{% static 'main/img/vector-5-2.svg' %}" alt="Vector 9" />
+            <textarea name="comments" class="comments-textarea-pc" placeholder=" " style="position: absolute; top: 0; left: 100px; width: calc(100% - 130px); height: 100%; background: transparent; border: none; outline: none; color: #D4AF37; font-family: 'Gabriola-Regular', serif; font-size: 35.4px; resize: none; padding: 0 10px 0 0; margin: 0; z-index: 10; line-height: 60px; box-sizing: border-box;"></textarea>
+          </div>
+          <div class="group-32">
+            <div class="group-27">
+              <img class="vector-18" src="{% static 'main/img/vector-34.svg' %}" alt="Vector" />
+              <img class="vector-19" src="{% static 'main/img/vector-35.svg' %}" alt="Vector" />
+              <img class="vector-20" src="{% static 'main/img/vector-36.svg' %}" alt="Vector" />
+              <img class="vector-21" src="{% static 'main/img/vector-37.svg' %}" alt="Vector" />
+            </div>
+            <div class="text-37">Підтвердити Присутність</div>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

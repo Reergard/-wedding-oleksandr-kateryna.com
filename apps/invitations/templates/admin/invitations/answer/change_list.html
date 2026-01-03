@@ -1,0 +1,50 @@
+{% extends "admin/change_list.html" %}
+{% load i18n admin_urls static admin_list %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/changelists.css" %}">
+    {% if cl.formset %}
+        <link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}">
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% if not guests_with_answers %}
+        <p class="empty-results">{% translate "No guests have responded yet." %}</p>
+    {% else %}
+        {% if not selected_guest_id %}
+            {# Показываем список гостей по умолчанию #}
+            <div style="margin-bottom: 20px; padding: 20px; background: #f8f9fa; border-radius: 4px;">
+                <h1 style="margin-top: 0; margin-bottom: 20px;">Гости, которые ответили:</h1>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                    {% for guest in guests_with_answers %}
+                    <a href="?invitation__guest__id__exact={{ guest.id }}" 
+                       style="text-decoration: none; color: #417690; font-size: 16px; padding: 12px 20px; display: inline-block; background: white; border-radius: 4px; border: 2px solid #417690; transition: all 0.3s;"
+                       onmouseover="this.style.background='#417690'; this.style.color='white';"
+                       onmouseout="this.style.background='white'; this.style.color='#417690';">
+                        {{ guest.full_name }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        {% else %}
+            {# Показываем ответы выбранного гостя #}
+            <div style="margin-bottom: 20px; padding: 15px; background: #e7f3ff; border-left: 4px solid #417690; border-radius: 4px;">
+                <a href="{% url 'admin:invitations_answer_changelist' %}" style="text-decoration: none; color: #417690; font-weight: bold; margin-bottom: 10px; display: inline-block;">← Назад к списку гостей</a>
+                <h2 style="margin-top: 10px; margin-bottom: 10px;">Ответы гостя: {{ selected_guest }}</h2>
+            </div>
+
+            {% if selected_guest_note %}
+            <div style="margin-bottom: 20px; padding: 15px; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 4px;">
+                <h3 style="margin-top: 0;">Комментарий:</h3>
+                <div style="white-space: pre-wrap; padding: 10px; background: white; border-radius: 4px;">{{ selected_guest_note }}</div>
+            </div>
+            {% endif %}
+
+            {# Показываем стандартную таблицу ответов выбранного гостя с actions #}
+            {{ block.super }}
+        {% endif %}
+    {% endif %}
+{% endblock %}
+

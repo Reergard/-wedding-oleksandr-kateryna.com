@@ -1,0 +1,159 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+/* The following line is used to measure usage of this code. You can remove it if you want. */
+@import url("https://px.animaapp.com/673f6a9b1fedf1c6d1915fec.673f6a9c1fedf1c6d1915fef.OivLAlY.hcp.png");
+
+/* Запрет авто-масштаба текста на iOS */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* ===== MOBILE FONT ALIASES (match styleguide.css names exactly) ===== */
+
+/* Liberty */
+@font-face {
+  font-family: "Liberty LT";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url("../../fonts/Liberty%20LT.ttf") format("truetype"),
+    url("../../fonts/ofont.ru_Liberty%20TL.ttf") format("truetype"),
+    url("../../fonts/Liberty%20LT.woff2") format("woff2");
+}
+
+/* Isadora */
+@font-face {
+  font-family: "Isadora Cyr";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url("../../fonts/ofont.ru_Isadora%20Cyr%20.ttf") format("truetype"),
+    url("../../fonts/Isadora%20Cyr.woff2") format("woff2");
+}
+
+/* Calligraphia */
+@font-face {
+  font-family: "Calligraphia One";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url("../../fonts/calligraphiaone.ttf") format("truetype"),
+    url("../../fonts/Calligraphia%20One.woff2") format("woff2");
+}
+
+/* Markiz */
+@font-face {
+  font-family: "Markiz de Sad script";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url("../../fonts/markizdesadscript.ttf") format("truetype"),
+    url("../../fonts/Markiz%20de%20Sad%20script.woff2") format("woff2");
+}
+
+/* Literature */
+@font-face {
+  font-family: "Literature-Decor";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../../fonts/Literature-Decor.ttf") format("truetype");
+}
+
+/* Gabriola */
+@font-face {
+  font-family: "Gabriola-Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url("../../fonts/gabriola.ttf") format("truetype"),
+    url("../../fonts/Gabriola.woff2") format("woff2");
+}
+
+/* Times */
+@font-face {
+  font-family: "Times New Roman-Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../../fonts/timesnewromanpsmt.ttf") format("truetype");
+}
+
+/* === FONT ALIASES (чтобы работали и старые, и новые имена) === */
+
+/* Liberty */
+@font-face {
+  font-family: "Liberty TL-Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../../fonts/ofont.ru_Liberty TL.ttf") format("truetype");
+}
+
+/* Markiz */
+@font-face {
+  font-family: "Markiz de Sad Script-Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url("../../fonts/markizdesadscript.ttf") format("truetype"),
+    url("../../fonts/Markiz%20de%20Sad%20script.woff2") format("woff2");
+}
+
+/* Isadora */
+@font-face {
+  font-family: "Isadora Cyr-Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url("../../fonts/ofont.ru_Isadora%20Cyr%20.ttf") format("truetype"),
+    url("../../fonts/Isadora%20Cyr.woff2") format("woff2");
+}
+
+/* Calligraphia */
+@font-face {
+  font-family: "Calligraphia One-Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url("../../fonts/calligraphiaone.ttf") format("truetype"),
+    url("../../fonts/Calligraphia%20One.woff2") format("woff2");
+}
+
+/* Literature */
+@font-face {
+  font-family: "Literature Decor-Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../../fonts/Literature-Decor.ttf") format("truetype");
+}
+
+
+.screen a {
+  display: contents;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}

@@ -1,0 +1,1702 @@
+/* screen - home-page-mobile */
+
+.home-page-mobile {
+    background-color: #ffffff;
+    height: 1921px;
+    min-width: 360px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    /* Дельта-сдвиг для симметрии рамки (замени 0px на вычисленное значение D из DevTools) */
+    --frame-delta: 0px;
+  }
+  
+  .home-page-mobile .golden-fabric-cloth {
+    aspect-ratio: 1.79;
+    height: 205px;
+    left: 0;
+    right: 0;
+    object-fit: cover;
+    position: absolute;
+    top: 32px;
+    width: 100%;
+  }
+
+  
+  .home-page-mobile .rectangle-4126 {
+    background: linear-gradient(180deg, rgba(255, 243, 209, 0.8) 0%, rgba(255, 255, 255, 1) 100%);
+    filter: blur(25.9px);;
+    height: 334px;
+    left: -111px;
+    position: absolute;
+    top: -18px;
+    width: 579px;
+  }
+  
+  .home-page-mobile .ellipse-9 {
+    background-color: #dbd1b4;
+    border-radius: 67.21px/4.27px;
+    filter: blur(5.18px);
+    height: 9px;
+    left: 210px;
+    position: absolute;
+    top: 211px;
+    width: 134px;
+  }
+  
+  .home-page-mobile .ellipse-8 {
+    background-color: #dbd1b4;
+    border-radius: 67.21px/4.27px;
+    filter: blur(5.18px);;
+    height: 9px;
+    left: 26px;
+    position: absolute;
+    top: 211px;
+    width: 134px;
+  }
+  
+  .home-page-mobile .adobe-stock_744484201 {
+    height: 228px;
+    left: calc(50.00% - 180px);
+    position: absolute;
+    top: 0;
+    width: 360px;
+  }
+  
+  .home-page-mobile .text-1-1 {
+    color: var(--old-gold);
+    font-family: "Markiz de Sad script", sans-serif;
+    font-size: 19.25px;
+    font-weight: 400;
+    left: calc(50.00% - 100px);
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 92px;
+    white-space: nowrap;
+  }
+  
+  .home-page-mobile .text-2 {
+    color: var(--old-gold);
+    font-family: "Markiz de Sad script", sans-serif;
+    font-size: 19.25px;
+    font-weight: 400;
+    left: calc(50.00% - 63px);
+    line-height: normal;
+    top: 149px;
+    white-space: nowrap;
+  }
+  
+  .home-page-mobile .text-3 {
+    color: var(--old-gold);
+    font-family: "Markiz de Sad script", sans-serif;
+    font-size: 40px;
+    font-weight: 400;
+    left: calc(50.00% + 55px);
+    line-height: normal;
+    top: 124px;
+  }
+  
+  .home-page-mobile .date {
+    -webkit-text-stroke: 0.15px var(--old-gold);
+    color: var(--old-gold);
+    font-family: "Liberty TL-Regular", sans-serif;
+    font-size: 55px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    right: 33px;
+    top: 350px;
+    white-space: nowrap;
+  }
+  
+  .home-page-mobile .text-4 {
+    -webkit-text-stroke: 0.05px var(--old-gold);
+    color: var(--old-gold);
+    font-family: "Liberty TL-Regular", sans-serif;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 26.3px;
+    right: 12px;
+    text-align: center;
+    top: 262px;
+    width: 199px;
+  }
+  
+  .home-page-mobile .vector-1 {
+    height: 41px;
+    left: calc(50.00% - 37px);
+    position: absolute;
+    top: 38px;
+    width: 73px;
+  }
+  
+  .home-page-mobile .vector-2 {
+    height: 12.03%;
+    left: -4969.59%;
+    position: absolute;
+    top: 589.82%;
+    width: 100.36%;
+  }
+  
+  .home-page-mobile .mask-group {
+    height: auto;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 10.49%;
+  }
+  
+  .home-page-mobile .mask-group-1 {
+    height: auto;
+    left: 89.50%;
+    position: absolute;
+    top: 0;
+    width: 10.49%;
+  }
+  
+  .home-page-mobile .group-50 {
+    height: 205px;
+    left: 0;
+    position: absolute;
+    top: 977px;
+    width: 100%;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .home-page-mobile .text-5 {
+    -webkit-text-stroke: 0.25px var(--old-gold);
+    color: var(--old-gold);
+    font-family: "Isadora Cyr", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 16.8px;
+    text-align: center;
+    top: 44px;
+    width: calc(100% - 40px);
+    max-width: 263px;
+    position: absolute;
+  }
+  
+  .home-page-mobile .text-6 {
+    color: var(--old-gold);
+    font-family: "Isadora Cyr", sans-serif;
+    font-size: 31px;
+    font-weight: 400;
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: normal;
+    text-align: center;
+    top: 8px;
+    width: auto;
+    max-width: calc(100% - 40px);
+    position: absolute;
+  }
+  
+  .home-page-mobile .c-h-jpdm-f0-zs9sci9p {
+    aspect-ratio: 2.08;
+    height: 199px;
+    left: 0;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    width: 72px;
+  }
+  
+  .home-page-mobile .c-h-jpdm-f0-zs9sci9p-1 {
+    aspect-ratio: 2.08;
+    height: 202px;
+    right: 0;
+    object-fit: cover;
+    position: absolute;
+    top: 3px;
+    width: 82px;
+  }
+  
+  .home-page-mobile .group-59 {
+    height: 558px;
+    left: 0;
+    position: absolute;
+    top: 412px;
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+  
+  .home-page-mobile .golden-fabric-cloth-1 {
+    aspect-ratio: 1.79;
+    height: 524px;
+    left: 0;
+    right: 0;
+    object-fit: cover;
+    position: absolute;
+    top: 16px;
+    width: 100%;
+  }
+  
+  .home-page-mobile .rectangle-4128 {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 249, 232, 0.75) 50%, rgba(255, 255, 255, 0.9) 100%);
+    filter: blur(25.9px);;
+    height: 558px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+  
+  .home-page-mobile .group-49 {
+    display: block;
+    height: 590px;
+    left: 50%;
+    max-width: none !important;
+    min-width: 0;
+    object-fit: none;
+    position: absolute;
+    top: -17px;
+    transform: translateX(-50%) scaleX(1.2);
+    transform-origin: center center;
+    z-index: 3;
+  }
+  
+  .home-page-mobile .vector-3 {
+    aspect-ratio: 0.97;
+    height: 29px;
+    left: 10.19%;
+    position: absolute;
+    top: calc(50.00% - 162px);
+    width: 7.87%;
+    z-index: 3;
+  }
+  
+  .home-page-mobile .vector-4 {
+    aspect-ratio: 1.18;
+    height: 23px;
+    left: 10.47%;
+    position: absolute;
+    top: calc(50.00% + 71px);
+    width: 7.45%;
+    z-index: 3;
+  }
+  
+  .home-page-mobile .group-58 {
+    height: 516px;
+    left: 12px;
+    position: absolute;
+    top: 20px;
+    width: 156px;
+    z-index: 3;
+  }
+  
+  .home-page-mobile .line-1 {
+    height: 465px;
+    left: 77px;
+    position: absolute;
+    top: 51px;
+    width: 1px;
+    z-index: 3;
+  }
+  
+  .home-page-mobile .line-2 {
+    height: 507px;
+    left: 48px;
+    position: absolute;
+    top: 26px;
+    width: 60px;
+    z-index: 3;
+  }
+  
+  .home-page-mobile .ellipse-3 {
+    aspect-ratio: 1;
+    background-color: var(--old-gold);
+    border-radius: 1.94px;
+    height: 4px;
+    left: 76px;
+    position: absolute;
+    top: 326px;
+    width: 4px;
+    z-index: 3;
+  }
+  
+  .home-page-mobile .ellipse-2 {
+    aspect-ratio: 1;
+    background-color: var(--old-gold);
+    border-radius: 1.94px;
+    height: 4px;
+    left: 76px;
+    position: absolute;
+    top: 172px;
+    width: 4px;
+    z-index: 3;
+  }
+  
+  .home-page-mobile .ellipse-4 {
+    aspect-ratio: 1;
+    background-color: var(--old-gold);
+    border-radius: 1.94px;
+    height: 4px;
+    left: 76px;
+    position: absolute;
+    top: 403px;
+    width: 4px;
+    z-index: 3;
+  }
+  
+  .home-page-mobile .ellipse-7 {
+    aspect-ratio: 1;
+    background-color: var(--old-gold);
+    border-radius: 1.94px;
+    height: 4px;
+    left: 76px;
+    position: absolute;
+    top: 480px;
+    width: 4px;
+    z-index: 3;
+  }
+  
+  .home-page-mobile .ellipse-5 {
+    aspect-ratio: 1;
+    background-color: var(--old-gold);
+    border-radius: 2.5px;
+    height: 5px;
+    left: 75px;
+    position: absolute;
+    top: 92px;
+    width: 5px;
+    z-index: 3;
+  }
+  
+  .home-page-mobile .ellipse-6 {
+    aspect-ratio: 1;
+    background-color: var(--old-gold);
+    border-radius: 1.94px;
+    height: 4px;
+    left: 76px;
+    position: absolute;
+    top: 249px;
+    width: 4px;
+    z-index: 3;
+  }
+  
+  .home-page-mobile .group-48 {
+    height: 52px;
+    left: calc(50.00% - 78px);
+    position: absolute;
+    top: 0;
+    width: 158px;
+    z-index: 3;
+  }
+  
+  .home-page-mobile .text-7 {
+    color: var(--old-gold);
+    font-family: "Literature-Decor", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    left: calc(50.00% - 76px);
+    line-height: normal;
+    text-align: center;
+    top: 16px;
+    white-space: nowrap;
+    width: 151px;
+  }
+  
+  .home-page-mobile .vector-5 {
+    height: 100.00%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 98.74%;
+    z-index: 3;
+  }
+  
+  .home-page-mobile .vector-6 {
+    aspect-ratio: 0.74;
+    height: 39px;
+    left: 10.0%;
+    position: absolute;
+    top: calc(50.00% - 83px);
+    width: 7.61%;
+    z-index: 3;
+  }
+  
+  .home-page-mobile .vector-7 {
+    aspect-ratio: 1.46;
+    height: 19px;
+    left: 10.47%;
+    position: absolute;
+    top: calc(50.00% + 148px);
+    width: 7.60%;
+    z-index: 3;
+  }
+  
+  .home-page-mobile .vector-8 {
+    aspect-ratio: 0.79;
+    height: 24px;
+    left: 12.66%;
+    position: absolute;
+    top: calc(50.00% + 225px);
+    width: 5.26%;
+    z-index: 3;
+  }
+  
+  .home-page-mobile .vector-9 {
+    aspect-ratio: 1.15;
+    height: 24px;
+    left: 10.19%;
+    position: absolute;
+    top: calc(50.00% - 5px);
+    width: 7.62%;
+    z-index: 3;
+  }
+  
+  .home-page-mobile .text-8 {
+    -webkit-text-stroke: 0.2px var(--old-gold);
+    color: var(--old-gold);
+    font-family: "Calligraphia One", sans-serif;
+    font-size: 29px;
+    font-weight: 400;
+    left: calc(50.00% - 170px);
+    line-height: normal;
+    top: 88px;
+    white-space: nowrap;
+  }
+  
+  .home-page-mobile .text-9 {
+    -webkit-text-stroke: 0.2px var(--old-gold);
+    color: var(--old-gold);
+    font-family: "Calligraphia One", sans-serif;
+    font-size: 29px;
+    font-weight: 400;
+    left: calc(50.00% - 170px);
+    line-height: normal;
+    top: 168px;
+    white-space: nowrap;
+  }
+  
+  .home-page-mobile .text-10 {
+    -webkit-text-stroke: 0.2px var(--old-gold);
+    color: var(--old-gold);
+    font-family: "Calligraphia One", sans-serif;
+    font-size: 29px;
+    font-weight: 400;
+    left: calc(50.00% - 170px);
+    line-height: normal;
+    top: 322px;
+    white-space: nowrap;
+  }
+  
+  .home-page-mobile .text-11 {
+    -webkit-text-stroke: 0.2px var(--old-gold);
+    color: var(--old-gold);
+    font-family: "Calligraphia One", sans-serif;
+    font-size: 29px;
+    font-weight: 400;
+    left: calc(50.00% - 170px);
+    line-height: normal;
+    top: 245px;
+    white-space: nowrap;
+  }
+  
+  .home-page-mobile .text-12 {
+    -webkit-text-stroke: 0.2px var(--old-gold);
+    color: var(--old-gold);
+    font-family: "Calligraphia One", sans-serif;
+    font-size: 29px;
+    font-weight: 400;
+    left: calc(50.00% - 170px);
+    line-height: normal;
+    top: 399px;
+    white-space: nowrap;
+  }
+  
+  .home-page-mobile .text-13 {
+    -webkit-text-stroke: 0.2px var(--old-gold);
+    color: var(--old-gold);
+    font-family: "Calligraphia One", sans-serif;
+    font-size: 29px;
+    font-weight: 400;
+    left: calc(50.00% - 170px);
+    line-height: normal;
+    top: 476px;
+    white-space: nowrap;
+  }
+  
+  .home-page-mobile .group-52 {
+    height: 48px;
+    left: 95px;
+    position: absolute;
+    top: 163px;
+    width: 219px;
+  }
+  
+  .home-page-mobile .text-14 {
+    -webkit-text-stroke: 0.2px var(--old-gold);
+    color: var(--old-gold);
+    font-family: "Liberty TL-Regular", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    left: 18px;
+    line-height: normal;
+    top: 29px;
+    white-space: nowrap;
+  }
+  
+  .home-page-mobile .text {
+    left: 0;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 0;
+    white-space: nowrap;
+  }
+  
+  /* Стили для элементов с классом literaturedecor-regular-normal-green-pea-14px */
+  .home-page-mobile .text.literaturedecor-regular-normal-green-pea-14px {
+    color: var(--green-pea);
+    font-family: "Literature-Decor", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  
+  .home-page-mobile .text-1 {
+    -webkit-text-stroke: 0.2px var(--green-pea);
+    color: var(--green-pea);
+    font-family: "Liberty TL-Regular", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    left: 148px;
+    line-height: normal;
+    top: 16px;
+    white-space: nowrap;
+  }
+  
+  .home-page-mobile .group-57 {
+    height: 53px;
+    left: 96px;
+    position: absolute;
+    top: 89px;
+    width: 218px;
+  }
+  
+  .home-page-mobile .text-17 {
+    -webkit-text-stroke: 0.2px var(--old-gold);
+    color: var(--old-gold);
+    font-family: "Liberty TL-Regular", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    left: 17px;
+    line-height: normal;
+    top: 34px;
+    white-space: nowrap;
+  }
+  
+  .home-page-mobile .text-19 {
+    -webkit-text-stroke: 0.2px var(--green-pea);
+    color: var(--green-pea);
+    font-family: "Liberty TL-Regular", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    left: 147px;
+    line-height: normal;
+    top: 13px;
+    white-space: nowrap;
+  }
+  
+  .home-page-mobile .group-53 {
+    height: 54px;
+    left: 95px;
+    position: absolute;
+    top: 230px;
+    width: 253px;
+  }
+  
+  .home-page-mobile .text-20 {
+    -webkit-text-stroke: 0.2px var(--old-gold);
+    color: var(--old-gold);
+    font-family: "Liberty TL-Regular", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    left: 18px;
+    line-height: normal;
+    top: 35px;
+    white-space: nowrap;
+  }
+  
+  .home-page-mobile .group-55 {
+    height: 73px;
+    left: 96px;
+    position: absolute;
+    top: 375px;
+    width: 222px;
+  }
+  
+  .home-page-mobile .text-24 {
+    -webkit-text-stroke: 0.2px var(--green-pea);
+    color: var(--green-pea);
+    font-family: "Liberty TL-Regular", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    left: 136px;
+    line-height: normal;
+    top: 16px;
+    white-space: nowrap;
+  }
+  
+  .home-page-mobile .text-25 {
+    -webkit-text-stroke: 0.2px var(--old-gold);
+    color: var(--old-gold);
+    font-family: "Liberty TL-Regular", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    left: 17px;
+    line-height: normal;
+    top: 35px;
+  }
+  
+  .home-page-mobile .group-54 {
+    height: 51px;
+    left: 95px;
+    position: absolute;
+    top: 302px;
+    width: 243px;
+  }
+  
+  .home-page-mobile .text-26 {
+    color: var(--green-pea);
+    font-family: "Literature-Decor", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    left: 0;
+    line-height: normal;
+    top: 0;
+    width: 237px;
+  }
+  
+  .home-page-mobile .text-27 {
+    -webkit-text-stroke: 0.2px var(--green-pea);
+    color: var(--green-pea);
+    font-family: "Liberty TL-Regular", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    left: 137px;
+    line-height: normal;
+    top: 16px;
+    width: 79px;
+  }
+  
+  .home-page-mobile .text-28 {
+    -webkit-text-stroke: 0.2px var(--old-gold);
+    color: var(--old-gold);
+    font-family: "Liberty TL-Regular", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    left: 18px;
+    line-height: normal;
+    top: 32px;
+    white-space: nowrap;
+  }
+  
+  .home-page-mobile .group-56 {
+    height: 48px;
+    left: 96px;
+    position: absolute;
+    top: 469px;
+    width: 220px;
+  }
+  
+  .home-page-mobile .text-29 {
+    color: #148665;
+    font-family: "Literature-Decor", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    left: 0;
+    line-height: normal;
+    top: 0;
+    white-space: nowrap;
+  }
+  
+  .home-page-mobile .green-garden {
+    -webkit-text-stroke: 0.2px var(--green-pea);
+    color: var(--green-pea);
+    font-family: "Liberty TL-Regular", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    left: 104px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 13px;
+    white-space: nowrap;
+  }
+  
+  .home-page-mobile .text-30 {
+    -webkit-text-stroke: 0.2px var(--old-gold);
+    color: var(--old-gold);
+    font-family: "Liberty TL-Regular", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    left: 17px;
+    line-height: normal;
+    top: 29px;
+    white-space: nowrap;
+  }
+  
+  .home-page-mobile .group-60 {
+    height: 739px;
+    left: 0;
+    right: 0;
+    position: absolute;
+    top: 1182px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .home-page-mobile .rectangle-4129 {
+    background-color: #d4af3733;
+    border-radius: 22.46px;
+    filter: blur(15.54px);;
+    height: 717px;
+    left: 0;
+    position: absolute;
+    top: 13px;
+    width: 100%;
+    z-index: 1;
+  }
+  
+  .home-page-mobile .group-20 {
+    height: 354px;
+    left: -47.84%;
+    position: absolute;
+    top: calc(50.00% - 107px);
+    transform: rotate(90deg);
+    width: 206.56%;
+    z-index: 2;
+  }
+  
+  .home-page-mobile .vector-10 {
+    aspect-ratio: 0.99;
+    height: 66px;
+    left: -20px;
+    position: absolute;
+    top: calc(50.00% - 175px + var(--frame-delta));
+    transform: rotate(-90deg);
+    width: 9.03%;
+  }
+  
+  .home-page-mobile .vector-11 {
+    aspect-ratio: 0.99;
+    height: 65px;
+    left: 645px;
+    position: absolute;
+    top: calc(50.00% - 175px + var(--frame-delta));
+    transform: rotate(-90deg);
+    width: 9.03%;
+  }
+  
+  .home-page-mobile .vector-12 {
+    aspect-ratio: 0.99;
+    height: 66px;
+    left: -20px;
+    position: absolute;
+    top: calc(60.00% + 115px);
+    transform: rotate(-90deg);
+    width: 9.03%;
+  }
+  
+  .home-page-mobile .vector-13 {
+    aspect-ratio: 0.99;
+    height: 65px;
+    left: 645px;
+    position: absolute;
+    top: calc(60.00% + 115px);
+    transform: rotate(-90deg);
+    width: 9.03%;
+  }
+  
+  /* 
+   * СИММЕТРИЯ РАМКИ: Для выравнивания отступов от краев экрана
+   * 
+   * Шаг 1: Измерь в DevTools Console:
+   *   - Кликни img.vector-1-1 → в Console: L = $0.getBoundingClientRect().left
+   *   - Кликни img.vector-2-1 → в Console: R = window.innerWidth - $0.getBoundingClientRect().right
+   * 
+   * Шаг 2: Вычисли D в Console:
+   *   const D = (L - R) / 2;
+   * 
+   * Шаг 3: Подставь значение D в --frame-delta в начале файла (внутри .home-page-mobile)
+   *   Если D > 0 (L > R) → рамка сдвигается влево → top увеличивается
+   *   Если D < 0 (L < R) → рамка сдвигается вправо → top уменьшается
+   */
+  
+  .home-page-mobile .vector-1-1 {
+    height: 596px;
+    left: 340px;
+    position: absolute;
+    top: calc(85px + var(--frame-delta));
+    transform: rotate(-90deg);
+    width: 5px;
+    z-index: 3;
+  }
+  
+  .home-page-mobile .vector-2-1 {
+    height: 594px;
+    left: 368px;
+    position: absolute;
+    top: calc(-285px + var(--frame-delta));
+    transform: rotate(-90deg);
+    width: 5px;
+    z-index: 3;
+  }
+  
+  .home-page-mobile .vector-3-1 {
+    height: 5px;
+    left: 255px;
+    position: absolute;
+    top: calc(199px + var(--frame-delta));
+    transform: rotate(-90deg);
+    width: 904px;
+    z-index: 3;
+  }
+  
+  .home-page-mobile .vector-4-1 {
+    height: 5px;
+    left: -110px;
+    position: absolute;
+    top: calc(199px + var(--frame-delta));
+    transform: rotate(-90deg);
+    width: 204px;
+    z-index: 3;
+  }
+  
+  .home-page-mobile .text-31 {
+    color: var(--old-gold);
+    font-family: "Gabriola-Regular", sans-serif;
+    font-size: 29px;
+    font-weight: 400;
+    left: calc(50.00% - 137px);
+    line-height: 30px;
+    text-align: center;
+    top: 0px;
+    width: 269px;
+  }
+  
+  .home-page-mobile .group-33 {
+    height: 56px;
+    left: calc(50.00% - 141px);
+    position: absolute;
+    top: 38px;
+    width: 281px;
+  }
+  
+  .home-page-mobile .text-32 {
+    color: var(--old-gold);
+    font-family: "Gabriola-Regular", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    left: calc(50.00% - 155px);
+    line-height: 19px;
+    top: 0;
+    white-space: nowrap;
+    width: 277px;
+  }
+  
+  .home-page-mobile .text-33 {
+    color: var(--old-gold);
+    font-family: "Gabriola-Regular", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    left: calc(50.00% - 135px);
+    line-height: 15px;
+    top: 25px;
+    width: 180px;
+  }
+  
+  .home-page-mobile .rectangle-4131 {
+    aspect-ratio: 1;
+    border: 0.46px solid;
+    border-color: var(--old-gold);
+    border-radius: 3.21px;
+    height: 5px;
+    left: -5px;
+    position: absolute;
+    top: 29px;
+    width: 5px;
+  }
+  
+  .home-page-mobile .rectangle-4132 {
+    aspect-ratio: 1;
+    border: 0.46px solid;
+    border-color: var(--old-gold);
+    border-radius: 3.21px;
+    height: 5px;
+    left: -5px;
+    position: absolute;
+    top: 44px;
+    width: 5px;
+  }
+  
+  .home-page-mobile .group-33-5 {
+    height: 56px;
+    left: calc(50.00% - 161px);
+    position: absolute;
+    top: 100px;
+    width: 281px;
+  }
+  
+  .home-page-mobile .text-26-5 {
+    color: var(--old-gold);
+    font-family: "Gabriola-Regular", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    left: calc(50.00% - 135px);
+    line-height: 15px;
+    top: 0;
+    width: 270px;
+  }
+  
+  .home-page-mobile .text-27-5 {
+    color: var(--old-gold);
+    font-family: "Gabriola-Regular", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    left: calc(50.00% - 103px);
+    line-height: 15px;
+    top: 25px;
+    width: 33px;
+  }
+  
+  .home-page-mobile .rectangle-4150 {
+    aspect-ratio: 1;
+    border: 0.46px solid;
+    border-color: var(--old-gold);
+    border-radius: 3.21px;
+    height: 5px;
+    left: 20px;
+    position: absolute;
+    top: 29px;
+    width: 5px;
+  }
+  
+  .home-page-mobile .rectangle-4151 {
+    aspect-ratio: 1;
+    border: 0.46px solid;
+    border-color: var(--old-gold);
+    border-radius: 3.21px;
+    height: 5px;
+    left: 20px;
+    position: absolute;
+    top: 44px;
+    width: 5px;
+  }
+  
+  .home-page-mobile .companion-details {
+    position: absolute;
+    left: 150px;
+    top: 25px;
+  }
+  
+  .home-page-mobile .text-27-6 {
+    color: var(--old-gold);
+    font-family: "Gabriola-Regular", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    left: 10px;
+    line-height: 15px;
+    top: 0;
+    width: 120px;
+  }
+  
+  .home-page-mobile .rectangle-4152 {
+    aspect-ratio: 1;
+    border: 0.46px solid;
+    border-color: var(--old-gold);
+    border-radius: 3.21px;
+    height: 5px;
+    left: -5px;
+    position: absolute;
+    top: 4px;
+    width: 5px;
+    z-index: 100;
+    pointer-events: auto;
+  }
+  
+  .home-page-mobile .rectangle-4153 {
+    aspect-ratio: 1;
+    border: 0.46px solid;
+    border-color: var(--old-gold);
+    border-radius: 3.21px;
+    height: 5px;
+    left: -5px;
+    position: absolute;
+    top: 19px;
+    width: 5px;
+    z-index: 100;
+    pointer-events: auto;
+  }
+  
+  /* Убеждаемся что rectangles могут иметь position: relative для правильного позиционирования звезды */
+  /* JavaScript устанавливает position: relative через inline стили при добавлении звезды */
+  
+  .home-page-mobile .group-34 {
+    height: 101px;
+    left: 58px;
+    position: absolute;
+    top: 160px;
+    width: 263px;
+  }
+  
+  .home-page-mobile .rectangle-4133 {
+    aspect-ratio: 1;
+    border: 0.46px solid;
+    border-color: var(--old-gold);
+    border-radius: 3.21px;
+    height: 5px;
+    left: 10px;
+    position: absolute;
+    top: 28px;
+    width: 5px;
+    z-index: 100;
+    pointer-events: auto;
+  }
+  
+  .home-page-mobile .rectangle-4135 {
+    aspect-ratio: 1;
+    border: 0.46px solid;
+    border-color: var(--old-gold);
+    border-radius: 3.21px;
+    height: 5px;
+    left: 10px;
+    position: absolute;
+    top: 43px;
+    width: 5px;
+    z-index: 100;
+    pointer-events: auto;
+  }
+  
+  .home-page-mobile .rectangle-4136 {
+    aspect-ratio: 1;
+    border: 0.46px solid;
+    border-color: var(--old-gold);
+    border-radius: 3.21px;
+    height: 5px;
+    left: 10px;
+    position: absolute;
+    top: 58px;
+    width: 5px;
+    z-index: 100;
+    pointer-events: auto;
+  }
+  
+  .home-page-mobile .rectangle-4144 {
+    aspect-ratio: 1;
+    border: 0.46px solid;
+    border-color: var(--old-gold);
+    border-radius: 3.21px;
+    height: 5px;
+    left: 10px;
+    position: absolute;
+    top: 73px;
+    width: 5px;
+    z-index: 100;
+    pointer-events: auto;
+  }
+  
+  .home-page-mobile .rectangle-4148 {
+    aspect-ratio: 1;
+    border: 0.46px solid;
+    border-color: var(--old-gold);
+    border-radius: 3.21px;
+    height: 5px;
+    left: 10px;
+    position: absolute;
+    top: 88px;
+    width: 5px;
+    z-index: 100;
+    pointer-events: auto;
+  }
+  
+  .home-page-mobile .rectangle-4149 {
+    aspect-ratio: 1;
+    border: 0.46px solid;
+    border-color: var(--old-gold);
+    border-radius: 3.21px;
+    height: 5px;
+    left: 10px;
+    position: absolute;
+    top: 103px;
+    width: 5px;
+    z-index: 100;
+    pointer-events: auto;
+  }
+  
+  .home-page-mobile .text-34 {
+    color: var(--old-gold);
+    font-family: "Gabriola-Regular", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    left: calc(50.00% - 131px);
+    line-height: 19px;
+    top: 0;
+    white-space: nowrap;
+    width: 259px;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  .home-page-mobile .text-35 {
+    color: var(--old-gold);
+    font-family: "Gabriola-Regular", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    left: calc(50.00% - 110px);
+    line-height: 15px;
+    top: 25px;
+    width: 66px;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  .home-page-mobile .star-2 {
+    height: 7px;
+    left: 9px;
+    position: absolute;
+    top: 28px;
+    width: 7px;
+  }
+  
+  .home-page-mobile .group-35 {
+    height: 60px;
+    left: 58px;
+    position: absolute;
+    top: 287px;
+    width: 298px;
+  }
+  
+  .home-page-mobile .rectangle-4137 {
+    aspect-ratio: 1;
+    border: 0.46px solid;
+    border-color: var(--old-gold);
+    border-radius: 3.21px;
+    height: 5px;
+    left: 10px;
+    position: absolute;
+    top: 41px;
+    width: 5px;
+  }
+  
+  .home-page-mobile .rectangle-4138 {
+    aspect-ratio: 1;
+    border: 0.46px solid;
+    border-color: var(--old-gold);
+    border-radius: 3.21px;
+    height: 5px;
+    left: 10px;
+    position: absolute;
+    top: 55px;
+    width: 5px;
+  }
+  
+  .home-page-mobile .text-36 {
+    color: var(--old-gold);
+    font-family: "Gabriola-Regular", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    left: calc(50.00% - 128px);
+    line-height: 15px;
+    top: 37px;
+    white-space: nowrap;
+    width: 138px;
+  }
+  
+  .home-page-mobile .text-37 {
+    color: var(--old-gold);
+    font-family: "Gabriola-Regular", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    left: calc(50.00% - 149px);
+    line-height: 15px;
+    top: 0;
+    width: 294px;
+  }
+  
+  .home-page-mobile .group-37 {
+    height: 68px;
+    left: 58px;
+    position: absolute;
+    top: 477px;
+    width: 278px;
+  }
+  
+  .home-page-mobile .rectangle-4145 {
+    aspect-ratio: 1;
+    border: 0.46px solid;
+    border-color: var(--old-gold);
+    border-radius: 3.21px;
+    height: 5px;
+    left: 10px;
+    position: absolute;
+    top: 57px;
+    width: 5px;
+  }
+  
+  .home-page-mobile .rectangle-4146 {
+    aspect-ratio: 1;
+    border: 0.46px solid;
+    border-color: var(--old-gold);
+    border-radius: 3.21px;
+    height: 5px;
+    left: 10px;
+    position: absolute;
+    top: 42px;
+    width: 5px;
+  }
+  
+  .home-page-mobile .text-38 {
+    color: var(--old-gold);
+    font-family: "Gabriola-Regular", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    left: calc(50.00% - 139px);
+    line-height: 15px;
+    top: 0;
+    width: 274px;
+  }
+  
+  .home-page-mobile .text-39 {
+    color: var(--old-gold);
+    font-family: "Gabriola-Regular", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    left: calc(50.00% - 114px);
+    line-height: 15px;
+    top: 38px;
+    width: 33px;
+  }
+  
+  .home-page-mobile .group-36 {
+    height: 100px;
+    left: 58px;
+    position: absolute;
+    top: 360px;
+    width: 297px;
+  }
+  
+  .home-page-mobile .rectangle-4139 {
+    aspect-ratio: 1;
+    border: 0.46px solid;
+    border-color: var(--old-gold);
+    border-radius: 3.21px;
+    height: 5px;
+    left: 10px;
+    position: absolute;
+    top: 34px;
+    width: 5px;
+  }
+  
+  .home-page-mobile .rectangle-4141 {
+    aspect-ratio: 1;
+    border: 0.46px solid;
+    border-color: var(--old-gold);
+    border-radius: 3.21px;
+    height: 5px;
+    left: 10px;
+    position: absolute;
+    top: 65px;
+    width: 5px;
+  }
+  
+  .home-page-mobile .rectangle-4143 {
+    aspect-ratio: 1;
+    border: 0.46px solid;
+    border-color: var(--old-gold);
+    border-radius: 3.21px;
+    height: 5px;
+    left: 10px;
+    position: absolute;
+    top: 95px;
+    width: 5px;
+  }
+  
+  .home-page-mobile .rectangle-4140 {
+    aspect-ratio: 1;
+    border: 0.46px solid;
+    border-color: var(--old-gold);
+    border-radius: 3.21px;
+    height: 5px;
+    left: 10px;
+    position: absolute;
+    top: 49px;
+    width: 5px;
+  }
+  
+  .home-page-mobile .rectangle-4142 {
+    aspect-ratio: 1;
+    border: 0.46px solid;
+    border-color: var(--old-gold);
+    border-radius: 3.21px;
+    height: 5px;
+    left: 10px;
+    position: absolute;
+    top: 80px;
+    width: 5px;
+  }
+  
+  .home-page-mobile .text-40 {
+    color: var(--old-gold);
+    font-family: "Gabriola-Regular", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    left: calc(50.00% - 148px);
+    line-height: normal;
+    top: 0;
+    white-space: nowrap;
+    width: 293px;
+  }
+  
+  .home-page-mobile .text-41 {
+    color: var(--old-gold);
+    font-family: "Gabriola-Regular", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    left: calc(50.00% - 128px);
+    line-height: 15px;
+    top: 31px;
+    width: 138px;
+  }
+  
+  .home-page-mobile .text-42 {
+    color: var(--old-gold);
+    font-family: "Gabriola-Regular", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    left: calc(50.00% - 165px);
+    line-height: 15px;
+    top: 551px;
+    width: 300px;
+    white-space: nowrap;
+  }
+  
+  .home-page-mobile .group-38 {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 18.3px;
+    height: 77px;
+    left: calc(50.00% - 151px);
+    position: absolute;
+    top: 577px;
+    width: 298px;
+  }
+  
+  .home-page-mobile .vector-5-1 {
+    height: 1px;
+    margin-left: 0;
+    margin-top: -0.4px;
+    width: 298.74px;
+    position: relative;
+    z-index: 5;
+  }
+  
+  .home-page-mobile .vector {
+    height: 1px;
+    margin-left: 0;
+    width: 298.74px;
+    position: relative;
+    z-index: 5;
+  }
+  
+  .home-page-mobile .group-32 {
+    height: 56px;
+    left: calc(50.00% - 112px);
+    position: absolute;
+    top: 645px;
+    width: 222px;
+  }
+  
+  .home-page-mobile .group-27 {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 99.10%;
+  }
+  
+  .home-page-mobile .vector-14 {
+    height: 76.09%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 50.41%;
+  }
+  
+  .home-page-mobile .vector-15 {
+    height: 76.09%;
+    left: 49.59%;
+    position: absolute;
+    top: 0;
+    width: 50.41%;
+  }
+  
+  .home-page-mobile .vector-16 {
+    height: 27.59%;
+    left: 2.24%;
+    position: absolute;
+    top: 72.41%;
+    width: 47.58%;
+  }
+  
+  .home-page-mobile .vector-17 {
+    height: 27.59%;
+    left: 50.09%;
+    position: absolute;
+    top: 71.93%;
+    width: 47.58%;
+  }
+  
+  .home-page-mobile .text-43 {
+    color: var(--old-gold);
+    font-family: "Literature-Decor", sans-serif;
+    font-size: 10.3px;
+    font-weight: 400;
+    left: calc(50.00% - 81px);
+    line-height: normal;
+    text-align: center;
+    top: 26px;
+    width: 160px;
+  }
+  
+  .home-page-mobile .group-20-1 {
+    height: 149px;
+    left: 10px;
+    position: absolute;
+    top: 254px;
+    width: 169px;
+  }
+  
+  .home-page-mobile .text-15 {
+    letter-spacing: 0;
+    position: absolute;
+  }
+  
+  /* ======= FIX fonts (mobile home only) ======= */
+  
+  .home-page-mobile .text-1-1,
+  .home-page-mobile .text-2 {
+    font-family: "Markiz de Sad script", serif;
+    font-size: 50px;
+  }
+  
+  /* "Дорогі наші рідні..." */
+  .home-page-mobile p.text-4.text-15 {
+    font-family: "Liberty TL-Regular", serif;
+    font-size: 26px;
+  }
+  
+  /* Дата */
+  .home-page-mobile .date {
+    font-family: "Calligraphia One-Regular", serif;
+    font-size: 55px;
+  }
+  
+  /* "Програма Дня" */
+  .home-page-mobile .text-7.text-15 {
+    font-family: "Literature-Decor", serif;
+    font-size: 18px;
+  }
+  
+  /* Ранок/Збори/Викуп/Фотосесія/Церемонія */
+  .home-page-mobile .literaturedecor-regular-normal-green-pea-14px {
+    font-family: "Literature-Decor", serif;
+    font-size: 14px;
+  }
+  
+  /* Время (11:30 и т.п. — блок @home_mobile.html 83-88) */
+  .home-page-mobile .text-8,
+  .home-page-mobile .text-9,
+  .home-page-mobile .text-10,
+  .home-page-mobile .text-11,
+  .home-page-mobile .text-12,
+  .home-page-mobile .text-13 {
+    font-family: "Calligraphia One", serif;
+    font-size: 29px;
+  }
+  
+  /* Локации (Готель/Замок/Ресторан) */
+  .home-page-mobile .libertytl-regular-normal-green-pea-14px {
+    font-family: "Liberty TL-Regular", serif;
+    font-size: 14px;
+  }
+  
+  /* "Подружка/Друг/Запрошуються..." */
+  .home-page-mobile .libertytl-regular-normal-old-gold-17px {
+    font-family: "Liberty TL-Regular", serif;
+    font-size: 17px;
+  }
+  
+  /* "Дорогі Гості!" */
+  .home-page-mobile .text-6.text-15 {
+    font-family: "Isadora Cyr", serif;
+    font-size: 31px;
+  }
+  
+  /* текстовые абзацы @home_mobile.html (38-42) */
+  .home-page-mobile .text-5 {
+    font-family: "Isadora Cyr", serif;
+    font-size: 15px;
+  }
+  
+  /* "Дорога Хрещена!" */
+  .home-page-mobile .text-31.text-15 {
+    font-family: "Gabriola-Regular", serif;
+    font-size: 29px;
+  }
+  
+  /* вопросы (17px) */
+  .home-page-mobile .gabriola-regular-normal-old-gold-17px {
+    font-family: "Gabriola-Regular", serif;
+    font-size: 17px;
+  }
+  
+  /* ответы Так/Ні (15px) */
+  .home-page-mobile .gabriola-regular-normal-old-gold-15px {
+    font-family: "Gabriola-Regular", serif;
+    font-size: 15px;
+  }
+  
+  /* "Підтвердити Присутність" */
+  .home-page-mobile .text-43.text-15 {
+    font-family: "Literature-Decor", serif;
+    font-size: 10.3px;
+  }
+
+  /* ======= АДАПТИВНОСТЬ ДЛЯ ЭКРАНОВ 375px И МЕНЬШЕ ======= */
+  @media screen and (max-width: 375px) {
+    /* Коэффициент масштабирования: 375/425 ≈ 0.882 */
+    /* Используем относительные единицы для адаптации */
+    
+    /* Рамка программы дня - корректировка масштаба для меньших экранов */
+    .home-page-mobile .group-49 {
+      transform: translateX(-50%) scaleX(1.05);
+    }
+    
+    /* Векторы рамки "Дорога Хрещена" - адаптация позиций справа */
+    .home-page-mobile .vector-11 {
+      left: calc(100% - 20px);
+    }
+    
+    .home-page-mobile .vector-13 {
+      left: calc(100% - 20px);
+    }
+    
+    /* Векторы рамки - адаптация вертикальных линий */
+    .home-page-mobile .vector-1-1 {
+      left: calc(50% + 50px);
+    }
+    
+    .home-page-mobile .vector-2-1 {
+      left: calc(50% + 78px);
+    }
+    
+    /* Горизонтальные линии рамки */
+    .home-page-mobile .vector-3-1 {
+      left: calc(50% - 50px);
+      width: calc(100vw - 100px);
+    }
+    
+    .home-page-mobile .vector-4-1 {
+      left: calc(50% - 50px);
+      width: calc(100vw - 100px);
+    }
+    
+    /* Поле для комментариев - адаптация ширины и центрирование */
+    .home-page-mobile .group-38 {
+      width: calc(100vw - 60px);
+      max-width: 298px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .home-page-mobile .vector-5-1,
+    .home-page-mobile .group-38 .vector {
+      width: 100%;
+      max-width: 298.74px;
+    }
+    
+    /* Текстовые элементы - адаптация отступов */
+    .home-page-mobile .text-42 {
+      width: calc(100vw - 60px);
+      max-width: 300px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    /* Кнопка подтверждения - адаптация */
+    .home-page-mobile .group-32 {
+      width: calc(100vw - 100px);
+      max-width: 222px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    /* Декоративные элементы - адаптация */
+    .home-page-mobile .adobe-stock_744484201 {
+      width: 100%;
+      left: 0;
+    }
+    
+    /* Текст с фиксированными calc() - адаптация пропорционально */
+    .home-page-mobile .text-1-1 {
+      left: calc(50% - 90px);
+    }
+    
+    .home-page-mobile .text-2 {
+      left: calc(50% - 55px);
+    }
+    
+    .home-page-mobile .text-3 {
+      left: calc(50% + 45px);
+    }
+    
+    /* Дата - адаптация отступа справа */
+    .home-page-mobile .date {
+      right: 20px;
+    }
+    
+    /* Текст приветствия - адаптация */
+    .home-page-mobile .text-4 {
+      width: calc(100vw - 40px);
+      max-width: 199px;
+      right: 20px;
+    }
+    
+    /* Вопросы и ответы - адаптация групп */
+    .home-page-mobile .group-33-5,
+    .home-page-mobile .group-34,
+    .home-page-mobile .group-35,
+    .home-page-mobile .group-36,
+    .home-page-mobile .group-37 {
+      width: calc(100vw - 40px);
+      max-width: 281px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  /* FIX: чтобы все интерактивные кружочки/прямоугольники на мобилке были кликабельны */
+.home-page-mobile [data-input-id]{
+  pointer-events: auto;
+  z-index: 9999;
+}
+
+/* FIX: кнопка "Підтвердити присутність" должна быть поверх декора и кликабельна */
+.home-page-mobile .group-32{
+  z-index: 9999;
+  pointer-events: auto;
+}
+
+.home-page-mobile .group-32 *{
+  pointer-events: auto;
+}

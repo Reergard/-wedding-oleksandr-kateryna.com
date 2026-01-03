@@ -32,7 +32,7 @@ class Command(BaseCommand):
 
         # Вопрос 3: Аллергии (SINGLE)
         q3, created = Question.objects.get_or_create(
-            text="Чи є у вас є харчові алергії або продукти, які вам не можна:",
+            text="Чи є у вас харчові алергії або продукти, які вам не можна:",
             defaults={'order': 3, 'kind': Question.Kind.SINGLE, 'is_active': True}
         )
         if created:
@@ -55,13 +55,23 @@ class Command(BaseCommand):
 
         # Вопрос 5: Трансфер (SINGLE)
         q5, created = Question.objects.get_or_create(
-            text="Чи потрібен вам трансфер до місця проведення або назад:",
+            text="Чи потрібна вам трансфер до місця проведення або назад:",
             defaults={'order': 5, 'kind': Question.Kind.SINGLE, 'is_active': True}
         )
         if created:
             Choice.objects.get_or_create(question=q5, text="Так", defaults={'order': 1})
             Choice.objects.get_or_create(question=q5, text="Ні", defaults={'order': 2})
             self.stdout.write(self.style.SUCCESS(f'Создан вопрос: {q5.text}'))
+
+        # Вопрос 6: Запрос "+1" (SINGLE)
+        q6, created = Question.objects.get_or_create(
+            text="Чи потрібно вам запрошення \"+1\"?",
+            defaults={'order': 6, 'kind': Question.Kind.SINGLE, 'is_active': True}
+        )
+        if created:
+            Choice.objects.get_or_create(question=q6, text="Так", defaults={'order': 1})
+            Choice.objects.get_or_create(question=q6, text="Ні", defaults={'order': 2})
+            self.stdout.write(self.style.SUCCESS(f'Создан вопрос: {q6.text}'))
 
         self.stdout.write(self.style.SUCCESS('Все вопросы созданы!'))
 

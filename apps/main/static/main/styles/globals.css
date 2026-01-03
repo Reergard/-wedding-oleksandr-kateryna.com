@@ -8,16 +8,18 @@
   --green-pea: #1d6235;
   --old-gold: #d4af37;
  
-  --font-size-l: 40px;
+  --font-size-l: 35.4px;
   --font-size-m: 25px;
-  --font-size-xl: 64px;
-  --font-size-xxl: 70px;
-  --font-size-xxxl: 100px;
-  --font-size-xxxxl: 150px;
+  --font-size-xl: 40px;
+  --font-size-xxl: 53.1px;
+  --font-size-xxxl: 64px;
+  --font-size-xxxxl: 70px;
+  --font-size-xxxxxl: 150px;
  
   --font-family-calligraphia_one-regular: "Calligraphia One-Regular", Helvetica;
-  --font-family-decor-regular: "Decor", Helvetica;
-  --font-family-isadora_cyr_-regular: "Isadora Cyr -Regular", Helvetica;
+  --font-family-decor-regular: "Decor-Regular", Helvetica;
+  --font-family-gabriola-regular: "Gabriola-Regular", Helvetica;
+  --font-family-isadora_cyr_-regular: "Isadora Cyr-Regular", Helvetica;
   --font-family-liberty_tl-regular: "Liberty TL-Regular", Helvetica;
   --font-family-literature_decor-regular: "Literature Decor-Regular", Helvetica;
   --font-family-markiz_de_sad_script-regular: "Markiz de Sad script-Regular", Helvetica;
@@ -47,6 +49,14 @@
 }
 
 @font-face {
+  font-family: "Decor-Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/decor.ttf") format("truetype");
+}
+
+@font-face {
   font-family: "Liberty TL-Regular";
   font-style: normal;
   font-weight: 400;
@@ -68,11 +78,33 @@
   src: url("../fonts/calligraphiaone.ttf") format("truetype");
 }
 
+/* Isadora Cyr - основной алиас */
+@font-face {
+  font-family: "Isadora Cyr";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url("../fonts/ofont.ru_Isadora%20Cyr%20.ttf") format("truetype"),
+    url("../fonts/Isadora%20Cyr.woff2") format("woff2");
+}
+
+/* Isadora Cyr-Regular - алиас для совместимости */
 @font-face {
   font-family: "Isadora Cyr-Regular";
   font-style: normal;
   font-weight: 400;
-  src: url("../fonts/ofont.ru_Isadora Cyr .ttf") format("truetype");
+  font-display: swap;
+  src:
+    url("../fonts/ofont.ru_Isadora%20Cyr%20.ttf") format("truetype"),
+    url("../fonts/Isadora%20Cyr.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Gabriola-Regular";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/gabriola.ttf") format("truetype");
 }
 
 
@@ -148,11 +180,7 @@ svg,
 img *, 
 svg *,
 [data-svg-wrapper],
-[data-svg-wrapper] *,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 img,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 svg,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 img *,
-.u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 svg * {
+[data-svg-wrapper] * {
   display: block !important;
   border: 0 !important;
   outline: none !important;
@@ -167,11 +195,7 @@ svg *,
 /* Дополнительные правила для iPhone Safari и Chrome - убираем рамки/тени при любых изменениях DOM */
 @supports (-webkit-touch-callout: none) {
   img, svg, img *, svg *,
-  [data-svg-wrapper], [data-svg-wrapper] *,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 img,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 svg,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 img *,
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 svg * {
+  [data-svg-wrapper], [data-svg-wrapper] * {
     border: 0 !important;
     outline: none !important;
     box-shadow: none !important;
@@ -188,12 +212,6 @@ svg *,
     overscroll-behavior: none !important; /* Для Chrome на iOS */
     -webkit-overflow-scrolling: touch;
   }
-  
-  .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 {
-    overscroll-behavior-y: none !important;
-    overscroll-behavior-x: none !important;
-    overscroll-behavior: none !important; /* Для Chrome на iOS */
-  }
 }
 
 /* Дополнительные правила для Chrome на iOS (определяем по user-agent через CSS, но лучше через JS) */
@@ -204,24 +222,10 @@ svg *,
       overscroll-behavior-y: none !important;
       overscroll-behavior-x: none !important;
     }
-    
-    .u1079u1072u1087u1088u1086u1096u1077u1085u1085u1103 {
-      overscroll-behavior: none !important;
-      overscroll-behavior-y: none !important;
-      overscroll-behavior-x: none !important;
-    }
   }
 }
 
-.date,
-.date-text {
-  font-family: "Calligraphia One-Regular", Helvetica !important;
-  font-size: 180px !important;
-  font-weight: 500 !important;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
+/* Desktop only - стили удалены */
 
 /* Тестовый стиль для проверки decor.ttf */
 .test-decor {
@@ -256,7 +260,23 @@ svg *,
 .calligraphiaone-regular-normal-old-gold-64px {
   color: var(--old-gold);
   font-family: var(--font-family-calligraphia_one-regular);
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-xxxl);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.gabriola-regular-normal-old-gold-53-1px {
+  color: var(--old-gold);
+  font-family: var(--font-family-gabriola-regular);
+  font-size: var(--font-size-xxl);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.gabriola-regular-normal-old-gold-35-4px {
+  color: var(--old-gold);
+  font-family: var(--font-family-gabriola-regular);
+  font-size: var(--font-size-l);
   font-style: normal;
   font-weight: 400;
 }

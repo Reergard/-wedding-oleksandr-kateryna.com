@@ -1,0 +1,69 @@
+:root { 
+    --black: #000000;
+    --green-pea: #1d6235;
+    --old-gold: #d4af37;
+   
+    --font-size-l: 17px;
+    --font-size-m: 15px;
+    --font-size-s: 14px;
+    --font-size-xl: 18px;
+    --font-size-xxl: 18.1px;
+    --font-size-xxxl: 31px;
+    --font-size-xxxxl: 38.8px;
+   
+    --font-family-gabriola-regular: "Gabriola-Regular", Helvetica;
+    --font-family-isadora_cyr_-regular: "Isadora Cyr", Helvetica;
+    --font-family-liberty_tl-regular: "Liberty TL-Regular", Helvetica;
+    --font-family-literature_decor-regular: "Literature-Decor", Helvetica;
+    --font-family-markiz_de_sad_script-regular: "Markiz de Sad script", Helvetica;
+    --font-family-times_new_roman-regular: "Times New Roman-Regular", Helvetica;
+    --font-family-calligraphia_one-regular: "Calligraphia One", Helvetica;
+  }
+  .literaturedecor-regular-normal-green-pea-14px {
+    color: var(--green-pea);
+    font-family: "Literature-Decor", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+  }
+  
+  .timesnewroman-regular-normal-old-gold-18px {
+    color: var(--old-gold);
+    font-family: var(--font-family-times_new_roman-regular);
+    font-size: var(--font-size-xl);
+    font-style: normal;
+    font-weight: 400;
+  }
+  
+  .libertytl-regular-normal-old-gold-17px {
+    color: var(--old-gold);
+    font-family: var(--font-family-liberty_tl-regular);
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+  }
+  
+  .libertytl-regular-normal-green-pea-14px {
+    color: var(--green-pea);
+    font-family: var(--font-family-liberty_tl-regular);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+  }
+  
+  .gabriola-regular-normal-old-gold-17px {
+    color: var(--old-gold);
+    font-family: "Gabriola-Regular", sans-serif;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+  }
+  
+  .gabriola-regular-normal-old-gold-15px {
+    color: var(--old-gold);
+    font-family: "Gabriola-Regular", sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+  }
+  
