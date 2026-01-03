@@ -1700,9 +1700,3 @@
 .home-page-mobile .group-32 *{
   pointer-events: auto;
 }
-/* iOS (Safari/Chrome/Telegram WebView) */
-@supports (-webkit-touch-callout: none) {
-  .home-page-mobile {
-    min-height: 0;     /* убираем искусственную длину */
-  }
-}
