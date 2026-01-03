@@ -1700,3 +1700,26 @@
 .home-page-mobile .group-32 *{
   pointer-events: auto;
 }
+
+
+
+
+
+/* Внутри анкеты: весь декор не перехватывает тапы */
+.home-page-mobile .group-60 img,
+.home-page-mobile .group-60 svg,
+.home-page-mobile .group-60 [class^="vector"],
+.home-page-mobile .group-60 [class*=" vector-"],
+.home-page-mobile .group-60 [class^="ellipse"],
+.home-page-mobile .group-60 [class*=" ellipse-"],
+.home-page-mobile .group-60 [class^="rectangle-"],
+.home-page-mobile .group-60 [class*=" rectangle-"]{
+  pointer-events: none;
+}
+
+/* Но сами “кнопки-rectangles” должны кликаться */
+.home-page-mobile .group-60 [data-input-id],
+.home-page-mobile .group-60 .group-32,
+.home-page-mobile .group-60 .group-32 *{
+  pointer-events: auto;
+}

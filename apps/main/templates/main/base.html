@@ -210,65 +210,69 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Обработка кликов на rectangles
     document.querySelectorAll('[class*="rectangle-"]').forEach(function(rectangle) {
-        const inputId = rectangle.getAttribute('data-input-id');
-        if (!inputId) return;
+        try {
+            const inputId = rectangle.getAttribute('data-input-id');
+            if (!inputId) return;
 
-        const input = document.getElementById(inputId);
-        if (!input) return;
+            const input = document.getElementById(inputId);
+            if (!input) return;
 
-        // Делаем rectangle кликабельным
-        rectangle.style.cursor = 'pointer';
+            // Делаем rectangle кликабельным
+            rectangle.style.cursor = 'pointer';
 
-        // Обработчик клика
-        rectangle.addEventListener('click', function() {
-            if (input.type === 'radio') {
-                // Для radio - снимаем выбор с других в группе
-                const groupName = input.name;
-                document.querySelectorAll(`input[name="${groupName}"]`).forEach(function(radio) {
-                    radio.checked = false;
-                    const rectId = radio.id;
-                    const rectEl = document.querySelector(`[data-input-id="${rectId}"]`);
-                    if (rectEl) hideStar(rectEl);
-                });
-                // Выбираем текущий
-                input.checked = true;
-                showStar(rectangle);
-                
-                // Если это вопрос о "+1", показываем/скрываем дополнительные варианты
-                if (input.name === 'companion') {
-                    toggleCompanionDetails();
-                }
-            } else if (input.type === 'checkbox') {
-                // Для checkbox - множественный выбор разрешен для food и companion_type
-                // Для остальных - работаем как radio (только один выбор в группе)
-                const groupName = input.name;
-                
-                if (groupName === 'food' || groupName === 'companion_type' || groupName === 'drinks') {
-                    // Множественный выбор: toggle текущего checkbox
-                    input.checked = !input.checked;
-                    if (input.checked) {
-                        showStar(rectangle);
-                    } else {
-                        hideStar(rectangle);
-                    }
-                } else {
-                    // Одиночный выбор: снимаем выбор со всех checkbox в группе
-                    document.querySelectorAll(`input[name="${groupName}"]`).forEach(function(checkbox) {
-                        checkbox.checked = false;
-                        const rectId = checkbox.id;
+            // Обработчик клика
+            rectangle.addEventListener('click', function() {
+                if (input.type === 'radio') {
+                    // Для radio - снимаем выбор с других в группе
+                    const groupName = input.name;
+                    document.querySelectorAll(`input[name="${groupName}"]`).forEach(function(radio) {
+                        radio.checked = false;
+                        const rectId = radio.id;
                         const rectEl = document.querySelector(`[data-input-id="${rectId}"]`);
                         if (rectEl) hideStar(rectEl);
                     });
                     // Выбираем текущий
                     input.checked = true;
                     showStar(rectangle);
+                    
+                    // Если это вопрос о "+1", показываем/скрываем дополнительные варианты
+                    if (input.name === 'companion') {
+                        toggleCompanionDetails();
+                    }
+                } else if (input.type === 'checkbox') {
+                    // Для checkbox - множественный выбор разрешен для food и companion_type
+                    // Для остальных - работаем как radio (только один выбор в группе)
+                    const groupName = input.name;
+                    
+                    if (groupName === 'food' || groupName === 'companion_type' || groupName === 'drinks') {
+                        // Множественный выбор: toggle текущего checkbox
+                        input.checked = !input.checked;
+                        if (input.checked) {
+                            showStar(rectangle);
+                        } else {
+                            hideStar(rectangle);
+                        }
+                    } else {
+                        // Одиночный выбор: снимаем выбор со всех checkbox в группе
+                        document.querySelectorAll(`input[name="${groupName}"]`).forEach(function(checkbox) {
+                            checkbox.checked = false;
+                            const rectId = checkbox.id;
+                            const rectEl = document.querySelector(`[data-input-id="${rectId}"]`);
+                            if (rectEl) hideStar(rectEl);
+                        });
+                        // Выбираем текущий
+                        input.checked = true;
+                        showStar(rectangle);
+                    }
                 }
-            }
-        });
+            });
 
-        // Инициализация: показываем звезду если input уже выбран
-        if (input.checked) {
-            showStar(rectangle);
+            // Инициализация: показываем звезду если input уже выбран
+            if (input.checked) {
+                showStar(rectangle);
+            }
+        } catch (e) {
+            console.warn('rectangle init failed', rectangle, e);
         }
     });
 
