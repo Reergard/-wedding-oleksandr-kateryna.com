@@ -1,15 +1,20 @@
 /* screen - home-page-mobile */
 
 .home-page-mobile {
-    background-color: #ffffff;
-    height: 1921px;
-    min-width: 360px;
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    /* Дельта-сдвиг для симметрии рамки (замени 0px на вычисленное значение D из DevTools) */
-    --frame-delta: 0px;
-  }
+  background-color: #ffffff;
+
+  min-height: 1921px;   /* сохраняет визуал */
+  height: auto;
+
+  overflow-x: hidden;
+  overflow-y: auto;     /* ВАЖНО */
+
+  position: relative;
+  width: 100%;
+
+  --frame-delta: 0px;
+}
+
   
   .home-page-mobile .golden-fabric-cloth {
     aspect-ratio: 1.79;
