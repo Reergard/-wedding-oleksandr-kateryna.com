@@ -1731,3 +1731,14 @@
      pointer-events: auto !important;
    }
    
+
+   /* FIX: длинное имя в .text-31 не должно переноситься на 2 строку */
+.home-page-mobile .text-31{
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100vw - 40px);   /* расширяем только этот блок */
+  max-width: 360px;            /* чтобы не уезжать в рамку на больших экранах */
+  white-space: nowrap;         /* запрет переноса */
+  overflow: hidden;            /* чтобы не ломало верстку */
+  text-overflow: ellipsis;     /* если имя совсем длинное — будет ... */
+}
