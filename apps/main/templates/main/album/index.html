@@ -1,0 +1,57 @@
+{% extends 'main/album/base_album.html' %}
+{% load static %}
+
+{% block content %}
+<section class="album-intro">
+  <p class="album-eyebrow">Наш весільний фотоальбом</p>
+  <h1 class="album-title">Найщасливіший день у кадрах</h1>
+  <span class="album-divider" aria-hidden="true"></span>
+  <p class="album-lead">Оберіть розділ, щоб пережити разом з нами кожну мить цього дня</p>
+</section>
+
+<section class="album-grid" aria-label="Розділи альбому">
+  {% for group in groups %}
+  <a class="album-card" href="{% url 'album_group' group.slug %}" style="--i: {{ forloop.counter0 }}">
+    <div class="album-card__frame">
+      <span class="album-card__corner album-card__corner--tl" aria-hidden="true"></span>
+      <span class="album-card__corner album-card__corner--tr" aria-hidden="true"></span>
+      <span class="album-card__corner album-card__corner--bl" aria-hidden="true"></span>
+      <span class="album-card__corner album-card__corner--br" aria-hidden="true"></span>
+
+      <div class="album-card__media">
+        <div class="album-card__placeholder">
+          <span class="album-icon album-card__placeholder-icon" style="--icon: url('{% static group.icon %}')" aria-hidden="true"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="album-card__caption">
+      <h2 class="album-card__title">{{ group.title }}</h2>
+      <p class="album-card__subtitle">{{ group.subtitle }}</p>
+      <span class="album-card__location">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z" /><circle cx="12" cy="10" r="2.4" /></svg>
+        {{ group.location }}
+      </span>
+    </div>
+  </a>
+  {% endfor %}
+</section>
+
+{% if album_download %}
+<section class="album-download-all">
+  <span class="album-divider" aria-hidden="true"></span>
+  <p class="album-download-all__title">Увесь альбом одним архівом</p>
+  <p class="album-download-all__text">Усі {{ total_photos }} фото в оригінальній якості, розкладені по розділах</p>
+  <a class="album-download album-download--lg" href="{{ album_download.url }}" download="{{ album_download.filename }}" data-download>
+    <span class="album-download__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M5 21h14" /></svg>
+    </span>
+    <span class="album-download__text">
+      <span class="album-download__label">Завантажити всі фото</span>
+      <span class="album-download__meta">{{ total_photos }} фото · {{ album_download.size_label }} · ZIP</span>
+    </span>
+  </a>
+  <p class="album-download-all__hint">Архів великий — радимо завантажувати через Wi-Fi</p>
+</section>
+{% endif %}
+{% endblock %}

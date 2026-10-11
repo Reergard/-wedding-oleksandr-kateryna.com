@@ -1,0 +1,51 @@
+{% load static %}<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#fff8eb" />
+  <meta name="color-scheme" content="light only" />
+  <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+  <title>{% block title %}Весільний альбом — Олександр & Катерина{% endblock %}</title>
+
+  <link rel="icon" href="{% static 'main/img/favicon/favicon.ico' %}" sizes="any">
+  <link rel="icon" type="image/png" href="{% static 'main/img/favicon/favicon-32x32.png' %}" sizes="32x32">
+  <link rel="icon" type="image/png" href="{% static 'main/img/favicon/favicon-16x16.png' %}" sizes="16x16">
+  <link rel="apple-touch-icon" href="{% static 'main/img/favicon/favicon-180x180.png' %}" sizes="180x180">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{% block og_title %}Весільний альбом Олександра & Катерини{% endblock %}">
+  <meta property="og:image" content="https://wedding-oleksandr-kateryna.com{% static 'main/img/favicon/preview.jpg' %}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preload" href="{% static 'main/fonts/Isadora Cyr.woff2' %}" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="{% static 'main/styles/globals.css' %}" />
+  <link rel="stylesheet" href="{% static 'main/styles/album.css' %}" />
+</head>
+<body class="album-body">
+  <div class="album-page">
+    <header class="album-hero">
+      <img class="album-hero__silhouette album-hero__silhouette--left" src="{% static 'main/img/mask-group@2x.png' %}" alt="" width="292" height="272" decoding="async" />
+      <img class="album-hero__silhouette album-hero__silhouette--right" src="{% static 'main/img/mask-group-3@2x.png' %}" alt="" width="292" height="272" decoding="async" />
+      <a class="album-hero__logo-link" href="{% url 'index' %}" aria-label="На головну сторінку">
+        <img class="album-hero__logo" src="{% static 'main/img/vector.svg' %}" alt="Олександр та Катерина" width="281" height="158" decoding="async" />
+      </a>
+    </header>
+
+    <main class="album-main">
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="album-footer">
+      <span class="album-divider" aria-hidden="true"></span>
+      <p class="album-footer__names">Олександр &amp; Катерина</p>
+      <p class="album-footer__date">06 · 06 · 2026</p>
+    </footer>
+  </div>
+
+  <script src="{% static 'main/scripts/album.js' %}" defer></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

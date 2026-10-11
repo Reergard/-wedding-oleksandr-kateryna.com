@@ -8,7 +8,7 @@ from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_protect
 
 from .models import Invitation, Question, Choice, Answer
-from apps.main.utils import is_mobile_device, ua_genitive_phrase
+from apps.main.utils import ua_genitive_phrase
 
 
 logger = logging.getLogger(__name__)
@@ -22,15 +22,9 @@ def invitation_page(request, token: str):
         invitation.opened_at = timezone.now()
         invitation.save(update_fields=["opened_at"])
 
-    # Определяем устройство
-    user_agent = request.META.get("HTTP_USER_AGENT", "")
-    is_mobile = is_mobile_device(user_agent)
-
-    template = "main/home_mobile.html" if is_mobile else "main/home_pc.html"
-
     response = render(
         request,
-        template,
+        "main/home_pc.html",
         {
             "invitation": invitation,
             "guest": invitation.guest,
@@ -42,7 +36,6 @@ def invitation_page(request, token: str):
     )
 
     # Настройка кэширования
-    response["Vary"] = "User-Agent"
     response["Cache-Control"] = "no-cache, no-store, must-revalidate"
     response["Pragma"] = "no-cache"
     response["Expires"] = "0"

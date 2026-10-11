@@ -1,298 +1,87 @@
-@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
-/* The following line is used to measure usage of this code. You can remove it if you want. */
-@import url("https://px.animaapp.com/673f6a9b1fedf1c6d1915fec.673f6a9c1fedf1c6d1915fef.OivLAlY.hcp.png");
+/* Спільна основа сторінок: шрифти, скидання стилів, поведінка прокрутки */
 
-/* CSS Variables */
-:root { 
-  --black: #000000;
-  --green-pea: #1d6235;
-  --old-gold: #d4af37;
- 
-  --font-size-l: 35.4px;
-  --font-size-m: 25px;
-  --font-size-xl: 40px;
-  --font-size-xxl: 53.1px;
-  --font-size-xxxl: 64px;
-  --font-size-xxxxl: 70px;
-  --font-size-xxxxxl: 150px;
- 
-  --font-family-calligraphia_one-regular: "Calligraphia One-Regular", Helvetica;
-  --font-family-decor-regular: "Decor-Regular", Helvetica;
-  --font-family-gabriola-regular: "Gabriola-Regular", Helvetica;
-  --font-family-isadora_cyr_-regular: "Isadora Cyr-Regular", Helvetica;
-  --font-family-liberty_tl-regular: "Liberty TL-Regular", Helvetica;
-  --font-family-literature_decor-regular: "Literature Decor-Regular", Helvetica;
-  --font-family-markiz_de_sad_script-regular: "Markiz de Sad script-Regular", Helvetica;
-  --font-family-times_new_roman-regular: "Times New Roman-Regular", Helvetica;
+:root {
+  --font-family-isadora_cyr_-regular: "Isadora Cyr-Regular", Georgia, serif;
+  --font-family-literature_decor-regular: "Literature Decor-Regular", Georgia, serif;
+  /* лише світла тема: Chrome на Android не застосовує примусовий «темний режим» */
+  color-scheme: light only;
 }
 
-@font-face {
-  font-family: "Times New Roman-Regular";
-  font-style: normal;
-  font-weight: 400;
-  src: url("../fonts/timesnewromanpsmt.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Markiz de Sad Script-Regular";
-  font-style: normal;
-  font-weight: 400;
-  src: url("../fonts/markizdesadscript.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Decor";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("../fonts/decor.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Decor-Regular";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("../fonts/decor.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Liberty TL-Regular";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("../fonts/ofont.ru_Liberty TL.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Literature Decor-Regular";
-  font-style: normal;
-  font-weight: 400;
-  src: url("../fonts/Literature-Decor.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Calligraphia One-Regular";
-  font-style: normal;
-  font-weight: 400;
-  src: url("../fonts/calligraphiaone.ttf") format("truetype");
-}
-
-/* Isadora Cyr - основной алиас */
-@font-face {
-  font-family: "Isadora Cyr";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src:
-    url("../fonts/ofont.ru_Isadora%20Cyr%20.ttf") format("truetype"),
-    url("../fonts/Isadora%20Cyr.woff2") format("woff2");
-}
-
-/* Isadora Cyr-Regular - алиас для совместимости */
+/* WOFF2 першим: браузер бере перший підтримуваний формат (42 КБ замість 223 КБ TTF) */
 @font-face {
   font-family: "Isadora Cyr-Regular";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
   src:
-    url("../fonts/ofont.ru_Isadora%20Cyr%20.ttf") format("truetype"),
-    url("../fonts/Isadora%20Cyr.woff2") format("woff2");
+    url("../fonts/Isadora%20Cyr.woff2") format("woff2"),
+    url("../fonts/ofont.ru_Isadora%20Cyr%20.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "Gabriola-Regular";
+  font-family: "Literature Decor-Regular";
   font-style: normal;
   font-weight: 400;
-  src: url("../fonts/gabriola.ttf") format("truetype");
+  font-display: swap;
+  src: url("../fonts/Literature-Decor.ttf") format("truetype");
 }
 
+/* —— Скидання стилів (замість зовнішнього meyer-reset з CDN) —— */
 
-.screen a {
-  display: contents;
-  text-decoration: none;
-}
-
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, img, figure, figcaption,
+section, header, footer, main, nav, ul, ol, li, button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+button {
+  color: inherit;
+  background: none;
+  cursor: pointer;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* —— Документ —— */
+
 html {
-  width: 100%;
-  max-width: 100%;
+  /* iOS у горизонтальній орієнтації та Android не збільшують текст самовільно */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior-y: none; /* Предотвращает белый экран при скролле ниже страницы на iPhone */
-  overscroll-behavior-x: none;
-  /* Дополнительные правила для предотвращения bounce на iPhone */
-  position: relative;
-  height: auto;
-  min-height: 100%;
-}
-
-body {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-  overflow-y: auto; /* Скролл на body для мобильных устройств */
-  -webkit-overflow-scrolling: touch; /* Плавный скролл на iOS */
-  overscroll-behavior-y: none; /* Предотвращает белый экран при скролле ниже страницы на iPhone */
-  overscroll-behavior-x: none;
-  /* Дополнительные правила для предотвращения bounce на iPhone */
-  position: relative;
-  height: auto;
-  min-height: 100%;
-}
-
-/* Блокировка body при открытии модалки (iOS-friendly) */
-body.modal-open {
-  position: fixed;
-  width: 100%;
-  overflow: hidden;
-  overscroll-behavior-y: none; /* Предотвращает белый экран при скролле */
-}
-
-/* Убираем рамки/тени у всех элементов при открытии/закрытии модалки */
-body.modal-open img,
-body.modal-open svg,
-body.modal-open img *,
-body.modal-open svg *,
-body:not(.modal-open) img,
-body:not(.modal-open) svg,
-body:not(.modal-open) img *,
-body:not(.modal-open) svg * {
-  border: 0 !important;
-  outline: none !important;
-  box-shadow: none !important;
-  -webkit-box-shadow: none !important;
-  -moz-box-shadow: none !important;
-}
-
-/* Исправление для Safari iOS - убираем рамки/тени вокруг SVG и картинок */
-* {
+  /* без «білого екрану» при прокрутці за межі сторінки на iPhone */
+  overscroll-behavior-y: none;
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Убираем все возможные рамки, тени и обводки у изображений и SVG на всех элементах */
-img, 
-svg, 
-img *, 
-svg *,
-[data-svg-wrapper],
-[data-svg-wrapper] * {
-  display: block !important;
-  border: 0 !important;
-  outline: none !important;
-  box-shadow: none !important;
-  -webkit-box-shadow: none !important;
-  -moz-box-shadow: none !important;
-  -webkit-appearance: none !important;
-  -moz-appearance: none !important;
-  appearance: none !important;
+body {
+  min-height: 100%;
+  line-height: 1;
+  background: #fff;
+  /* Прокручується лише html (viewport). Якщо body теж стає скрол-контейнером з
+     overscroll-behavior: none, жест тачпада «залипає» на body і сторінка не скролиться */
+  overflow-x: clip;
 }
 
-/* Дополнительные правила для iPhone Safari и Chrome - убираем рамки/тени при любых изменениях DOM */
-@supports (-webkit-touch-callout: none) {
-  img, svg, img *, svg *,
-  [data-svg-wrapper], [data-svg-wrapper] * {
-    border: 0 !important;
-    outline: none !important;
-    box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-    -webkit-tap-highlight-color: transparent !important;
-    -webkit-user-select: none !important;
-    user-select: none !important;
-  }
-  
-  /* Предотвращаем белый экран при скролле на iPhone (Safari и Chrome) */
-  html, body {
-    overscroll-behavior-y: none !important;
-    overscroll-behavior-x: none !important;
-    overscroll-behavior: none !important; /* Для Chrome на iOS */
-    -webkit-overflow-scrolling: touch;
-  }
-}
-
-/* Дополнительные правила для Chrome на iOS (определяем по user-agent через CSS, но лучше через JS) */
-@media screen and (-webkit-min-device-pixel-ratio: 0) {
-  @supports (-webkit-touch-callout: none) {
-    html, body {
-      overscroll-behavior: none !important;
-      overscroll-behavior-y: none !important;
-      overscroll-behavior-x: none !important;
-    }
-  }
-}
-
-/* Desktop only - стили удалены */
-
-/* Тестовый стиль для проверки decor.ttf */
-.test-decor {
-  font-family: "Decor", sans-serif !important;
-}
-
-/* Utility classes from styleguide */
-.literaturedecor-regular-normal-green-pea-25px {
-  color: var(--green-pea);
-  font-family: var(--font-family-literature_decor-regular);
-  font-size: var(--font-size-m);
-  font-style: normal;
-  font-weight: 400;
-}
-
-.libertytl-regular-normal-green-pea-25px {
-  color: var(--green-pea);
-  font-family: var(--font-family-liberty_tl-regular);
-  font-size: var(--font-size-m);
-  font-style: normal;
-  font-weight: 400;
-}
-
-.libertytl-regular-normal-old-gold-25px {
-  color: var(--old-gold);
-  font-family: var(--font-family-liberty_tl-regular);
-  font-size: var(--font-size-m);
-  font-style: normal;
-  font-weight: 400;
-}
-
-.calligraphiaone-regular-normal-old-gold-64px {
-  color: var(--old-gold);
-  font-family: var(--font-family-calligraphia_one-regular);
-  font-size: var(--font-size-xxxl);
-  font-style: normal;
-  font-weight: 400;
-}
-
-.gabriola-regular-normal-old-gold-53-1px {
-  color: var(--old-gold);
-  font-family: var(--font-family-gabriola-regular);
-  font-size: var(--font-size-xxl);
-  font-style: normal;
-  font-weight: 400;
-}
-
-.gabriola-regular-normal-old-gold-35-4px {
-  color: var(--old-gold);
-  font-family: var(--font-family-gabriola-regular);
-  font-size: var(--font-size-l);
-  font-style: normal;
-  font-weight: 400;
-}
-
-/* Мобильная версия - увеличение шрифта в 2 раза для utility классов */
-/* Используем более широкий порог, так как viewport установлен на 1390px */
-@media (max-width: 1390px) and (orientation: portrait), 
-       (max-width: 768px),
-       (max-device-width: 768px) {
-  .calligraphiaone-regular-normal-old-gold-64px {
-    font-size: calc(var(--font-size-xl) * 2) !important;
-  }
-  
-  .literaturedecor-regular-normal-green-pea-25px,
-  .libertytl-regular-normal-old-gold-25px,
-  .libertytl-regular-normal-green-pea-25px {
-    font-size: calc(var(--font-size-m) * 2) !important;
-  }
+a,
+button {
+  /* без затримки й масштабування від подвійного тапу на телефонах */
+  touch-action: manipulation;
 }

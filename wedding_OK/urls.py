@@ -4,12 +4,15 @@ from django.conf.urls.static import static
 from django.conf import settings
 from rest_framework import routers
 from apps.main.api import views as main_views
+from apps.main import views as album_views
 
 router = routers.DefaultRouter()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', main_views.index, name='index'),
+    path('album/', album_views.album_index, name='album'),
+    path('album/<slug:slug>/', album_views.album_group, name='album_group'),
     path('api/main/', include('apps.main.api.urls')),
     path('api/gallery/', include('apps.gallery.api.urls')),
     path('api/invitations/', include('apps.invitations.api.urls')),

@@ -1,0 +1,95 @@
+{% extends 'main/album/base_album.html' %}
+{% load static %}
+
+{% block title %}{{ group.title }} — Весільний альбом{% endblock %}
+{% block og_title %}{{ group.title }} — весільний альбом Олександра & Катерини{% endblock %}
+
+{% block content %}
+<nav class="album-back-wrap" aria-label="Навігація">
+  <a class="album-btn album-btn--ghost" href="{% url 'album' %}">
+    <span aria-hidden="true">←</span> До альбому
+  </a>
+</nav>
+
+<section class="album-intro album-intro--group">
+  <span class="album-icon album-intro__icon" style="--icon: url('{% static group.icon %}')" aria-hidden="true"></span>
+  <h1 class="album-title">{{ group.title }}</h1>
+  <span class="album-divider" aria-hidden="true"></span>
+  <p class="album-lead">{{ group.subtitle }}</p>
+  <p class="album-card__location album-intro__location">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z" /><circle cx="12" cy="10" r="2.4" /></svg>
+    {{ group.location }}
+  </p>
+  {% if group.photos %}<p class="album-meta">{{ group.photos|length }} фото</p>{% endif %}
+</section>
+
+{% if group.photos %}
+<section class="album-photos" aria-label="Фотографії: {{ group.title }}" data-lightbox-gallery>
+  {% for photo in group.photos %}
+  <a class="album-photo" href="{{ photo.large }}" data-lightbox-item data-original="{{ photo.original }}" data-name="{{ photo.original_name }}" style="--i: {{ forloop.counter0 }}; --ar: {{ photo.ratio }}">
+    <img src="{{ photo.thumb }}" width="{{ photo.width }}" height="{{ photo.height }}" alt="{{ group.title }} — фото {{ forloop.counter }}" loading="lazy" decoding="async" />
+  </a>
+  {% endfor %}
+</section>
+{% else %}
+<section class="album-empty">
+  <div class="album-empty__grid" aria-hidden="true">
+    {% for _ in "123456" %}<span class="album-empty__tile" style="--i: {{ forloop.counter0 }}"></span>{% endfor %}
+  </div>
+  <div class="album-empty__card">
+    <span class="album-icon album-empty__icon" style="--icon: url('{% static group.icon %}')" aria-hidden="true"></span>
+    <p class="album-empty__title">Фотографії вже в дорозі</p>
+    <p class="album-empty__text">Ми ретельно відбираємо найкращі кадри — зовсім скоро вони з'являться тут</p>
+  </div>
+</section>
+{% endif %}
+
+<nav class="album-pager" aria-label="Інші розділи">
+  <a class="album-pager__link album-pager__link--prev" href="{% url 'album_group' prev_group.slug %}">
+    <span class="album-pager__dir"><span aria-hidden="true">←</span> Попередній<span class="album-pager__word"> розділ</span></span>
+    <span class="album-pager__name">{{ prev_group.title }}</span>
+  </a>
+  {% if group.download %}
+  <div class="album-pager__download">
+    <a class="album-download" href="{{ group.download.url }}" download="{{ group.download.filename }}" data-download>
+      <span class="album-download__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M5 21h14" /></svg>
+      </span>
+      <span class="album-download__text">
+        <span class="album-download__label">Завантажити розділ</span>
+        <span class="album-download__meta">{{ group.photos|length }} фото · {{ group.download.size_label }} · ZIP</span>
+      </span>
+    </a>
+  </div>
+  {% endif %}
+  <a class="album-pager__link album-pager__link--next" href="{% url 'album_group' next_group.slug %}">
+    <span class="album-pager__dir">Наступний<span class="album-pager__word"> розділ</span> <span aria-hidden="true">→</span></span>
+    <span class="album-pager__name">{{ next_group.title }}</span>
+  </a>
+</nav>
+
+{# Лайтбокс для перегляду фото на весь екран #}
+<div class="lightbox" data-lightbox hidden role="dialog" aria-modal="true" aria-label="Перегляд фото">
+  <div class="lightbox__backdrop" data-lightbox-close></div>
+  <figure class="lightbox__stage">
+    <img class="lightbox__img" alt="" />
+  </figure>
+  <div class="lightbox__bar">
+    <span class="lightbox__counter" data-lightbox-counter></span>
+    <div class="lightbox__actions">
+      <a class="lightbox__btn" data-lightbox-download download aria-label="Завантажити оригінал фото" title="Завантажити в повній якості">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M5 21h14" /></svg>
+      </a>
+      <button class="lightbox__btn" type="button" data-lightbox-close aria-label="Закрити">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+      </button>
+    </div>
+  </div>
+  <button class="lightbox__nav lightbox__nav--prev" type="button" data-lightbox-prev aria-label="Попереднє фото">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+  </button>
+  <button class="lightbox__nav lightbox__nav--next" type="button" data-lightbox-next aria-label="Наступне фото">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
+  </button>
+</div>
+{% endblock %}

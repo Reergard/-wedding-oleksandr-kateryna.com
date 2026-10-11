@@ -1,0 +1,299 @@
+/* Сторінка подяки — одна адаптивна версія для всіх пристроїв */
+
+.thank-you-page {
+  --thank-you-gold: #d4af37;
+  --thank-you-cream-top: #fff8eb;
+
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+  /* декоративні гілки не повинні подовжувати сторінку нижче кнопки */
+  overflow: hidden;
+  overflow: clip;
+  background: linear-gradient(
+    180deg,
+    var(--thank-you-cream-top) 0%,
+    #ffffff 42%,
+    #ffffff 100%
+  );
+  -webkit-font-smoothing: antialiased;
+}
+
+/* —— Шапка: силуети по краях екрана + монограма ОК —— */
+
+.thank-you-page__hero {
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+  padding: max(12px, env(safe-area-inset-top, 0px)) 12px 8px;
+  min-height: clamp(110px, 24vw, 220px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.thank-you-page__logo-link {
+  position: relative;
+  z-index: 2;
+  display: block;
+  margin-top: clamp(8px, 3vw, 28px);
+  transition: transform .5s cubic-bezier(.22, 1, .36, 1), filter .5s cubic-bezier(.22, 1, .36, 1);
+}
+
+/* hover лише там, де є миша: на телефонах ефект не «залипає» після тапу */
+@media (hover: hover) {
+  .thank-you-page__logo-link:hover {
+    transform: scale(1.04);
+    filter: drop-shadow(0 6px 16px rgba(212, 175, 55, .35));
+  }
+}
+
+.thank-you-page__logo {
+  display: block;
+  width: min(281px, 46vw);
+  height: auto;
+  object-fit: contain;
+}
+
+.thank-you-page__silhouette {
+  position: absolute;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 1;
+  width: clamp(72px, 15vw, 200px);
+  height: auto;
+  object-fit: contain;
+  object-position: top;
+  pointer-events: none;
+  user-select: none;
+}
+
+.thank-you-page__silhouette--left {
+  left: env(safe-area-inset-left, 0px);
+}
+
+.thank-you-page__silhouette--right {
+  right: env(safe-area-inset-right, 0px);
+}
+
+/* —— Текст і гілки (гілки притиснуті до країв екрана) —— */
+
+.thank-you-page__message {
+  --branch-w: clamp(96px, 20vw, 280px);
+
+  position: relative;
+  flex: 1 1 auto;
+  width: 100%;
+  /* гілка (~2.6 × ширина) спускається нижче — до рівня кнопки */
+  min-height: calc(var(--branch-w) * 1.75);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(16px, 4vw, 40px) calc(var(--branch-w) * 0.75);
+}
+
+.thank-you-page__message-layout {
+  width: 100%;
+  max-width: 860px;
+}
+
+.thank-you-page__branch {
+  position: absolute;
+  top: 0;
+  z-index: 0;
+  width: var(--branch-w);
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+.thank-you-page__branch--left {
+  left: env(safe-area-inset-left, 0px);
+}
+
+.thank-you-page__branch--right {
+  right: env(safe-area-inset-right, 0px);
+}
+
+.thank-you-page__message-text {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.thank-you-page__title {
+  margin: 0 0 clamp(12px, 3vw, 28px);
+  color: var(--thank-you-gold);
+  font-family: var(--font-family-isadora_cyr_-regular), "Isadora Cyr-Regular", Georgia, serif;
+  font-size: clamp(1.75rem, 4vw, 3.375rem);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+.thank-you-page__body {
+  margin: 0;
+  color: var(--thank-you-gold);
+  font-family: var(--font-family-isadora_cyr_-regular), "Isadora Cyr-Regular", Georgia, serif;
+  font-size: clamp(1.125rem, 2.2vw, 1.875rem);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0;
+  -webkit-text-stroke: 0.3px var(--thank-you-gold);
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+}
+
+.thank-you-page__body + .thank-you-page__body {
+  margin-top: clamp(12px, 2vw, 24px);
+}
+
+/* ПК/планшет: заголовок в один рядок */
+@media (min-width: 768px) {
+  .thank-you-page__title {
+    white-space: nowrap;
+  }
+}
+
+/* —— Кнопка в кінці сторінки —— */
+
+.thank-you-page__footer {
+  flex-shrink: 0;
+  width: 100%;
+  margin-top: auto;
+  /* кнопка притиснута до низу сторінки */
+  padding: clamp(32px, 6vw, 72px) 16px max(12px, env(safe-area-inset-bottom, 0px));
+}
+
+.thank-you-page__confirm {
+  position: relative;
+  display: block;
+  width: min(520px, 100%);
+  aspect-ratio: 852 / 218;
+  margin: 0 auto;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  container-type: inline-size;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+@media (hover: hover) {
+  .thank-you-page__confirm:hover {
+    transform: scale(1.03);
+    filter: drop-shadow(0 4px 10px rgba(212, 175, 55, 0.25));
+  }
+}
+
+.thank-you-page__confirm:active {
+  transform: scale(.98);
+}
+
+.thank-you-page__confirm:focus-visible {
+  outline: 2px solid var(--thank-you-gold);
+  outline-offset: 4px;
+}
+
+.thank-you-page__confirm-frame {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.thank-you-page__confirm-frame .vector-18,
+.thank-you-page__confirm-frame .vector-19,
+.thank-you-page__confirm-frame .vector-20,
+.thank-you-page__confirm-frame .vector-21 {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+}
+
+.thank-you-page__confirm-frame .vector-18 {
+  left: 0;
+  top: 0;
+  width: 50.41%;
+  height: 76.09%;
+}
+
+.thank-you-page__confirm-frame .vector-19 {
+  left: 49.59%;
+  top: 0;
+  width: 50.41%;
+  height: 76.09%;
+}
+
+.thank-you-page__confirm-frame .vector-20 {
+  left: 2.24%;
+  top: 72.41%;
+  width: 47.58%;
+  height: 27.59%;
+}
+
+.thank-you-page__confirm-frame .vector-21 {
+  left: 50.09%;
+  top: 71.92%;
+  width: 47.58%;
+  height: 27.59%;
+}
+
+/* Текст в один рядок у смузі між верхнім і нижнім орнаментом */
+.thank-you-page__confirm-label {
+  position: absolute;
+  left: 50%;
+  top: 53%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  margin: 0;
+  padding: 0;
+  color: var(--thank-you-gold);
+  font-family: var(--font-family-literature_decor-regular), "Literature Decor-Regular", Georgia, serif;
+  /* фолбек для браузерів без container queries (Safari < 16 тощо) */
+  font-size: clamp(14px, calc((100vw - 32px) * 0.052), 27px);
+  font-size: 5.2cqw;
+  font-weight: 400;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* —— Вузькі екрани —— */
+
+@media (max-width: 640px) {
+  .thank-you-page__message {
+    --branch-w: clamp(90px, 30vw, 180px);
+    align-items: center;
+    padding-left: calc(var(--branch-w) * 0.4);
+    padding-right: calc(var(--branch-w) * 0.4);
+  }
+
+  /* на телефоні секція тягнеться на всю висоту — центруємо текст разом з гілками */
+  .thank-you-page__branch {
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.55;
+  }
+
+  .thank-you-page__confirm {
+    width: min(420px, 100%);
+  }
+}
+
+/* Фолбек для браузерів без aspect-ratio (Safari < 15) */
+@supports not (aspect-ratio: 1 / 1) {
+  .thank-you-page__confirm {
+    height: calc(min(520px, 100vw - 32px) * 0.256);
+  }
+}
